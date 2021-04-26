@@ -1,40 +1,33 @@
 # Library System 
- > Authors: 
- > 
- > [Puloma Katiyar](https://github.com/puloma-k)
- > 
- > [Joseph Prince](https://github.com/josephdprince)
- > 
- > [Raymond Yang](https://github.com/raymyun)
+ Authors: 
+  
+ [Puloma Katiyar](https://github.com/puloma-k)
+ 
+ [Joseph Prince](https://github.com/josephdprince)
+  
+ [Raymond Yang](https://github.com/raymyun)
  
 ## Project Description
- > This project is important to us because it allows us to incorporate design patterns learned in class
+This project is important to us because it allows us to incorporate design patterns learned in class
 to a useful program that can be applied in the real world. It will help us understand the methods of
 collaboration via GitHub and give us an insight into how software development is completed at the industry level. The project idea is
 interesting to us because of the variety of features in the design. Creating a login system and providing recommendations to users based on
 past activity are features that we have not implemented before, so it will provide an interesting challenge. In addition, this project can be 
 expanded to many levels of complexity and we can continue to build on it even after completing this course.
- >
- > This project will be composed entirely in C++ and use the following tools/technologies:
- > * Valgrind - used to facilitate memory managemnt
- > * CMake - used to simplify the compilation process
- > * Kanban Board - to help keep everything organized while giving each group member a task to complete
- > Project Specifications:
- > * input/output - A user may input their username and password to log into the library system. Afterwards,
- > various inputs will allow them to perform different operations within the system. An output may be a list
- > of favorite books or the title of books that were rented out. 
- > 
- > Design Patterns:  
- > * Strategy - This pattern will be useful because it lets us take take advantage of subclasses and virtual functions.
- > We want to be able to call the same algorithm on two different subclasses and have it do two separate things. For
- > example, calling the run() function on an admin should put them in an administrator view while on a standard user
- > it should not do that. We anticipate that using this strategy will help us encapusulate the structure of the system.
- > Since the user will run a command the same way regardless of their status, they are unaware of the mechanisms of the
- > system and only need to concern themselves with which command they want to run.
- > * Factory Method - This pattern lets us defer all instantiation to a subclass. We want our User class to be pure virtual
- > so that we can create different kinds of users in the system similarly. Using factory method will help us reduce the amount of
- > repeated code when making each type of user. This helps because each subclass will have the same functions and private data, but
- > with different implementations.
+
+This project will be composed entirely in C++ and use the following tools/technologies:
+* Valgrind - used to facilitate memory managemnt
+* CMake - used to simplify the compilation process
+* Kanban Board - to help keep everything organized while giving each group member a task to complete
+
+Project Specifications:
+* input/output - A user may input their username and password to log into the library system. Afterwards, various inputs will allow them to perform different operations within the system. An output may be a list of favorite books or the title of books that were rented out. 
+ 
+Design Patterns:  
+* Strategy - This pattern will be useful because it lets us take take advantage of subclasses and virtual functions. We want to be able to call the same algorithm on two different subclasses and have it do two separate things. For example, calling the run() function on an admin should put them in an administrator view while on a standard user it should not do that. We anticipate that using this strategy will help us encapusulate the structure of the system.
+Since the user will run a command the same way regardless of their status, they are unaware of the mechanisms of the
+system and only need to concern themselves with which command they want to run.
+* Factory Method - This pattern lets us defer all instantiation to a subclass. We want our User class to be pure virtual so that we can create different kinds of users in the system similarly. Using factory method will help us reduce the amount of repeated code when making each type of user. This helps because each subclass will have the same functions and private data, but with different implementations.
 
  > ## Phase II
  > In addition to completing the "Class Diagram" section below, you will need to 
