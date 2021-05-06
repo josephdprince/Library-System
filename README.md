@@ -30,6 +30,7 @@ Design Patterns:
 
 ## Class Diagram
  ![alt text](https://github.com/cs100/final-project-jprin012-pkati001-ryang038/blob/master/Library%20Book%20System.png)
+The library system is in charge of holding all of the books and will only have the file of one user open at a time (whoever is logged in). There are 2 types of users, a     standard user and an admin. An admin should be able to do everything a standard user can do plus the ability to add and remove books from the library. The select class will be used to facilitate user book recommendations so it would be an aggregation.
  
  > ## Phase III
  > You will need to schedule a check-in with the TA (during lab hours or office hours). Your entire team must be present. 
