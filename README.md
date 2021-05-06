@@ -27,18 +27,9 @@ Design Patterns:
 * Strategy - This pattern will be useful because it lets us take take advantage of subclasses and virtual functions. We want to be able to call the same algorithm on two different subclasses and have it do two separate things. For example, we want to use this pattern to help facilitate book recommendations. This would be done in combination with a composite pattern to allow a user to select what they like and what they don't like. We would have subclasses that all have their own implementation of the algorithm that would let us get a list of books we would like while removing books we wouldn't like. We could use AND and NOT subclasses that facilitate this. 
 * Composite - This pattern will let us use a tree-like structure where a part can contain a whole while still treating each part similarly. Essentially, we would have a structure of AND and NOT nodes that give us a way to select which books we like and don't like. The AND, NOT, and each individual book would all derive from the same class so they can be treated similarly. The AND and NOT objects can either hold books or another AND/NOT objects.
 
- > ## Phase II
- > In addition to completing the "Class Diagram" section below, you will need to 
- > * Set up your GitHub project board as a Kanban board for the project. It should have columns that map roughly to 
- >   * Backlog, TODO, In progress, In testing, Done
- >   * You can change these or add more if you'd like, but we should be able to identify at least these.
- > * There is no requirement for automation in the project board but feel free to explore those options.
- > * Create an "Epic" (note) for each feature and each design pattern and assign them to the appropriate team member. Place these in the `Backlog` column
- > * Complete your first *sprint planning* meeting to plan out the next 7 days of work.
- >   * Create smaller development tasks as issues and assign them to team members. Place these in the `TODO` column.
- >   * These cards should represent roughly 7 days worth of development time for your team, taking you until your first meeting with the TA
+
 ## Class Diagram
- > Include a class diagram(s) for each design pattern and a description of the diagram(s). Your class diagram(s) should include all the main classes you plan for the project. This should be in sufficient detail that another group could pick up the project this point and successfully complete it. Use proper OMT notation (as discussed in the course slides). You may combine multiple design patterns into one diagram if you'd like, but it needs to be clear which portion of the diagram represents which design pattern (either in the diagram or in the description). 
+ ![alt text](/Library Book System.png)
  
  > ## Phase III
  > You will need to schedule a check-in with the TA (during lab hours or office hours). Your entire team must be present. 
