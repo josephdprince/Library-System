@@ -29,7 +29,7 @@ Design Patterns:
 
 
 ## Class Diagram
- ![alt text](/Library Book System.png)
+ ![alt text](Library Book System.png)
  
  > ## Phase III
  > You will need to schedule a check-in with the TA (during lab hours or office hours). Your entire team must be present. 
