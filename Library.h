@@ -2,14 +2,15 @@
 #define __LIBRARY_H__
 
 #include <vector>
+#include "Book.h"
 
 class Library {
     private:
-	vector<Book*> library
+	std::vector<Book*> library;
     public:
-	void DisplayGenre(string);
+	void DisplayGenre(std::string);
 	void DisplayAll();
-	void Checkout(Book*)
+	void Checkout(Book*);
 	void InsertLibrary(Book*);
 	Book* FindBook(int);
 	void start();

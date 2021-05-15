@@ -1,11 +1,16 @@
+#include <iostream>
 #include <iomanip>
+#include <string>
+#include <vector>
 #include "Library.h"
+#include "Book.h"
 using namespace std;
 
 void Library::DisplayGenre(string genre) {
 	for (int i = 0; i < library.size(); i++) {
 		if (library.at(i)->GetGenre() == genre) {
 			cout << library.at(i)->GetTitle() << " by " << library.at(i)->GetAuthor();
+		}
 	}
 }
 
