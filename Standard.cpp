@@ -22,14 +22,29 @@ void Standard::checkoutBook(Book* b) {
 	if (bookFound) {
 		library.erase(library.begin() + index - 1);
 		checkedOut.push_back(b);
-		std::cout << "Book with ID: " << b->GetID() << " has been successfully checked out." << endl;
+		std::cout << "Book with ID: " << b->GetID() << " has been successfully checked out to User." << endl;
 	}
 	else {
 		std::cout << "Book with ID: " << b->GetID() << " was not found in the Library." << endl;
 	{
 }
 void Standard::returnBook(Book* b) {
-
+	bool bookFound = false;
+	int index = 0;
+	for (int i = 0; i < checkedOut.size(); i++) {
+		if (checkedOut.at(i)->GetID() == b->GetID()) {
+			index = i;
+			bookFound = true;
+		}
+	}
+	if (bookFound) {
+		checkedOut.erase(checkedOut.begin() + index - 1);
+		library.push_back(b);
+		std::cout << "Book with ID: " << b->GetID() << " has been successfully returned to the Library." << endl;
+	}
+	else {
+		std::cout << "Book with ID: " << b->GetID() << " was not found in the User's list of Checked Out Books." << endl'
+	}
 }
 void Standard::displayBooks() {
     for(unsigned i = 0; i < checkedOut.size(); i++) {
