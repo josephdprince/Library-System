@@ -26,7 +26,7 @@ void Standard::checkoutBook(Book* b) {
 	}
 	else {
 		std::cout << "Book with ID: " << b->GetID() << " was not found in the Library." << std::endl;
-	{
+	}
 }
 void Standard::returnBook(Book* b) {
 	bool bookFound = false;
