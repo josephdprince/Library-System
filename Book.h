@@ -9,7 +9,6 @@ class Book {
 	std::string author;
 	std::string genre;
 	int ID;
-	std::string dueDate;
 	double rating;
 	int numReviews;
 
@@ -20,7 +19,6 @@ class Book {
 	std::string GetAuthor();
 	std::string GetGenre();
 	int GetID();
-	std::string GetDueDate();
 	double GetRating();
 	int GetNumReviews();
 	
@@ -28,7 +26,6 @@ class Book {
 	void SetAuthor(std::string);
 	void SetGenre(std::string);
 	void SetID(int);
-	void SetDueDate(std::string);
 	void SetRating(double);
 	void SetNumReviews(int);
 };

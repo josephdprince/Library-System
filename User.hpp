@@ -1,14 +1,15 @@
-#ifndef __USER_H__
-#define __USER_H__
+#ifndef __USER_HPP__
+#define __USER_HPP__
 
 #include <string>
+#include "Library.h"
 
 class User { 
     private:
         std::string userID;
 
     public:
-        virtual void run() = 0;
+        virtual void run(Library*) = 0;
         void setID(std::string userID) { this->userID = userID; }
 };
 

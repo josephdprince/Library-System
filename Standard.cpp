@@ -1,5 +1,7 @@
 #include "Standard.hpp"
 #include "Library.h"
+#include "Strategy.hpp"
+#include "User.hpp"
 #include <string>
 #include <vector>
 #include <iostream>
@@ -10,7 +12,7 @@ Standard::Standard(std::string name) {
 
 void Standard::run() {}
 void Standard::recommend() {}
-void Standard::checkoutBook(Book* b) {
+void Standard::checkoutBook(Book* b, std::vector<Book*> library) {
 	bool bookFound = false;
 	int index = 0;
 	for (int i = 0; i < library.size(); i++) {
@@ -28,7 +30,7 @@ void Standard::checkoutBook(Book* b) {
 		std::cout << "Book with ID: " << b->GetID() << " was not found in the Library." << std::endl;
 	}
 }
-void Standard::returnBook(Book* b) {
+void Standard::returnBook(Book* b, std::vector<Book*> library) {
 	bool bookFound = false;
 	int index = 0;
 	for (int i = 0; i < checkedOut.size(); i++) {
@@ -51,7 +53,8 @@ void Standard::displayBooks() {
        std::cout <<  checkedOut.at(i)->GetTitle() << std::endl;
     }
 }
-void Standard::addFavorite(Book* b) {
+/*
+    void Standard::addFavorite(Book* b) {
     favorites.push_back(b);
 }
 void Standard::removeFavorite(Book* b) {
@@ -62,3 +65,4 @@ void Standard::removeFavorite(Book* b) {
     }
     favorites.erase(favorites.begin() + idx - 1); 
 }
+*/

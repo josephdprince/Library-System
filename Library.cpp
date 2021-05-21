@@ -6,6 +6,8 @@
 #include "Book.h"
 using namespace std;
 
+std::vector<Book*> Library::GetLibrary() {return library;}
+
 void Library::DisplayGenre(string genre) {
 	for (int i = 0; i < library.size(); i++) {
 		if (library.at(i)->GetGenre() == genre) {
