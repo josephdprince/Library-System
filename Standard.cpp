@@ -10,7 +10,7 @@ Standard::Standard(std::string name) {
 
 void Standard::run() {}
 void Standard::recommend() {}
-void Standard::checkoutBook(Book* b) {
+void Standard::checkoutBook(Book* b, std::vector<Book*> library) {
 	bool bookFound = false;
 	int index = 0;
 	for (int i = 0; i < library.size(); i++) {
@@ -28,7 +28,7 @@ void Standard::checkoutBook(Book* b) {
 		std::cout << "Book with ID: " << b->GetID() << " was not found in the Library." << std::endl;
 	}
 }
-void Standard::returnBook(Book* b) {
+void Standard::returnBook(Book* b, std::vector<Book*> library) {
 	bool bookFound = false;
 	int index = 0;
 	for (int i = 0; i < checkedOut.size(); i++) {
