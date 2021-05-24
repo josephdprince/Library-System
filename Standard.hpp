@@ -1,9 +1,9 @@
-#ifndef __STANDARD_H__
-#define __STANDARD_H__
+#ifndef __STANDARD_HPP__
+#define __STANDARD_HPP__
 
 #include <string>
 #include <vector>
-#include "Book.h"
+#include "Book.hpp"
 #include "User.hpp"
 
 class Standard : public User {

@@ -5,7 +5,7 @@
 #include <fstream>
 #include "Admin.hpp"
 #include "Standard.cpp"
-#include "Library.h"
+#include "Library.hpp"
 using namespace std;
 
 Library::Library() {
@@ -50,10 +50,10 @@ bool Library::loadUsers() {
 		fin >> pass;
 		fin >> admin;
 		if(admin == "1") {
-			Admin* tmp = new Admin(name, pass);
+			User* tmp = new Admin(name, pass);
 			userList.push_back(tmp);
 		} else {
-			Standard* tmp = new Standard(name, pass);
+			User* tmp = new Standard(name, pass);
 			userList.push_back(tmp);
 		}
 		fin >> name;

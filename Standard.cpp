@@ -1,7 +1,7 @@
 #include <string>
 #include <vector>
 #include <iostream>
-#include "Library.h"
+#include "Library.hpp"
 #include "Standard.hpp"
 
 Standard::Standard(const std::string& uname, const std::string& pass) {
@@ -11,6 +11,7 @@ Standard::Standard(const std::string& uname, const std::string& pass) {
 
 void Standard::run() {}
 void Standard::recommend() {}
+
 void Standard::checkoutBook(Book* b, std::vector<Book*> library) {
 	bool bookFound = false;
 	int index = 0;

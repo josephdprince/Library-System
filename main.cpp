@@ -1,14 +1,14 @@
 #include <iostream>
-#include "Library.h"
+#include "Library.hpp"
 
 int main() {
-	Library lib;
-	if(!lib.loadUsers()) {
+	Library* lib = new Library();
+	if(!lib->loadUsers()) {
 		std::cerr << "ERROR: Cannot load users from login.csv" << std::endl;
 		exit(1);
 	}
 	
-	lib.login();
+	lib->login();
 
 	return 0;
 }
