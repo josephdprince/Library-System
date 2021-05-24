@@ -2,9 +2,13 @@
 #include "Library.h"
 
 int main() {
+	Library lib;
+	if(!lib.loadUsers()) {
+		std::cerr << "ERROR: Cannot load users from login.csv" << std::endl;
+		exit(1);
+	}
+	
+	lib.login();
 
-Library lib;
-
-
-return 0;
+	return 0;
 }

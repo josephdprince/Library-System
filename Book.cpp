@@ -1,5 +1,5 @@
-#include "Book.h"
 #include <string>
+#include "Book.h"
 
 Book::Book(std::string title, std::string author, std::string genre, int ID) {
 	this->title = title;

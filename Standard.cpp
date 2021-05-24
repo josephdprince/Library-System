@@ -1,16 +1,17 @@
-#include "Standard.hpp"
-#include "Library.h"
 #include <string>
 #include <vector>
 #include <iostream>
+#include "Library.h"
+#include "Standard.hpp"
 
-Standard::Standard(std::string name) {
-   this->setID(name);
+Standard::Standard(const std::string& uname, const std::string& pass) {
+	this->setID(uname);
+	this->setPass(pass);
 }  
 
 void Standard::run() {}
 void Standard::recommend() {}
-void Standard::checkoutBook(Book* b) {
+void Standard::checkoutBook(Book* b, std::vector<Book*> library) {
 	bool bookFound = false;
 	int index = 0;
 	for (int i = 0; i < library.size(); i++) {
@@ -28,7 +29,8 @@ void Standard::checkoutBook(Book* b) {
 		std::cout << "Book with ID: " << b->GetID() << " was not found in the Library." << std::endl;
 	}
 }
-void Standard::returnBook(Book* b) {
+
+void Standard::returnBook(Book* b, std::vector<Book*> library) {
 	bool bookFound = false;
 	int index = 0;
 	for (int i = 0; i < checkedOut.size(); i++) {
@@ -46,14 +48,17 @@ void Standard::returnBook(Book* b) {
 		std::cout << "Book with ID: " << b->GetID() << " was not found in the User's list of Checked Out Books." << std::endl;
 	}
 }
+
 void Standard::displayBooks() {
     for(unsigned i = 0; i < checkedOut.size(); i++) {
        std::cout <<  checkedOut.at(i)->GetTitle() << std::endl;
     }
 }
+
 void Standard::addFavorite(Book* b) {
     favorites.push_back(b);
 }
+
 void Standard::removeFavorite(Book* b) {
     int idx = 0;
     for(unsigned i = 0; i < favorites.size(); i++) {

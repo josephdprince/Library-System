@@ -6,7 +6,9 @@
 
 class Admin : public Standard {
     public:
-        void run();
+	Admin(const std::string& uname, const std::string& pass) : Standard(uname, pass) {}
         void addBook(Book*);
         void remBook(Book*);
 };
+
+#endif
