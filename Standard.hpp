@@ -16,8 +16,8 @@ class Standard : public User {
         Standard(std::string userID);
         void run();
         void recommend();
-        void checkoutBook(Book*);
-        void returnBook(Books*);
+        void checkoutBook(Book*, std::vector<Book*>);
+        void returnBook(Books*, std::vector<Book*>);
         void displayBooks();
         void addFavorite(Book*);
         void removeFavorite(Book*);
