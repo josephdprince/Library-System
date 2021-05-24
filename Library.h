@@ -8,6 +8,7 @@ class Library {
     private:
 	std::vector<Book*> library;
     public:
+	std::vector<Book*> GetLibrary();
 	void DisplayGenre(std::string);
 	void DisplayAll();
 	void Checkout(Book*);

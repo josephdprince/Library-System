@@ -1,5 +1,7 @@
 #include "Standard.hpp"
 #include "Library.h"
+#include "Strategy.hpp"
+#include "User.hpp"
 #include <string>
 #include <vector>
 #include <iostream>
@@ -51,7 +53,8 @@ void Standard::displayBooks() {
        std::cout <<  checkedOut.at(i)->GetTitle() << std::endl;
     }
 }
-void Standard::addFavorite(Book* b) {
+/*
+    void Standard::addFavorite(Book* b) {
     favorites.push_back(b);
 }
 void Standard::removeFavorite(Book* b) {
@@ -62,3 +65,4 @@ void Standard::removeFavorite(Book* b) {
     }
     favorites.erase(favorites.begin() + idx - 1); 
 }
+*/
