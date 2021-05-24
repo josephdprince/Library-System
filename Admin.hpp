@@ -2,6 +2,7 @@
 #define __ADMIN_H__
 
 #include <string>
+#include <vector>
 #include "Standard.hpp"
 #include "Library.h"
 
