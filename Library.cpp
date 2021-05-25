@@ -24,3 +24,12 @@ void Library::DisplayAll() {
 		     << setw(35) << library.at(i)->GetAuthor() << setw(7) << library.at(i)->GetID() << endl;
 	}
 }
+
+Book* Library::FindBook(int id) {
+	for (auto i : library) {
+		if (i->GetID() == id) {
+			return i;
+		}
+	}
+	return nullptr;
+}

@@ -10,8 +10,81 @@ Standard::Standard(std::string name) {
    this->setID(name);
 }  
 
-void Standard::run() {}
-void Standard::recommend() {}
+void Standard::run(Library* library_system) {}
+
+void Standard::newList(Library* library) {
+	Composition* newList = new Composition();
+	
+	std::string name;
+	std::cout << "List name: ";
+	std::getline(std::cin, name);
+	newList->SetName(name);
+	std::cin.clear();
+
+	int input = 1;
+	while (input != 0) {
+		std::cout << "1. Output List" << std::endl;
+		std::cout << "2. Add to List" << std::endl;
+		std::cout << "0. Stop" << std::endl;
+
+		std::cin >> input;
+		if (input == 1) {
+			library->DisplayAll();
+		}
+		else if (input == 2) {
+			std::cout << "Enter an ID number or press 2 to enter another list: ";
+			std::cin >> input;
+			if (input != 2) {
+				for (auto i : library->GetLibrary()) {
+					if (i->GetID() == input) {
+						Individual* entry = new Individual();
+						entry->SetBook(library->FindBook(input));
+						newList->Add(entry);
+						std::cout << entry->GetBook()->GetTitle() << " was added to your list" << std::endl;
+					}
+				}
+			}
+			else {
+				if (lists.size() != 0) {
+					std::cout << "Enter name of list you would like to add: ";
+					std::getline(std::cin, name);
+					std::cin.clear();
+					for (auto i : lists) {
+						if (name == i->GetName()) {
+							newList->Add(i);
+							std::cout << name << " was added to your list" << std::endl;
+						}
+					}
+				}
+				else {
+					std::cout << "Error: No Lists available" << std::endl;
+				}
+			}
+		}
+	}
+}
+
+void Standard::viewLists() {
+	for (auto i : lists) {
+		i->print(0);
+	}
+}
+
+void Standard::recommend(std::vector<Book*> library) {
+	int input;
+	std::cout << "Would you like recommendations based off of 1. favorites or 2. most popular?" << std::endl;
+	std::cin >> input;
+
+	if (input == 1) {
+		Favorites* alg = new Favorites();
+		alg->recommendation_algorithm(history, library);
+	}
+	else {
+		Popular* alg = new Popular();
+		alg->recommendation_algorithm(history, library);
+	}
+
+}
 void Standard::checkoutBook(Book* b, std::vector<Book*> library) {
 	bool bookFound = false;
 	int index = 0;
@@ -53,16 +126,4 @@ void Standard::displayBooks() {
        std::cout <<  checkedOut.at(i)->GetTitle() << std::endl;
     }
 }
-/*
-    void Standard::addFavorite(Book* b) {
-    favorites.push_back(b);
-}
-void Standard::removeFavorite(Book* b) {
-    int idx = 0;
-    for(unsigned i = 0; i < favorites.size(); i++) {
-        if(favorites.at(i)->GetID() == b->GetID())
-            idx = i;
-    }
-    favorites.erase(favorites.begin() + idx - 1); 
-}
-*/
+

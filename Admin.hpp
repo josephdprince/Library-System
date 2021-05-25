@@ -6,7 +6,7 @@
 
 class Admin : public Standard {
     public:
-        void run();
+        virtual void run(Library*);
         void addBook(Book*);
         void remBook(Book*);
 };
