@@ -15,6 +15,14 @@ Library::Library() {
 Library::~Library() {
 	delete currUser;
 	currUser == nullptr;
+	for(unsigned i = 0; i < userList.size(); i++) {
+		delete userList.at(i);
+		userList.at(i) = nullptr;
+	}
+	for(unsigned i = 0; i < library.size(); i++) {
+		delete library.at(i);
+		library.at(i) = nullptr;
+	}
 }
 
 void Library::DisplayGenre(string genre) {
@@ -132,7 +140,7 @@ void Library::Checkout() {
 	int bookID = 0;
 	cout << "Enter ID of book to check out: ";
 	cin >> bookID;
-	Book* b = findBook(bookID);
+	Book* b = FindBook(bookID);
 	currUser->checkoutBook(b, this);
 }
 
@@ -140,7 +148,7 @@ void Library::Return() {
 	int bookID = 0;
         cout << "Enter ID of book to return: ";
         cin >> bookID;
-        Book* b = findBook(bookID);
+        Book* b = FindBook(bookID);
         currUser->returnBook(b, this);
 }
 
@@ -172,7 +180,7 @@ void Library::RemoveBook() {
 	int bookID = 0;
 	cout << "Enter ID of book to remove: ";
 	cin >> bookID;
-	Book* tmp = findBook(bookID);
+	Book* tmp = FindBook(bookID);
 	currUser->remBook(tmp, this);
 }
 
