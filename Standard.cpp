@@ -3,6 +3,7 @@
 #include <string>
 #include <vector>
 #include <iostream>
+#include <map>
 #include "Library.hpp"
 #include "Standard.hpp"
 
@@ -104,6 +105,7 @@ void Standard::checkoutBook(Book* b, std::vector<Book*> library) {
 void Standard::returnBook(Book* b, std::vector<Book*> library) {
 	bool bookFound = false;
 	int index = 0;
+	int rating;
 	for (int i = 0; i < checkedOut.size(); i++) {
 		if (checkedOut.at(i)->GetID() == b->GetID()) {
 			index = i;
@@ -114,6 +116,11 @@ void Standard::returnBook(Book* b, std::vector<Book*> library) {
 		checkedOut.erase(checkedOut.begin() + index - 1);
 		library.push_back(b);
 		std::cout << "Book with ID: " << b->GetID() << " has been successfully returned to the Library." << std::endl;
+		std::cout << "From 1 to 5 (1 being the worst, 5 being the best), please input your rating of this book: ";
+		std::cin >> rating;
+		std::cout << std::endl;
+		this->history.insert(b, rating);
+		std::cout << "You have given the book with ID: " << b->GetID() << " a rating of " << rating << "." << std::endl;
 	}
 	else {
 		std::cout << "Book with ID: " << b->GetID() << " was not found in the User's list of Checked Out Books." << std::endl;
