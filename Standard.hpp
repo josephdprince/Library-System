@@ -13,14 +13,15 @@ class Standard : public User {
         double totalFines;
 
     public:
-        Standard(const std::string&, const std::string&);
-        virtual void run();
-        void recommend();
-        void checkoutBook(Book*, std::vector<Book*>);
-        void returnBook(Book*, std::vector<Book*>);
-        void displayBooks();
-        void addFavorite(Book*);
-        void removeFavorite(Book*);
+        inline Standard(const std::string& uname, const std::string& pass) : User(uname, pass) {} 
+        inline virtual void run() {} 
+	inline std::string getUserType() { return "standard"; }
+        inline void recommend();
+        inline void checkoutBook(Book*, std::vector<Book*>);
+        inline void returnBook(Book*, std::vector<Book*>);
+        inline void displayBooks();
+        inline void addFavorite(Book*);
+        inline void removeFavorite(Book*);
 };
 
 #endif

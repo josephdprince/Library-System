@@ -9,6 +9,7 @@ int main() {
 	}
 	
 	lib->login();
+	lib->start();
 
 	return 0;
 }

@@ -4,12 +4,6 @@
 #include "Library.hpp"
 #include "Standard.hpp"
 
-Standard::Standard(const std::string& uname, const std::string& pass) {
-	this->setID(uname);
-	this->setPass(pass);
-}  
-
-void Standard::run() {}
 void Standard::recommend() {}
 
 void Standard::checkoutBook(Book* b, std::vector<Book*> library) {

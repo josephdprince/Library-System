@@ -11,12 +11,17 @@ class Library {
 	std::vector<Book*> library;
         std::vector<User*> userList;
         const User* currUser;
+	void printMenu();
     public:
 	Library();
 	~Library();
 	void DisplayGenre(std::string);
 	void DisplayAll();
-	void Checkout(Book*);
+	void Checkout();
+	void Return();
+	void Recommend();
+	void AddBook();
+	void RemoveBook();
 	void InsertLibrary(Book*);
 	Book* FindBook(int);
         bool loadUsers();

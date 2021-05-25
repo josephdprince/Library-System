@@ -4,21 +4,15 @@
 #include <string>
 
 class User { 
-    private:
+    protected:
         std::string userID;
 	std::string password;
 
     public:
-	std::string getUserID() const { return userID; }
-	void setID(const std::string& u) { userID = u; }
-	void setPass(const std::string& p) { password = p; }
-
-	bool check(const std::string& uname, const std::string& pass) const {
-		if(uname == "")
-			return false;
-		return userID == uname && password == pass;
-	}
-	
+	User(const std::string&, const std::string&);
+	inline std::string getUserID() { return userID; }
+	virtual std::string getUserType() = 0;
+	bool check(const std::string& uname, const std::string& pass) const;
         virtual void run() = 0;
 };
 

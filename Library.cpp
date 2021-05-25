@@ -46,7 +46,7 @@ bool Library::loadUsers() {
 	string admin;
 	fin >> name;
 
-	while(name != "end") {
+	while(!fin.eof()) {
 		fin >> pass;
 		fin >> admin;
 		if(admin == "1") {
@@ -59,7 +59,7 @@ bool Library::loadUsers() {
 		fin >> name;
 	}
 	fin.close();
-	
+
 	return true;
 }
 
@@ -75,9 +75,105 @@ void Library::login() {
 	if(currUser == nullptr) {
 		cout << "Invalid username or password." << endl;
 	} else {
-		cout << "Welcome " << nameInput << endl;
+		cout << "Welcome " << nameInput << "!" << endl;
 		return;
 	} 
+}
+
+void Library::printMenu() {
+	cout << "Menu" << endl;
+        cout << "- Display Library ('d')" << endl;
+        cout << "- Check out Book ('c')" << endl;
+        cout << "- Return Book ('r')" << endl;
+	cout << "- Recommend Books ('m')" << endl;
+        cout << "- Quit ('q')" << endl;
+        cout << "Choose an action: " << endl;
+}
+
+void Library::start() {
+	if(currUser == nullptr)
+        	return;
+        
+    	char input;
+	printMenu();
+	bool isAdmin = false;
+	if(currUser->getUserType() == "admin") {
+		isAdmin = true;
+		cout << "- Add Book to Library ('a')" << endl;
+		cout << "- Remove Book from Library ('v')" << endl;
+	}
+
+    	cin >> input;
+    	while (input != 'q') {
+        	if (input == 'd')
+            		DisplayAll();
+        	else if (input == 'c')
+			Checkout();
+        	else if (input == 'r')
+            		Return();
+		else if (input == 'm')
+			Recommend();
+		else if (input == 'a' && isAdmin)
+			AddBook();
+		else if (input 'v' && isAdmin)
+			RemoveBook();
+        
+        	cout << endl;
+		printMenu();
+        	cin >> input;
+        	if(input != 'q')
+        	    cout << endl;
+    	}	
+    	currUser = nullptr;
+    	cout << "Bye!" << endl;
+}
+
+void Library::Checkout() {
+	int bookID = 0;
+	cout << "Enter ID of book to check out: ";
+	cin >> bookID;
+	Book* b = findBook(bookID);
+	currUser->checkoutBook(b, this);
+}
+
+void Library::Return() {
+	int bookID = 0;
+        cout << "Enter ID of book to return: ";
+        cin >> bookID;
+        Book* b = findBook(bookID);
+        currUser->returnBook(b, this);
+}
+
+void Library::Recommend() {
+	currUser->recommend();
+}
+
+void Library::AddBook() {
+	string title = "";
+	string author = "";
+	string genre = "";
+	int ID = 0;
+	cout << "Enter book title: ";
+	getline(cin, title);
+	cout << endl;
+	cout << "Enter book author: ";
+	getline(cin, author);
+	cout << endl;
+	cout << "Enter book genre: ";
+	cin >> genre;
+	cout << endl;
+	cout << "Enter book ID: ";
+	cin >> ID;
+	Book* tmp = new Book(title, author, genre, ID);
+	currUser->addBook(tmp, this);	
+}
+
+void Library::RemoveBook() {
+	int bookID = 0;
+	cout << "Enter ID of book to remove: ";
+	cin >> bookID;
+	Book* tmp = findBook(bookID);
+	currUser->remBook(tmp, this);
 }
 
 const User* Library::getUser(const string& name, const string& pw) const {
