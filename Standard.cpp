@@ -1,14 +1,10 @@
-#include "Standard.hpp"
-#include "Library.h"
 #include "Strategy.hpp"
 #include "User.hpp"
 #include <string>
 #include <vector>
 #include <iostream>
-
-Standard::Standard(std::string name) {
-   this->setID(name);
-}  
+#include "Library.hpp"
+#include "Standard.hpp"
 
 void Standard::run(Library* library_system) {}
 
@@ -85,6 +81,7 @@ void Standard::recommend(std::vector<Book*> library) {
 	}
 
 }
+
 void Standard::checkoutBook(Book* b, std::vector<Book*> library) {
 	bool bookFound = false;
 	int index = 0;
@@ -103,6 +100,7 @@ void Standard::checkoutBook(Book* b, std::vector<Book*> library) {
 		std::cout << "Book with ID: " << b->GetID() << " was not found in the Library." << std::endl;
 	}
 }
+
 void Standard::returnBook(Book* b, std::vector<Book*> library) {
 	bool bookFound = false;
 	int index = 0;
@@ -121,9 +119,9 @@ void Standard::returnBook(Book* b, std::vector<Book*> library) {
 		std::cout << "Book with ID: " << b->GetID() << " was not found in the User's list of Checked Out Books." << std::endl;
 	}
 }
+
 void Standard::displayBooks() {
     for(unsigned i = 0; i < checkedOut.size(); i++) {
        std::cout <<  checkedOut.at(i)->GetTitle() << std::endl;
     }
 }
-
