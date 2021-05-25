@@ -8,8 +8,10 @@
 
 class Admin : public Standard {
     public:
-        void run();
+        virtual void run(Library*);
         void addBook(Book*, std::vector<Book*>);
+	Admin(const std::string& uname, const std::string& pass);
+	inline std::string getUserType() { return "admin"; }
         void remBook(Book*, std::vector<Book*>);
 };
 

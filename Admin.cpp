@@ -1,9 +1,11 @@
 #include <string>
 #include <vector>
 #include "Standard.hpp"
-#include "Library.h"
+#include "Library.hpp"
+#include "Admin.hpp"
+#include <iostream>
 
-Admin::Admin(){}
+Admin::Admin(const std::string& uname, const std::string& pass) : Standard(uname, pass) {}
 
 void Admin::run(){}
 void Admin::addBook(Book* b, std::vector<Book*> library) {
@@ -27,4 +29,3 @@ void Admin::remBook(Book* b, std::vector<Book*> library) {
 		std::cout << "Book was not found in Library." << std::endl;
 	}
 }
-
