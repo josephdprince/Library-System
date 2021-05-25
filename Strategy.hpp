@@ -4,7 +4,7 @@
 #include <map>
 #include <vector>
 
-#include "Book.h"
+#include "Book.hpp"
 
 class Strategy {
     public:

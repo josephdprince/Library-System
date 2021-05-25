@@ -1,5 +1,5 @@
-#ifndef __BOOK_H__
-#define __BOOK_H__
+#ifndef __BOOK_HPP__
+#define __BOOK_HPP__
 
 #include<string>
 

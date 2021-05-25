@@ -1,10 +1,10 @@
-#ifndef __ADMIN_H__
-#define __ADMIN_H__
+#ifndef __ADMIN_HPP__
+#define __ADMIN_HPP__
 
 #include <string>
 #include <vector>
 #include "Standard.hpp"
-#include "Library.h"
+#include "Library.hpp"
 
 class Admin : public Standard {
     public:
