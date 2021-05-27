@@ -1,5 +1,5 @@
 #include <string>
-#include "User.hpp"
+#include "Library.hpp"
 
 User::User(const std::string& uname, const std::string& pass) : userID(uname), password(pass) {}
 
@@ -9,4 +9,4 @@ bool User::check(const std::string& uname, const std::string& pass) const {
 	return userID == uname && password == pass;
 }
 
-void User::run() {}
+virtual void User::run(Library*) {}
