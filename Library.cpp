@@ -219,7 +219,7 @@ void Library::AddBook() {
 	cout << endl;
 	cout << "Enter book ID: ";
 	cin >> ID;
-	Book* tmp = new Book(title, author, genre, ID);
+	Book* tmp = new Book(title, author, genre, ID, 0.0, 0);
 	currUser->addBook(tmp, library);	
 }
 

@@ -13,7 +13,7 @@ class Book {
 	int numReviews;
 
     public:
-	Book(std::string, std::string, std::string, int);
+	Book(std::string, std::string, std::string, int, double, int);
 	
 	std::string GetTitle();
 	std::string GetAuthor();

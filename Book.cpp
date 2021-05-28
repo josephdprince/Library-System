@@ -1,14 +1,13 @@
 #include <string>
 #include "Book.hpp"
 
-Book::Book(std::string title, std::string author, std::string genre, int ID) {
+Book::Book(std::string title, std::string author, std::string genre, int ID, double rating, int numReviews) {
 	this->title = title;
 	this->author = author;
 	this->genre = genre;
 	this->ID = ID;
-	
-	rating = 0;
-	numReviews = 0;
+	this->rating = rating;
+	this->numReviews = numReviews;
 } 
 
 std::string Book::GetTitle() {return title;}
