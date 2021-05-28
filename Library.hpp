@@ -10,11 +10,12 @@ class Library {
     private:
 	std::vector<Book*> library;
         std::vector<User*> userList;
-        const User* currUser;
+        User* currUser;
 	void printMenu();
     public:
 	Library();
 	~Library();
+	std::vector<Book*> GetLibrary();
 	void DisplayGenre(std::string);
 	void DisplayAll();
 	void Checkout();
@@ -27,6 +28,6 @@ class Library {
         bool loadUsers();
 	void start();
 	void login();
-	const User* getUser(const std::string&, const std::string&) const;
+	User* getUser(const std::string&, const std::string&);
 };
 #endif
