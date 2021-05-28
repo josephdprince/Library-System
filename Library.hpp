@@ -30,6 +30,7 @@ class Library {
         bool loadUsers();
 	void start();
 	bool PopulateUser();
+	void CreateFile();
 	void login();
 	User* getUser(const std::string&, const std::string&);
     private:
