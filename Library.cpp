@@ -135,6 +135,81 @@ void Library::login() {
 	} 
 }
 
+bool Library::PopulateUser() {
+	ifstream fin;
+	fin.open(currUser->getUserID() + ".txt");
+	if (!fin.is_open()) {
+		cout << "Error loading user" << endl;
+		return false;
+	}
+
+	string inputLine;
+	istringstream in;
+	int input1;
+	double input2;
+
+	//Populate checked out books
+	getline(fin, inputLine);
+	while (inputLine != "$") {
+		in.str(inputLine);
+		while (in >> input1) {
+			currUser->AddCheckedOut(FindBook(input1));
+		}
+		getline(fin, inputLine);
+	}
+	
+	//Populate history map
+	getline(fin, inputLine);
+	while (inputLine != "$") {
+		in.str(inputLine);
+		while (in >> input1);
+			in >> input2;
+			pair<Book*, double> histVal;
+
+			histVal.first = FindBook(input1);
+			histVal.second = input2;
+
+			currUser->AddHistory(histVal);
+		getline(fin, inputLine);
+	}
+	
+	//Populate book lists
+	while (!fin.eof()) {
+		currUser->AddLists(CreateList(fin));
+	}
+
+	fin.close();
+}
+
+Composition* Library::CreateList(ifstream& fin) {
+	string list_name;
+	string input;
+	int tempID;
+	istringstream in;
+
+	getline(fin, list_name);
+
+	Composition* temp = new Composition();
+	temp->SetName(list_name);
+
+	getline(fin, input);
+	while (input != "}") {
+		if (input == "/") {
+			temp->Add(CreateList(fin));
+		}
+		else {
+			in.str(input);
+			in >> tempID;
+
+			Individual* tempBook = new Individual();
+			tempBook->SetBook(FindBook(tempID));
+
+			temp->Add(tempBook);
+		}
+	}
+	return temp;
+}
+
 void Library::printMenu() {
 	cout << "Menu" << endl;
         cout << "- Display Library ('d')" << endl;
