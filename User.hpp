@@ -10,7 +10,7 @@ class User {
 	std::string password;
 
     public:
-        virtual void run(Library*) = 0;
+        virtual void run(Library*);
 	User(const std::string&, const std::string&);
 	inline std::string getUserID() { return userID; }
 	virtual std::string getUserType() = 0;
