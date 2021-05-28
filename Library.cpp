@@ -70,10 +70,7 @@ bool Library::loadBooks() {
 		getline(fin, genre, ',');
 		getline(fin, ID, ',');
 		getline(fin, rating, ',');
-		getline(fin, review, ',');
-		
-		string tmp1 = "";
-		getline(fin, tmp1, '\n');
+		getline(fin, review, '\n');
 		
 		int bookID = 0;
 		double bookRate = 0.0;
@@ -220,7 +217,12 @@ void Library::printMenu() {
         cout << "- Check out Book ('c')" << endl;
         cout << "- Return Book ('r')" << endl;
 	cout << "- Recommend Books ('m')" << endl;
-        cout << "- Quit ('q')" << endl;
+	if(currUser->getUserType() == "admin") {
+                cout << "- Add Book to Library ('a')" << endl;
+                cout << "- Remove Book from Library ('v')" << endl;
+        }
+	cout << "- Quit ('q')" << endl;
+	cout << "Choose an action: " << endl;
 }
 
 void Library::start() {
@@ -232,10 +234,7 @@ void Library::start() {
 	bool isAdmin = false;
 	if(currUser->getUserType() == "admin") {
 		isAdmin = true;
-		cout << "- Add Book to Library ('a')" << endl;
-		cout << "- Remove Book from Library ('v')" << endl;
 	}
-	cout << "Choose an action: " << endl;
 
     	cin >> input;
     	while (input != 'q') {
@@ -254,12 +253,6 @@ void Library::start() {
         
         	cout << endl;
 		printMenu();
-		if(currUser->getUserType() == "admin") {
-                	isAdmin = true;
-                	cout << "- Add Book to Library ('a')" << endl;
-                	cout << "- Remove Book from Library ('v')" << endl;
-       		}
-        	cout << "Choose an action: " << endl;
         	cin >> input;
         	if(input != 'q')
         	    cout << endl;
