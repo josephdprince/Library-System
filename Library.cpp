@@ -72,6 +72,9 @@ bool Library::loadBooks() {
 		getline(fin, rating, ',');
 		getline(fin, review, ',');
 		
+		string tmp1 = "";
+		getline(fin, tmp1, '\n');
+		
 		int bookID = 0;
 		double bookRate = 0.0;
 		int bookRev = 0;
@@ -85,6 +88,7 @@ bool Library::loadBooks() {
 		Book* tmp = new Book(title, author, genre, bookID, bookRate, bookRev);
 		library.push_back(tmp);
 	}
+
 	fin.close();
 	return true;
 }
@@ -142,7 +146,6 @@ void Library::printMenu() {
         cout << "- Return Book ('r')" << endl;
 	cout << "- Recommend Books ('m')" << endl;
         cout << "- Quit ('q')" << endl;
-        cout << "Choose an action: " << endl;
 }
 
 void Library::start() {
@@ -157,6 +160,7 @@ void Library::start() {
 		cout << "- Add Book to Library ('a')" << endl;
 		cout << "- Remove Book from Library ('v')" << endl;
 	}
+	cout << "Choose an action: " << endl;
 
     	cin >> input;
     	while (input != 'q') {
@@ -175,6 +179,12 @@ void Library::start() {
         
         	cout << endl;
 		printMenu();
+		if(currUser->getUserType() == "admin") {
+                	isAdmin = true;
+                	cout << "- Add Book to Library ('a')" << endl;
+                	cout << "- Remove Book from Library ('v')" << endl;
+       		}
+        	cout << "Choose an action: " << endl;
         	cin >> input;
         	if(input != 'q')
         	    cout << endl;
