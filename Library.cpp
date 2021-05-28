@@ -141,7 +141,7 @@ void Library::login() {
 
 bool Library::PopulateUser() {
 	ifstream fin;
-	fin.open(currUser->getUserID() + ".txt");
+	fin.open("UserFiles/" + currUser->getUserID() + ".txt");
 	if (!fin.is_open()) {
 		cout << "Error loading user" << endl;
 		return false;
@@ -264,8 +264,29 @@ void Library::start() {
         	if(input != 'q')
         	    cout << endl;
     	}	
+	CreateFile();
     	currUser = nullptr;
     	cout << "Bye!" << endl;
+}
+
+void Library::CreateFile() {
+	ofstream fout; 
+	fout.open("UserFiles/" + currUser->getUserID() + ".txt");
+
+	for (auto i : currUser->GetCheckedOut()) {
+		fout << i->GetID() << " ";
+	}
+	fout << "\n$\n";
+
+	for (auto i : currUser->GetHistory()) {
+		fout << i.first << " " << i.second << " ";
+	}
+	fout << "\n$\n";
+
+	for (auto i : currUser->GetLists()) {
+		i->file(fout);
+	}
+	fout.close();
 }
 
 void Library::Checkout() {

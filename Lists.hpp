@@ -4,11 +4,13 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <fstream>
 #include "Book.hpp"
 
 class Lists {
     public:
         virtual void print(int) = 0;
+	virtual void file(std::ofstream&) = 0;
         virtual void find_rating() = 0;
 };
 
@@ -21,6 +23,10 @@ class Individual : public Lists {
                 std::cout << " ";
             }
             std::cout << book->GetTitle() << " by " << book->GetAuthor() << std::endl;
+        }
+
+	virtual void file(std::ofstream& fout) {
+            fout << book->GetID() << std::endl;
         }
         
         virtual void find_rating() {
@@ -44,6 +50,14 @@ class Composition : public Lists {
             for (auto i : list) {
                 i->print(space + 1);
             }
+        }
+
+	virtual void file(std::ofstream& fout) {
+            std::cout << list_name << std::endl;
+            for (auto i : list) {
+                i->file(fout);
+            }
+            fout << "}" << std::endl;
         }
 
         virtual void find_rating() {
