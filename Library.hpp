@@ -24,6 +24,7 @@ class Library {
 	void RemoveBook();
 	void InsertLibrary(Book*);
 	Book* FindBook(int);
+	bool loadBooks();
         bool loadUsers();
 	void start();
 	void login();

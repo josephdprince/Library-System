@@ -20,7 +20,7 @@ class Standard : public User {
         void viewLists();
         void recommend(std::vector<Book*>);
         inline Standard(const std::string& uname, const std::string& pass) : User(uname, pass) {} 
-        inline virtual void run(Library*) {} 
+        inline virtual void run(Library*);
 	inline std::string getUserType() { return "standard"; }
         inline void checkoutBook(Book*, std::vector<Book*>);
         inline void returnBook(Book*, std::vector<Book*>);

@@ -7,7 +7,7 @@
 
 Admin::Admin(const std::string& uname, const std::string& pass) : Standard(uname, pass) {}
 
-void Admin::run(){}
+void Admin::run(Library* library){}
 void Admin::addBook(Book* b, std::vector<Book*> library) {
 	library.push_back(b);
 	std::cout << "Book was successfully added to Library." << std::endl;

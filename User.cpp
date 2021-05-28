@@ -9,4 +9,4 @@ bool User::check(const std::string& uname, const std::string& pass) const {
 	return userID == uname && password == pass;
 }
 
-void User::run() {}
+void User::run(Library* library) {}
