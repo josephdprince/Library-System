@@ -83,6 +83,18 @@ void Standard::recommend(std::vector<Book*> library) {
 
 }
 
+void Standard::AddCheckedOut(Book* book) {
+	checkedOut.push_back(book);
+}
+
+void Standard::AddHistory(std::pair<Book*, double> data) {
+	history.insert(data);
+}
+
+void Standard::AddLists(Composition* list) {
+	lists.push_back(list);
+}
+
 void Standard::checkoutBook(Book* b, std::vector<Book*> library) {
 	bool bookFound = false;
 	int index = 0;

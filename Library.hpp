@@ -3,6 +3,7 @@
 
 #include <vector>
 #include <string>
+#include <fstream>
 #include "User.hpp"
 #include "Book.hpp"
 
@@ -28,7 +29,10 @@ class Library {
 	bool loadBooks();
         bool loadUsers();
 	void start();
+	bool PopulateUser();
 	void login();
 	User* getUser(const std::string&, const std::string&);
+    private:
+	Composition* CreateList(std::ifstream&);
 };
 #endif
