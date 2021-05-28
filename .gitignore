@@ -1,1 +1,7 @@
-a.out
+CMakeCache.txt
+CMakeFiles/
+Makefile
+cmake_install.cmake
+lib/
+run
+test

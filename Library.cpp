@@ -5,7 +5,6 @@
 #include <fstream>
 #include <sstream>
 #include "Admin.hpp"
-#include "Standard.cpp"
 #include "Library.hpp"
 using namespace std;
 
@@ -106,10 +105,10 @@ bool Library::loadUsers() {
 		fin >> pass;
 		fin >> admin;
 		if(admin == "1") {
-			User* tmp = new Admin(name, pass);
+			Admin* tmp = new Admin(name, pass);
 			userList.push_back(tmp);
 		} else {
-			User* tmp = new Standard(name, pass);
+			Standard* tmp = new Standard(name, pass);
 			userList.push_back(tmp);
 		}
 		fin >> name;
@@ -189,7 +188,7 @@ void Library::Checkout() {
 	cout << "Enter ID of book to check out: ";
 	cin >> bookID;
 	Book* b = FindBook(bookID);
-	currUser->checkoutBook(b, this);
+	currUser->checkoutBook(b, library);
 }
 
 void Library::Return() {
@@ -197,11 +196,11 @@ void Library::Return() {
         cout << "Enter ID of book to return: ";
         cin >> bookID;
         Book* b = FindBook(bookID);
-        currUser->returnBook(b, this);
+        currUser->returnBook(b, library);
 }
 
 void Library::Recommend() {
-	currUser->recommend();
+	currUser->recommend(library);
 }
 
 void Library::AddBook() {
@@ -221,7 +220,7 @@ void Library::AddBook() {
 	cout << "Enter book ID: ";
 	cin >> ID;
 	Book* tmp = new Book(title, author, genre, ID);
-	currUser->addBook(tmp, this);	
+	currUser->addBook(tmp, library);	
 }
 
 void Library::RemoveBook() {
@@ -229,10 +228,10 @@ void Library::RemoveBook() {
 	cout << "Enter ID of book to remove: ";
 	cin >> bookID;
 	Book* tmp = FindBook(bookID);
-	currUser->remBook(tmp, this);
+	currUser->remBook(tmp, library);
 }
 
-const User* Library::getUser(const string& name, const string& pw) const {
+User* Library::getUser(const string& name, const string& pw) {
 	for(unsigned i = 0; i < userList.size(); i++) {
 		if(userList.at(i)->check(name, pw))
 			return userList.at(i);

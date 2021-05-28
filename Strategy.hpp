@@ -11,7 +11,7 @@ class Strategy {
         virtual void recommendation_algorithm(std::map<Book*, double>, std::vector<Book*>) = 0;
 };
 //This will go off of books user already likes
-class Algorithm_1 : public Strategy {
+class Favorites : public Strategy {
     public:
         virtual void recommendation_algorithm(std::map<Book*, double> list, std::vector<Book*> library) {
             std::vector<Book*> likedBooks;
@@ -32,7 +32,7 @@ class Algorithm_1 : public Strategy {
 };
 
 //this will go off of popular books in the library
-class Algorithm_2 : public Strategy {
+class Popular : public Strategy {
     public:
         virtual void recommendation_algorithm(std::map<Book*, double> list, std::vector<Book*> library) {
             for (auto i : library) {
