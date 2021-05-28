@@ -6,4 +6,3 @@ bool User::check(const std::string& uname, const std::string& pass) const {
 		return false;
 	return userID == uname && password == pass;
 }
-

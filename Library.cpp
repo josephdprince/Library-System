@@ -3,6 +3,7 @@
 #include <string>
 #include <vector>
 #include <fstream>
+#include <sstream>
 #include "Admin.hpp"
 #include "Library.hpp"
 using namespace std;
@@ -48,6 +49,44 @@ Book* Library::FindBook(int id) {
 			return i;
 		}
 	}
+}
+
+bool Library::loadBooks() {
+	ifstream fin;
+	fin.open("booklists.csv");
+	if(fin.fail())
+		return false;
+	
+	string title = "";
+	string author = "";
+	string genre = "";
+	string ID = "";
+	string rating = "";
+	string review = "";	
+	
+	while(!fin.eof()) {
+		getline(fin, title, ',');
+		getline(fin, author, ',');
+		getline(fin, genre, ',');
+		getline(fin, ID, ',');
+		getline(fin, rating, ',');
+		getline(fin, review, ',');
+		
+		int bookID = 0;
+		double bookRate = 0.0;
+		int bookRev = 0;
+		stringstream s1(ID);
+		stringstream s2(rating);
+		stringstream s3(review);
+		s1 >> bookID;
+		s2 >> bookRate;
+		s3 >> bookRev;
+		
+		Book* tmp = new Book(title, author, genre, bookID, bookRate, bookRev);
+		library.push_back(tmp);
+	}
+	fin.close();
+	return true;
 }
 
 bool Library::loadUsers() {

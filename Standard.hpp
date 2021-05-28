@@ -21,11 +21,11 @@ class Standard : public User {
         void recommend(std::vector<Book*>);
         inline Standard(const std::string& uname, const std::string& pass) {userID = uname; password = pass;} 
         virtual void run(Library*);
-	inline std::string getUserType() { return "standard"; }
+	      inline std::string getUserType() { return "standard"; }
         virtual void checkoutBook(Book*, std::vector<Book*>);
         virtual void returnBook(Book*, std::vector<Book*>);
-	virtual void addBook(Book*, std::vector<Book*>) {};
-	virtual void remBook(Book*, std::vector<Book*>) {};
+	      virtual void addBook(Book*, std::vector<Book*>) {};
+	      virtual void remBook(Book*, std::vector<Book*>) {};
         inline void displayBooks();
 };
 
