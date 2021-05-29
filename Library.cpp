@@ -153,16 +153,16 @@ bool Library::PopulateUser() {
 	}
 	
 	string inputLine;
-	istringstream in;
 	int input1;
 	double input2;
 
 	//Populate checked out books
+	istringstream in1;
 	getline(fin, inputLine);
 	if (inputLine != "") {
 		while (inputLine != "$") {
-			in.str(inputLine);
-			while (in >> input1) {
+			in1.str(inputLine);
+			while (in1 >> input1) {
 				currUser->AddCheckedOut(FindBook(input1));
 			}
 			getline(fin, inputLine);
@@ -173,12 +173,13 @@ bool Library::PopulateUser() {
 	}
 
 	//Populate history map
+	istringstream in2;
 	getline(fin, inputLine);
 	if (inputLine != "") {
 		while (inputLine != "$") {
-			in.str(inputLine);
-			while (in >> input1) {
-				in >> input2;
+			in2.str(inputLine);
+			while (in2 >> input1) {
+				in2 >> input2;
 				pair<Book*, double> histVal;
 
 				histVal.first = FindBook(input1);
