@@ -134,7 +134,12 @@ void Library::login() {
 	if(currUser == nullptr) {
 		cout << "Invalid username or password." << endl;
 	} else {
-		cout << "Welcome " << nameInput << "!" << endl;
+		if (PopulateUser() == false) {
+			cout << "Error loading information" << endl;
+		}
+		else {
+			cout << "Welcome " << nameInput << "!" << endl;
+		}
 		return;
 	} 
 }
@@ -146,7 +151,7 @@ bool Library::PopulateUser() {
 		cout << "Error loading user" << endl;
 		return false;
 	}
-
+	
 	string inputLine;
 	istringstream in;
 	int input1;
@@ -154,35 +159,50 @@ bool Library::PopulateUser() {
 
 	//Populate checked out books
 	getline(fin, inputLine);
-	while (inputLine != "$") {
-		in.str(inputLine);
-		while (in >> input1) {
-			currUser->AddCheckedOut(FindBook(input1));
+	if (inputLine != "") {
+		while (inputLine != "$") {
+			in.str(inputLine);
+			while (in >> input1) {
+				currUser->AddCheckedOut(FindBook(input1));
+			}
+			getline(fin, inputLine);
 		}
+	}
+	else {
 		getline(fin, inputLine);
 	}
-	
+
 	//Populate history map
 	getline(fin, inputLine);
-	while (inputLine != "$") {
-		in.str(inputLine);
-		while (in >> input1);
-			in >> input2;
-			pair<Book*, double> histVal;
+	if (inputLine != "") {
+		while (inputLine != "$") {
+			in.str(inputLine);
+			while (in >> input1) {
+				in >> input2;
+				pair<Book*, double> histVal;
 
-			histVal.first = FindBook(input1);
-			histVal.second = input2;
+				histVal.first = FindBook(input1);
+				histVal.second = input2;
 
-			currUser->AddHistory(histVal);
+				currUser->AddHistory(histVal);
+			}
+			getline(fin, inputLine);
+		}
+	}
+	else {
 		getline(fin, inputLine);
 	}
 	
 	//Populate book lists
-	while (!fin.eof()) {
-		currUser->AddLists(CreateList(fin));
+	getline(fin, inputLine);
+	if (inputLine != "") {
+		while (!fin.eof()) {
+			currUser->AddLists(CreateList(fin));
+		}
 	}
 
 	fin.close();
+	return true;
 }
 
 Composition* Library::CreateList(ifstream& fin) {
@@ -192,6 +212,9 @@ Composition* Library::CreateList(ifstream& fin) {
 	istringstream in;
 
 	getline(fin, list_name);
+	if (list_name == "") {
+		return nullptr;
+	}	
 
 	Composition* temp = new Composition();
 	temp->SetName(list_name);
@@ -217,6 +240,7 @@ Composition* Library::CreateList(ifstream& fin) {
 void Library::printMenu() {
 	cout << "Menu" << endl;
         cout << "- Display Library ('d')" << endl;
+	cout << "- View chedked out books ('o')" << endl;
         cout << "- Check out Book ('c')" << endl;
         cout << "- Return Book ('r')" << endl;
 	cout << "- Recommend Books ('m')" << endl;
@@ -241,6 +265,8 @@ void Library::start() {
     	while (input != 'q') {
         	if (input == 'd')
             		DisplayAll();
+		else if (input == 'o')
+			View();
         	else if (input == 'c')
 			Checkout();
         	else if (input == 'r')
@@ -269,6 +295,17 @@ void Library::start() {
     	cout << "Bye!" << endl;
 }
 
+void Library::View() {
+	vector<Book*> library = currUser->GetCheckedOut();
+	
+	cout << setw(20) << "Genre" << setw(50) << "Title" << setw(35) << "Author" << setw(7) << "ID" << endl;
+	cout << "----------------------------------------------------------------------------------------------------------------" << endl;
+	for (int i = 0; i < library.size(); i++) {
+		cout << setw(20) << library.at(i)->GetGenre() <<  setw(50) << library.at(i)->GetTitle()
+		     << setw(35) << library.at(i)->GetAuthor() << setw(7) << library.at(i)->GetID() << endl;
+	}
+}
+
 void Library::CreateFile() {
 	ofstream fout; 
 	fout.open("UserFiles/" + currUser->getUserID() + ".txt");
@@ -279,12 +316,16 @@ void Library::CreateFile() {
 	fout << "\n$\n";
 
 	for (auto i : currUser->GetHistory()) {
-		fout << i.first << " " << i.second << " ";
+		fout << i.first->GetID() << " " << i.second << " ";
 	}
 	fout << "\n$\n";
 
-	for (auto i : currUser->GetLists()) {
-		i->file(fout);
+	vector<Composition*> lists = currUser->GetLists();
+	if (lists.empty() != true) {
+		cout << "Hey" << endl;
+		for (auto i : lists) {
+			i->file(fout);
+		}
 	}
 	fout.close();
 }
