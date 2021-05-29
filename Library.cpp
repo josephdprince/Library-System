@@ -38,8 +38,8 @@ void Library::DisplayAll() {
 	cout << setw(20) << "Genre" << setw(50) << "Title" << setw(35) << "Author" << setw(7) << "ID" << endl;
 	cout << "----------------------------------------------------------------------------------------------------------------" << endl;
 	for (int i = 0; i < library.size(); i++) {
-		cout << setw(20) << library.at(i)->GetGenre() <<  setw(50) << library.at(i)->GetTitle()
-		     << setw(35) << library.at(i)->GetAuthor() << setw(7) << library.at(i)->GetID() << endl;
+		 cout << setw(20) << library.at(i)->GetGenre() << setw(50) <<  library.at(i)->GetTitle()
+                     << setw(35) << library.at(i)->GetAuthor() << setw(7)  << library.at(i)->GetID() << endl;       
 	}
 }
 
@@ -62,26 +62,19 @@ bool Library::loadBooks() {
 	string genre = "";
 	string ID = "";
 	string rating = "";
-	string review = "";	
-	
-	while(!fin.eof()) {
-		getline(fin, title, ',');
+	string review = "";
+
+	while(getline(fin, title, ',')) {
 		getline(fin, author, ',');
 		getline(fin, genre, ',');
 		getline(fin, ID, ',');
 		getline(fin, rating, ',');
-		getline(fin, review, '\n');
-		
-		int bookID = 0;
-		double bookRate = 0.0;
-		int bookRev = 0;
-		stringstream s1(ID);
-		stringstream s2(rating);
-		stringstream s3(review);
-		s1 >> bookID;
-		s2 >> bookRate;
-		s3 >> bookRev;
-		
+		getline(fin, review);
+
+		int bookID = stoi(ID);
+		double bookRate = (double) stoi(rating);
+		int bookRev = stoi(review);
+	
 		Book* tmp = new Book(title, author, genre, bookID, bookRate, bookRev);
 		library.push_back(tmp);
 	}
