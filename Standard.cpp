@@ -96,28 +96,19 @@ void Standard::AddLists(Composition* list) {
 }
 
 void Standard::checkoutBook(Book* b, std::vector<Book*>& library) {
-	bool bookFound = false;
-	int index = 0;
-	for (int i = 0; i < library.size(); i++) {
-		if (library.at(i)->GetID() == b->GetID()) {
-			index = i;
-			bookFound = true;
+	for (auto i : checkedOut) {
+		if (i->GetID() == b->GetID()) {
+			std::cout << "You already have this book checked out." << std::endl;
+			return;
 		}
 	}
-	if (bookFound) {
-		library.erase(library.begin() + index);
-		checkedOut.push_back(b);
-		std::cout << "Book with ID: " << b->GetID() << " has been successfully checked out to User." << std::endl;
-	}
-	else {
-		std::cout << "Book with ID: " << b->GetID() << " was not found in the Library." << std::endl;
-	}
+	checkedOut.push_back(b);
+	std::cout << "Book with ID: " << b->GetID() << " has been successfully checked out to User." << std::endl;
 }
 
 void Standard::returnBook(Book* b, std::vector<Book*>& library, int index) {
 	double rating;
 	checkedOut.erase(checkedOut.begin() + index);
-	library.push_back(b);
 	std::cout << "Book with ID: " << b->GetID() << " has been successfully returned to the Library." << std::endl;
 	std::cout << "From 1 to 5 (1 being the worst, 5 being the best), please input your rating of this book: ";
 	std::cin >> rating;

@@ -49,6 +49,7 @@ Book* Library::FindBook(int id) {
 			return i;
 		}
 	}
+	return nullptr;
 }
 
 bool Library::loadBooks() {
@@ -141,7 +142,7 @@ void Library::login() {
 }
 
 bool Library::PopulateUser() {
-	ifstream fin;
+ifstream fin;
 	fin.open("UserFiles/" + currUser->getUserID() + ".txt");
 	if (!fin.is_open()) {
 		cout << "Error loading user" << endl;
@@ -149,41 +150,19 @@ bool Library::PopulateUser() {
 	}
 	
 	string inputLine;
+	istringstream in;
 	int input1;
 	double input2;
 
 	//Populate checked out books
-	istringstream in1;
-	string title;
-	string author;
-	string genre;
-	string ID;
-	string rating;
-	string review;
-
-	getline(fin, title, ',');
-	if (title != "") {
-		while (title != "$") {
-			getline(fin, author, ',');
-			getline(fin, genre, ',');
-			getline(fin, ID, ',');
-			getline(fin, rating, ',');
-			getline(fin, review);
-
-			int bookID;
-			double bookRate;
-			int bookRev;
-			stringstream s1(ID);
-			stringstream s2(rating);
-			stringstream s3(review);
-			s1 >> bookID;
-			s2 >> bookRate;
-			s3 >> bookRev;
-		
-			Book* tmp = new Book(title, author, genre, bookID, bookRate, bookRev);
-			currUser->AddCheckedOut(tmp);
-			
-			getline(fin, title, ',');
+	getline(fin, inputLine);
+	if (inputLine != "") {
+		while (inputLine != "$") {
+			in.str(inputLine);
+			while (in >> input1) {
+				currUser->AddCheckedOut(FindBook(input1));
+			}
+			getline(fin, inputLine);
 		}
 	}
 	else {
@@ -191,13 +170,12 @@ bool Library::PopulateUser() {
 	}
 
 	//Populate history map
-	istringstream in2;
 	getline(fin, inputLine);
 	if (inputLine != "") {
 		while (inputLine != "$") {
-			in2.str(inputLine);
-			while (in2 >> input1) {
-				in2 >> input2;
+			in.str(inputLine);
+			while (in >> input1) {
+				in >> input2;
 				pair<Book*, double> histVal;
 
 				histVal.first = FindBook(input1);
@@ -211,7 +189,7 @@ bool Library::PopulateUser() {
 	else {
 		getline(fin, inputLine);
 	}
-	
+
 	//Populate book lists
 	getline(fin, inputLine);
 	if (inputLine != "") {
@@ -331,7 +309,7 @@ void Library::CreateFile() {
 	fout.open("UserFiles/" + currUser->getUserID() + ".txt");
 
 	for (auto i : currUser->GetCheckedOut()) {
-		fout << i->GetTitle() << "," << i->GetAuthor() << "," << i->GetGenre() << "," << i->GetID() << "," << i->GetRating() << "," << i->GetNumReviews() << "\n";
+		fout << i->GetID() << " ";	
 	}
 	fout << "\n$\n";
 
@@ -342,7 +320,6 @@ void Library::CreateFile() {
 
 	vector<Composition*> lists = currUser->GetLists();
 	if (lists.empty() != true) {
-		cout << "Hey" << endl;
 		for (auto i : lists) {
 			i->file(fout);
 		}
@@ -355,6 +332,10 @@ void Library::Checkout() {
 	cout << "Enter ID of book to check out: ";
 	cin >> bookID;
 	Book* b = FindBook(bookID);
+	if (b == nullptr) {
+		cout << "Book with ID: " << bookID << " was not found in the Library." << endl;
+		return;
+	}
 	currUser->checkoutBook(b, library);
 }
 
