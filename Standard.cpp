@@ -95,7 +95,7 @@ void Standard::AddLists(Composition* list) {
 	lists.push_back(list);
 }
 
-void Standard::checkoutBook(Book* b, std::vector<Book*> library) {
+void Standard::checkoutBook(Book* b, std::vector<Book*>& library) {
 	bool bookFound = false;
 	int index = 0;
 	for (int i = 0; i < library.size(); i++) {
@@ -105,7 +105,7 @@ void Standard::checkoutBook(Book* b, std::vector<Book*> library) {
 		}
 	}
 	if (bookFound) {
-		library.erase(library.begin() + index - 1);
+		library.erase(library.begin() + index);
 		checkedOut.push_back(b);
 		std::cout << "Book with ID: " << b->GetID() << " has been successfully checked out to User." << std::endl;
 	}
@@ -114,29 +114,16 @@ void Standard::checkoutBook(Book* b, std::vector<Book*> library) {
 	}
 }
 
-void Standard::returnBook(Book* b, std::vector<Book*> library) {
-	bool bookFound = false;
-	int index = 0;
+void Standard::returnBook(Book* b, std::vector<Book*>& library, int index) {
 	double rating;
-	for (int i = 0; i < checkedOut.size(); i++) {
-		if (checkedOut.at(i)->GetID() == b->GetID()) {
-			index = i;
-			bookFound = true;
-		}
-	}
-	if (bookFound) {
-		checkedOut.erase(checkedOut.begin() + index - 1);
-		library.push_back(b);
-		std::cout << "Book with ID: " << b->GetID() << " has been successfully returned to the Library." << std::endl;
-		std::cout << "From 1 to 5 (1 being the worst, 5 being the best), please input your rating of this book: ";
-		std::cin >> rating;
-		std::cout << std::endl;
-		this->history.insert(std::pair<Book*, double>(b, rating));
-		std::cout << "You have given the book with ID: " << b->GetID() << " a rating of " << rating << "." << std::endl;
-	}
-	else {
-		std::cout << "Book with ID: " << b->GetID() << " was not found in the User's list of Checked Out Books." << std::endl;
-	}
+	checkedOut.erase(checkedOut.begin() + index);
+	library.push_back(b);
+	std::cout << "Book with ID: " << b->GetID() << " has been successfully returned to the Library." << std::endl;
+	std::cout << "From 1 to 5 (1 being the worst, 5 being the best), please input your rating of this book: ";
+	std::cin >> rating;
+	std::cout << std::endl;
+	this->history.insert(std::pair<Book*, double>(b, rating));
+	std::cout << "You have given the book with ID: " << b->GetID() << " a rating of " << rating << "." << std::endl;
 }
 
 void Standard::displayBooks() {

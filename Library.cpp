@@ -35,11 +35,11 @@ void Library::DisplayGenre(string genre) {
 }
 
 void Library::DisplayAll() {
-	cout << setw(20) << "Genre" << setw(50) << "Title" << setw(35) << "Author" << setw(7) << "ID" << endl;
-	cout << "----------------------------------------------------------------------------------------------------------------" << endl;
+	cout << right << setw(20) << "Genre" << right << setw(55) << "Title" << right << setw(35) << "Author" << right << setw(7) << "ID" << endl;
+	cout << "-----------------------------------------------------------------------------------------------------------------------" << endl;
 	for (int i = 0; i < library.size(); i++) {
-		cout << setw(20) << library.at(i)->GetGenre() <<  setw(50) << library.at(i)->GetTitle()
-		     << setw(35) << library.at(i)->GetAuthor() << setw(7) << library.at(i)->GetID() << endl;
+		cout << right << setw(20) << library.at(i)->GetGenre() << right << setw(55) << library.at(i)->GetTitle() << right
+		     << setw(35) << library.at(i)->GetAuthor() << right << setw(7) << library.at(i)->GetID() << endl;
 	}
 }
 
@@ -64,16 +64,12 @@ bool Library::loadBooks() {
 	string rating = "";
 	string review = "";	
 	
-	while(!fin.eof()) {
-		getline(fin, title, ',');
+	while(getline(fin, title, ',')) {
 		getline(fin, author, ',');
 		getline(fin, genre, ',');
 		getline(fin, ID, ',');
 		getline(fin, rating, ',');
-		getline(fin, review, ',');
-		
-		string tmp1 = "";
-		getline(fin, tmp1, '\n');
+		getline(fin, review);
 		
 		int bookID = 0;
 		double bookRate = 0.0;
@@ -84,7 +80,7 @@ bool Library::loadBooks() {
 		s1 >> bookID;
 		s2 >> bookRate;
 		s3 >> bookRev;
-		
+
 		Book* tmp = new Book(title, author, genre, bookID, bookRate, bookRev);
 		library.push_back(tmp);
 	}
@@ -158,14 +154,36 @@ bool Library::PopulateUser() {
 
 	//Populate checked out books
 	istringstream in1;
-	getline(fin, inputLine);
-	if (inputLine != "") {
-		while (inputLine != "$") {
-			in1.str(inputLine);
-			while (in1 >> input1) {
-				currUser->AddCheckedOut(FindBook(input1));
-			}
-			getline(fin, inputLine);
+	string title;
+	string author;
+	string genre;
+	string ID;
+	string rating;
+	string review;
+
+	getline(fin, title, ',');
+	if (title != "") {
+		while (title != "$") {
+			getline(fin, author, ',');
+			getline(fin, genre, ',');
+			getline(fin, ID, ',');
+			getline(fin, rating, ',');
+			getline(fin, review);
+
+			int bookID;
+			double bookRate;
+			int bookRev;
+			stringstream s1(ID);
+			stringstream s2(rating);
+			stringstream s3(review);
+			s1 >> bookID;
+			s2 >> bookRate;
+			s3 >> bookRev;
+		
+			Book* tmp = new Book(title, author, genre, bookID, bookRate, bookRev);
+			currUser->AddCheckedOut(tmp);
+			
+			getline(fin, title, ',');
 		}
 	}
 	else {
@@ -290,20 +308,21 @@ void Library::start() {
         	cin >> input;
         	if(input != 'q')
         	    cout << endl;
-    	}	
+    	}
+	StoreLibrary();	
 	CreateFile();
     	currUser = nullptr;
     	cout << "Bye!" << endl;
 }
 
 void Library::View() {
-	vector<Book*> library = currUser->GetCheckedOut();
+	vector<Book*> books = currUser->GetCheckedOut();
 	
 	cout << setw(20) << "Genre" << setw(50) << "Title" << setw(35) << "Author" << setw(7) << "ID" << endl;
 	cout << "----------------------------------------------------------------------------------------------------------------" << endl;
-	for (int i = 0; i < library.size(); i++) {
-		cout << setw(20) << library.at(i)->GetGenre() <<  setw(50) << library.at(i)->GetTitle()
-		     << setw(35) << library.at(i)->GetAuthor() << setw(7) << library.at(i)->GetID() << endl;
+	for (int i = 0; i < books.size(); i++) {
+		cout << setw(20) << books.at(i)->GetGenre() <<  setw(50) << books.at(i)->GetTitle()
+		     << setw(35) << books.at(i)->GetAuthor() << setw(7) << books.at(i)->GetID() << endl;
 	}
 }
 
@@ -312,7 +331,7 @@ void Library::CreateFile() {
 	fout.open("UserFiles/" + currUser->getUserID() + ".txt");
 
 	for (auto i : currUser->GetCheckedOut()) {
-		fout << i->GetID() << " ";
+		fout << i->GetTitle() << "," << i->GetAuthor() << "," << i->GetGenre() << "," << i->GetID() << "," << i->GetRating() << "," << i->GetNumReviews() << "\n";
 	}
 	fout << "\n$\n";
 
@@ -341,14 +360,30 @@ void Library::Checkout() {
 
 void Library::Return() {
 	int bookID = 0;
+	int index = 0;
         cout << "Enter ID of book to return: ";
         cin >> bookID;
-        Book* b = FindBook(bookID);
-        currUser->returnBook(b, library);
+        for (auto i : currUser->GetCheckedOut()) {
+		if (bookID == i->GetID()) {
+			currUser->returnBook(i, library, index);
+			return;
+		}
+		++index;
+	}
+        cout << "Book with ID: " << bookID << " was not found in the User's list of Checked out Books." << endl;
 }
 
 void Library::Recommend() {
 	currUser->recommend(library);
+}
+
+void Library::StoreLibrary() {
+	ofstream fout;
+	fout.open("booklists.csv");
+	for (auto i : library) {
+		fout << i->GetTitle() << "," << i->GetAuthor() << "," << i->GetGenre() << "," << i->GetID() << "," << i->GetRating() << "," << i->GetNumReviews() << "\n";
+	}
+	fout.close();
 }
 
 void Library::AddBook() {
