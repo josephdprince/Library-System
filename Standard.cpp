@@ -3,6 +3,7 @@
 #include <string>
 #include <vector>
 #include <iostream>
+#include <iomanip>
 #include <map>
 #include "Library.hpp"
 #include "Standard.hpp"
@@ -68,19 +69,17 @@ void Standard::viewLists() {
 }
 
 void Standard::recommend(std::vector<Book*> library) {
-	int input;
-	std::cout << "Would you like recommendations based off of 1. favorites or 2. most popular?" << std::endl;
-	std::cin >> input;
+	std::cout << std::setw(20) << "Genre" << std::setw(50) << "Title" << std::setw(35) << "Author" << std::setw(7) << "ID" << std::endl;
+	std::cout << "----------------------------------------------------------------------------------------------------------------" << std::endl;
+	
+	Favorites* alg1 = new Favorites();
+        alg1->recommendation_algorithm(history, library);
+	Popular* alg2 = new Popular();
+	alg2->recommendation_algorithm(history, library);
 
-	if (input == 1) {
-		Favorites* alg = new Favorites();
-		alg->recommendation_algorithm(history, library);
-	}
-	else {
-		Popular* alg = new Popular();
-		alg->recommendation_algorithm(history, library);
-	}
 
+	delete alg1;
+	delete alg2;
 }
 
 void Standard::AddCheckedOut(Book* book) {
@@ -115,6 +114,8 @@ void Standard::returnBook(Book* b, std::vector<Book*>& library, int index) {
 	std::cout << std::endl;
 	this->history.insert(std::pair<Book*, double>(b, rating));
 	std::cout << "You have given the book with ID: " << b->GetID() << " a rating of " << rating << "." << std::endl;
+	b->SetRating(((b->GetRating() * b->GetNumReviews()) + rating) / (b->GetNumReviews() + 1));
+	b->SetNumReviews(b->GetNumReviews() + 1);
 }
 
 void Standard::displayBooks() {
