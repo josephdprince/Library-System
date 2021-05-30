@@ -106,12 +106,14 @@ void Standard::checkoutBook(Book* b, std::vector<Book*>& library) {
 }
 
 void Standard::returnBook(Book* b, std::vector<Book*>& library, int index) {
-	double rating;
+	double rating = -1.0;
 	checkedOut.erase(checkedOut.begin() + index);
 	std::cout << "Book with ID: " << b->GetID() << " has been successfully returned to the Library." << std::endl;
-	std::cout << "From 1 to 5 (1 being the worst, 5 being the best), please input your rating of this book: ";
-	std::cin >> rating;
-	std::cout << std::endl;
+	while (rating < 1.0 || rating > 5.0) {
+		std::cout << "From 1 to 5 (1 being the worst, 5 being the best), please input your rating of this book: ";
+		std::cin >> rating;
+		std::cout << std::endl;
+	}
 	this->history.insert(std::pair<Book*, double>(b, rating));
 	std::cout << "You have given the book with ID: " << b->GetID() << " a rating of " << rating << "." << std::endl;
 	b->SetRating(((b->GetRating() * b->GetNumReviews()) + rating) / (b->GetNumReviews() + 1));
