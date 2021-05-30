@@ -240,7 +240,7 @@ Composition* Library::CreateList(ifstream& fin) {
 void Library::printMenu() {
 	cout << "Menu" << endl;
         cout << "- Display Library ('d')" << endl;
-	cout << "- View chedked out books ('o')" << endl;
+	cout << "- View checked out books ('o')" << endl;
         cout << "- Check out Book ('c')" << endl;
         cout << "- Return Book ('r')" << endl;
 	cout << "- Recommend Books ('m')" << endl;
