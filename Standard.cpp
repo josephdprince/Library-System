@@ -3,6 +3,7 @@
 #include <string>
 #include <vector>
 #include <iostream>
+#include <iomanip>
 #include <map>
 #include "Library.hpp"
 #include "Standard.hpp"
@@ -68,19 +69,17 @@ void Standard::viewLists() {
 }
 
 void Standard::recommend(std::vector<Book*> library) {
-	int input;
-	std::cout << "Would you like recommendations based off of 1. favorites or 2. most popular?" << std::endl;
-	std::cin >> input;
+	std::cout << std::setw(20) << "Genre" << std::setw(50) << "Title" << std::setw(35) << "Author" << std::setw(7) << "ID" << std::endl;
+	std::cout << "----------------------------------------------------------------------------------------------------------------" << std::endl;
+	
+	Favorites* alg1 = new Favorites();
+        alg1->recommendation_algorithm(history, library);
+	Popular* alg2 = new Popular();
+	alg2->recommendation_algorithm(history, library);
 
-	if (input == 1) {
-		Favorites* alg = new Favorites();
-		alg->recommendation_algorithm(history, library);
-	}
-	else {
-		Popular* alg = new Popular();
-		alg->recommendation_algorithm(history, library);
-	}
 
+	delete alg1;
+	delete alg2;
 }
 
 void Standard::AddCheckedOut(Book* book) {
@@ -95,48 +94,28 @@ void Standard::AddLists(Composition* list) {
 	lists.push_back(list);
 }
 
-void Standard::checkoutBook(Book* b, std::vector<Book*> library) {
-	bool bookFound = false;
-	int index = 0;
-	for (int i = 0; i < library.size(); i++) {
-		if (library.at(i)->GetID() == b->GetID()) {
-			index = i;
-			bookFound = true;
+void Standard::checkoutBook(Book* b, std::vector<Book*>& library) {
+	for (auto i : checkedOut) {
+		if (i->GetID() == b->GetID()) {
+			std::cout << "You already have this book checked out." << std::endl;
+			return;
 		}
 	}
-	if (bookFound) {
-		library.erase(library.begin() + index - 1);
-		checkedOut.push_back(b);
-		std::cout << "Book with ID: " << b->GetID() << " has been successfully checked out to User." << std::endl;
-	}
-	else {
-		std::cout << "Book with ID: " << b->GetID() << " was not found in the Library." << std::endl;
-	}
+	checkedOut.push_back(b);
+	std::cout << "Book with ID: " << b->GetID() << " has been successfully checked out to User." << std::endl;
 }
 
-void Standard::returnBook(Book* b, std::vector<Book*> library) {
-	bool bookFound = false;
-	int index = 0;
+void Standard::returnBook(Book* b, std::vector<Book*>& library, int index) {
 	double rating;
-	for (int i = 0; i < checkedOut.size(); i++) {
-		if (checkedOut.at(i)->GetID() == b->GetID()) {
-			index = i;
-			bookFound = true;
-		}
-	}
-	if (bookFound) {
-		checkedOut.erase(checkedOut.begin() + index - 1);
-		library.push_back(b);
-		std::cout << "Book with ID: " << b->GetID() << " has been successfully returned to the Library." << std::endl;
-		std::cout << "From 1 to 5 (1 being the worst, 5 being the best), please input your rating of this book: ";
-		std::cin >> rating;
-		std::cout << std::endl;
-		this->history.insert(std::pair<Book*, double>(b, rating));
-		std::cout << "You have given the book with ID: " << b->GetID() << " a rating of " << rating << "." << std::endl;
-	}
-	else {
-		std::cout << "Book with ID: " << b->GetID() << " was not found in the User's list of Checked Out Books." << std::endl;
-	}
+	checkedOut.erase(checkedOut.begin() + index);
+	std::cout << "Book with ID: " << b->GetID() << " has been successfully returned to the Library." << std::endl;
+	std::cout << "From 1 to 5 (1 being the worst, 5 being the best), please input your rating of this book: ";
+	std::cin >> rating;
+	std::cout << std::endl;
+	this->history.insert(std::pair<Book*, double>(b, rating));
+	std::cout << "You have given the book with ID: " << b->GetID() << " a rating of " << rating << "." << std::endl;
+	b->SetRating(((b->GetRating() * b->GetNumReviews()) + rating) / (b->GetNumReviews() + 1));
+	b->SetNumReviews(b->GetNumReviews() + 1);
 }
 
 void Standard::displayBooks() {

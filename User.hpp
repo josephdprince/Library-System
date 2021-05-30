@@ -15,8 +15,8 @@ class User {
 
     public:
         virtual void run(Library*) = 0;
-	virtual void checkoutBook(Book*, std::vector<Book*>) = 0;
-	virtual void returnBook(Book*, std::vector<Book*>) = 0;
+	virtual void checkoutBook(Book*, std::vector<Book*>&) = 0;
+	virtual void returnBook(Book*, std::vector<Book*>&, int) = 0;
 	virtual void recommend(std::vector<Book*>) = 0;
 	virtual void addBook(Book*, std::vector<Book*>) = 0;
 	virtual void remBook(Book*, std::vector<Book*>) = 0;

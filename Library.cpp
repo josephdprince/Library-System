@@ -35,11 +35,11 @@ void Library::DisplayGenre(string genre) {
 }
 
 void Library::DisplayAll() {
-	cout << setw(20) << "Genre" << setw(50) << "Title" << setw(35) << "Author" << setw(7) << "ID" << endl;
-	cout << "----------------------------------------------------------------------------------------------------------------" << endl;
+	cout << right << setw(20) << "Genre" << right << setw(55) << "Title" << right << setw(35) << "Author" << right << setw(7) << "ID" << endl;
+	cout << "-----------------------------------------------------------------------------------------------------------------------" << endl;
 	for (int i = 0; i < library.size(); i++) {
 		 cout << setw(20) << library.at(i)->GetGenre() << setw(50) <<  library.at(i)->GetTitle()
-                     << setw(35) << library.at(i)->GetAuthor() << setw(7)  << library.at(i)->GetID() << endl;       
+          << setw(35) << library.at(i)->GetAuthor() << setw(7)  << library.at(i)->GetID() << endl;
 	}
 }
 
@@ -49,6 +49,7 @@ Book* Library::FindBook(int id) {
 			return i;
 		}
 	}
+	return nullptr;
 }
 
 bool Library::loadBooks() {
@@ -62,8 +63,8 @@ bool Library::loadBooks() {
 	string genre = "";
 	string ID = "";
 	string rating = "";
-	string review = "";
-
+	string review = "";	
+	
 	while(getline(fin, title, ',')) {
 		getline(fin, author, ',');
 		getline(fin, genre, ',');
@@ -135,7 +136,7 @@ void Library::login() {
 }
 
 bool Library::PopulateUser() {
-	ifstream fin;
+ifstream fin;
 	fin.open("UserFiles/" + currUser->getUserID() + ".txt");
 	if (!fin.is_open()) {
 		cout << "Error loading user" << endl;
@@ -182,7 +183,7 @@ bool Library::PopulateUser() {
 	else {
 		getline(fin, inputLine);
 	}
-	
+
 	//Populate book lists
 	getline(fin, inputLine);
 	if (inputLine != "") {
@@ -275,20 +276,21 @@ void Library::start() {
         	cin >> input;
         	if(input != 'q')
         	    cout << endl;
-    	}	
+    	}
+	StoreLibrary();	
 	CreateFile();
     	currUser = nullptr;
     	cout << "Bye!" << endl;
 }
 
 void Library::View() {
-	vector<Book*> library = currUser->GetCheckedOut();
+	vector<Book*> books = currUser->GetCheckedOut();
 	
 	cout << setw(20) << "Genre" << setw(50) << "Title" << setw(35) << "Author" << setw(7) << "ID" << endl;
 	cout << "----------------------------------------------------------------------------------------------------------------" << endl;
-	for (int i = 0; i < library.size(); i++) {
-		cout << setw(20) << library.at(i)->GetGenre() <<  setw(50) << library.at(i)->GetTitle()
-		     << setw(35) << library.at(i)->GetAuthor() << setw(7) << library.at(i)->GetID() << endl;
+	for (int i = 0; i < books.size(); i++) {
+		cout << setw(20) << books.at(i)->GetGenre() <<  setw(50) << books.at(i)->GetTitle()
+		     << setw(35) << books.at(i)->GetAuthor() << setw(7) << books.at(i)->GetID() << endl;
 	}
 }
 
@@ -297,7 +299,7 @@ void Library::CreateFile() {
 	fout.open("UserFiles/" + currUser->getUserID() + ".txt");
 
 	for (auto i : currUser->GetCheckedOut()) {
-		fout << i->GetID() << " ";
+		fout << i->GetID() << " ";	
 	}
 	fout << "\n$\n";
 
@@ -308,7 +310,6 @@ void Library::CreateFile() {
 
 	vector<Composition*> lists = currUser->GetLists();
 	if (lists.empty() != true) {
-		cout << "Hey" << endl;
 		for (auto i : lists) {
 			i->file(fout);
 		}
@@ -321,19 +322,39 @@ void Library::Checkout() {
 	cout << "Enter ID of book to check out: ";
 	cin >> bookID;
 	Book* b = FindBook(bookID);
+	if (b == nullptr) {
+		cout << "Book with ID: " << bookID << " was not found in the Library." << endl;
+		return;
+	}
 	currUser->checkoutBook(b, library);
 }
 
 void Library::Return() {
 	int bookID = 0;
+	int index = 0;
         cout << "Enter ID of book to return: ";
         cin >> bookID;
-        Book* b = FindBook(bookID);
-        currUser->returnBook(b, library);
+        for (auto i : currUser->GetCheckedOut()) {
+		if (bookID == i->GetID()) {
+			currUser->returnBook(i, library, index);
+			return;
+		}
+		++index;
+	}
+        cout << "Book with ID: " << bookID << " was not found in the User's list of Checked out Books." << endl;
 }
 
 void Library::Recommend() {
 	currUser->recommend(library);
+}
+
+void Library::StoreLibrary() {
+	ofstream fout;
+	fout.open("booklists.csv");
+	for (auto i : library) {
+		fout << i->GetTitle() << "," << i->GetAuthor() << "," << i->GetGenre() << "," << i->GetID() << "," << i->GetRating() << "," << i->GetNumReviews() << "\n";
+	}
+	fout.close();
 }
 
 void Library::AddBook() {

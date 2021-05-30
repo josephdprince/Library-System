@@ -27,6 +27,7 @@ class Library {
 	void InsertLibrary(Book*);
 	void View();
 	Book* FindBook(int);
+	void StoreLibrary();
 	bool loadBooks();
         bool loadUsers();
 	void start();

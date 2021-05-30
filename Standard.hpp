@@ -28,8 +28,8 @@ class Standard : public User {
         virtual std::map<Book*, double> GetHistory() {return history;}
         virtual std::vector<Composition*> GetLists() {return lists;}
 	inline std::string getUserType() { return "standard"; }
-        virtual void checkoutBook(Book*, std::vector<Book*>);
-        virtual void returnBook(Book*, std::vector<Book*>);
+        virtual void checkoutBook(Book*, std::vector<Book*>&);
+        virtual void returnBook(Book*, std::vector<Book*>&, int);
 	virtual void addBook(Book*, std::vector<Book*>) {};
 	virtual void remBook(Book*, std::vector<Book*>) {};
         inline void displayBooks();
