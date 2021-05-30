@@ -35,7 +35,7 @@ void Library::DisplayGenre(string genre) {
 }
 
 void Library::DisplayAll() {
-	cout << right << setw(20) << "Genre" << right << setw(55) << "Title" << right << setw(35) << "Author" << right << setw(7) << "ID" << endl;
+	cout << right << setw(20) << "Genre" << right << setw(50) << "Title" << right << setw(35) << "Author" << right << setw(7) << "ID" << endl;
 	cout << "-----------------------------------------------------------------------------------------------------------------------" << endl;
 	for (int i = 0; i < library.size(); i++) {
 		 cout << setw(20) << library.at(i)->GetGenre() << setw(50) <<  library.at(i)->GetTitle()
