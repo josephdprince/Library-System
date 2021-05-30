@@ -4,8 +4,10 @@
 #include "gtest/gtest.h"
 #include "Admin.hpp"
 
-TEST(AdminTest, temp) {
-
+TEST(AdminTest, AddBookToLibrary) {
+	//Library lib;
+	//	Book* b = Book("str1", "str2", "str3", 1, 1.5, 2);
+	
 }
 
 #endif
