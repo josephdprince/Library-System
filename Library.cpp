@@ -124,15 +124,16 @@ void Library::login() {
 	else {
 		cout << "Please enter your password: ";
 		cin >> passInput;
+		cout << endl;
 
 		currUser = getUser(nameInput, passInput);
 		if(currUser == nullptr) {
-			cout << "Invalid username or password." << endl;
+			cout << "Invalid username or password.\n" << endl;
 		} else {
 			if (PopulateUser() == false)
-				cout << "Error loading information" << endl;
+				cout << "Error loading information\n" << endl;
 			else
-				cout << "Welcome " << nameInput << "!" << endl;
+				cout << "Welcome " << nameInput << "!\n" << endl;
 		}
 	}
 }
@@ -157,7 +158,7 @@ void Library::createNewUser() {
 	fout <<  newUsername << " " << newPassword << " 0";
 	fout.close();	
 
-	cout << "New Standard user " << newUsername << " has been created." << endl;
+	cout << "New Standard user " << newUsername << " has been created.\n" << endl;
 }
 
 bool Library::PopulateUser() {
