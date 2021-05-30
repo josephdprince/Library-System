@@ -1,5 +1,5 @@
-#ifndef __LIBRARY_H__
-#define __LIBRARY_H__
+#ifndef __LIBRARY_HPP__
+#define __LIBRARY_HPP__
 
 #include <vector>
 #include <string>

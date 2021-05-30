@@ -38,8 +38,8 @@ void Library::DisplayAll() {
 	cout << right << setw(20) << "Genre" << right << setw(55) << "Title" << right << setw(35) << "Author" << right << setw(7) << "ID" << endl;
 	cout << "-----------------------------------------------------------------------------------------------------------------------" << endl;
 	for (int i = 0; i < library.size(); i++) {
-		cout << right << setw(20) << library.at(i)->GetGenre() << right << setw(55) << library.at(i)->GetTitle() << right
-		     << setw(35) << library.at(i)->GetAuthor() << right << setw(7) << library.at(i)->GetID() << endl;
+		 cout << setw(20) << library.at(i)->GetGenre() << setw(50) <<  library.at(i)->GetTitle()
+          << setw(35) << library.at(i)->GetAuthor() << setw(7)  << library.at(i)->GetID() << endl;
 	}
 }
 
@@ -71,17 +71,11 @@ bool Library::loadBooks() {
 		getline(fin, ID, ',');
 		getline(fin, rating, ',');
 		getline(fin, review);
-		
-		int bookID = 0;
-		double bookRate = 0.0;
-		int bookRev = 0;
-		stringstream s1(ID);
-		stringstream s2(rating);
-		stringstream s3(review);
-		s1 >> bookID;
-		s2 >> bookRate;
-		s3 >> bookRev;
 
+		int bookID = stoi(ID);
+		double bookRate = (double) stoi(rating);
+		int bookRev = stoi(review);
+	
 		Book* tmp = new Book(title, author, genre, bookID, bookRate, bookRev);
 		library.push_back(tmp);
 	}
@@ -241,7 +235,12 @@ void Library::printMenu() {
         cout << "- Check out Book ('c')" << endl;
         cout << "- Return Book ('r')" << endl;
 	cout << "- Recommend Books ('m')" << endl;
-        cout << "- Quit ('q')" << endl;
+	if(currUser->getUserType() == "admin") {
+                cout << "- Add Book to Library ('a')" << endl;
+                cout << "- Remove Book from Library ('v')" << endl;
+        }
+	cout << "- Quit ('q')" << endl;
+	cout << "Choose an action: " << endl;
 }
 
 void Library::start() {
@@ -253,10 +252,7 @@ void Library::start() {
 	bool isAdmin = false;
 	if(currUser->getUserType() == "admin") {
 		isAdmin = true;
-		cout << "- Add Book to Library ('a')" << endl;
-		cout << "- Remove Book from Library ('v')" << endl;
 	}
-	cout << "Choose an action: " << endl;
 
     	cin >> input;
     	while (input != 'q') {
@@ -277,12 +273,6 @@ void Library::start() {
         
         	cout << endl;
 		printMenu();
-		if(currUser->getUserType() == "admin") {
-                	isAdmin = true;
-                	cout << "- Add Book to Library ('a')" << endl;
-                	cout << "- Remove Book from Library ('v')" << endl;
-       		}
-        	cout << "Choose an action: " << endl;
         	cin >> input;
         	if(input != 'q')
         	    cout << endl;
