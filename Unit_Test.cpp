@@ -6,6 +6,7 @@
 #include "Standard_Test.hpp"
 #include "Strategy_Test.hpp"
 #include "User_Test.hpp"
+#include "Library.hpp"
 
 int main(int argc, char **argv) {
   ::testing::InitGoogleTest(&argc, argv);

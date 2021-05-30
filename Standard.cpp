@@ -101,7 +101,13 @@ void Standard::checkoutBook(Book* b, std::vector<Book*>& library) {
 			return;
 		}
 	}
+	//for (auto i : library) {
+	//	if (i->GetID() == b->GetID()) {
+	//		int index = i;
+	//	}
+	//}
 	checkedOut.push_back(b);
+	//library.erase(library.begin() + index - 1);
 	std::cout << "Book with ID: " << b->GetID() << " has been successfully checked out to User." << std::endl;
 }
 
