@@ -32,11 +32,13 @@ class Library {
         bool loadUsers();
 	void createNewUser();
 	void start();
+	void CreateList();
+	void ViewLists();
 	bool PopulateUser();
 	void CreateFile();
 	void login();
 	User* getUser(const std::string&, const std::string&);
     private:
-	Composition* CreateList(std::ifstream&);
+	Composition* CreateList(std::ifstream&, bool);
 };
 #endif
