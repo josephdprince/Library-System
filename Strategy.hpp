@@ -21,7 +21,8 @@ class Favorites : public Strategy {
                     likedBooks.push_back(i.first);
                 }
             }
-	    //We now have a vector of books that the user likes.
+	
+	    //We now havea vector of books that the user likes
 	    int index = 0;
 	    for (auto i : library) {
                 for (auto j : likedBooks) {

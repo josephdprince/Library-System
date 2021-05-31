@@ -38,7 +38,7 @@ void Standard::newList(Library* library) {
 					Individual* entry = new Individual();
 					entry->SetBook(library->FindBook(IDnum));
 					newList->Add(entry);
-					std::cout << entry->GetBook()->GetTitle() << " was added to your list" << std::endl;
+					std::cout << entry->GetBook()->GetTitle() << " was added to your list" << std::endl << std::endl;
 				}
 			}
 		}
@@ -50,7 +50,7 @@ void Standard::newList(Library* library) {
 				for (auto i : lists) {
 					if (name == i->GetName()) {
 						newList->Add(i);
-						std::cout << name << " was added to your list" << std::endl;
+						std::cout << name << " was added to your list" << std::endl << std::endl;
 					}
 				}
 			}
