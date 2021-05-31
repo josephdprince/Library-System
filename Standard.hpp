@@ -30,8 +30,8 @@ class Standard : public User {
 	inline std::string getUserType() { return "standard"; }
         virtual void checkoutBook(Book*, std::vector<Book*>&);
         virtual void returnBook(Book*, std::vector<Book*>&, int);
-	virtual void addBook(Book*, std::vector<Book*>) {};
-	virtual void remBook(Book*, std::vector<Book*>) {};
+	virtual void addBook(Book*, std::vector<Book*>&) {};
+	virtual void remBook(Book*, std::vector<Book*>&) {};
         inline void displayBooks();
 };
 

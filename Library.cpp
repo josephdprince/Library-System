@@ -73,7 +73,7 @@ bool Library::loadBooks() {
 		getline(fin, review);
 
 		int bookID = stoi(ID);
-		double bookRate = (double) stoi(rating);
+		double bookRate = stoi(rating);
 		int bookRev = stoi(review);
 	
 		Book* tmp = new Book(title, author, genre, bookID, bookRate, bookRev);
@@ -162,7 +162,7 @@ void Library::createNewUser() {
 }
 
 bool Library::PopulateUser() {
-ifstream fin;
+	ifstream fin;
 	fin.open("UserFiles/" + currUser->getUserID() + ".txt");
 	if (!fin.is_open()) {
 		cout << "Error loading user" << endl;
@@ -257,8 +257,8 @@ Composition* Library::CreateList(ifstream& fin) {
 void Library::printMenu() {
 	cout << "Menu" << endl;
         cout << "- Display Library ('d')" << endl;
-	cout << "- View chedked out books ('o')" << endl;
-        cout << "- Check out Book ('c')" << endl;
+	cout << "- View Checked Out Books ('o')" << endl;
+        cout << "- Checkout Book ('c')" << endl;
         cout << "- Return Book ('r')" << endl;
 	cout << "- Recommend Books ('m')" << endl;
 	if(currUser->getUserType() == "admin") {
@@ -299,6 +299,7 @@ void Library::start() {
         
         	cout << endl;
 		printMenu();
+		cin.ignore();
         	cin >> input;
         	if(input != 'q')
         	    cout << endl;
@@ -387,20 +388,30 @@ void Library::AddBook() {
 	string title = "";
 	string author = "";
 	string genre = "";
-	int ID = 0;
+	string ID = "";
 	cout << "Enter book title: ";
+	cin.ignore();
 	getline(cin, title);
-	cout << endl;
 	cout << "Enter book author: ";
 	getline(cin, author);
-	cout << endl;
 	cout << "Enter book genre: ";
-	cin >> genre;
-	cout << endl;
+	getline(cin, genre);
 	cout << "Enter book ID: ";
 	cin >> ID;
-	Book* tmp = new Book(title, author, genre, ID, 0.0, 0);
-	currUser->addBook(tmp, library);	
+	int bookID = stoi(ID);
+
+	while(bookID < library.size()) {
+		cout << "Book with that ID already exists. Please enter a new ID: ";
+		cin >> ID;
+		bookID = stoi(ID);
+	}
+
+	Book* tmp = new Book(title, author, genre, bookID, 0.0, 0);
+	currUser->addBook(tmp, library);
+	for(unsigned i = 0; i < library.size(); i++) {
+		Book* tmpBook = library.at(i);
+		cout << tmpBook->GetTitle() << " " << tmpBook->GetAuthor() << " " << tmpBook->GetGenre() << " " << tmpBook->GetID() << endl;
+	}
 }
 
 void Library::RemoveBook() {
