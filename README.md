@@ -74,7 +74,7 @@ The library system is in charge of holding all of the books and will only have t
  ## Installation/Usage
  * Click on the Green "Code" Box at the top corner 
  * Copy link under "HTTPS"
- * In your own terminal, run "git clone --recursive <link>"
+ * In your own terminal, run "git clone --recursive [link]"
  * Make sure that CMake is installed on your system
  ## Testing
  > How was your project tested/validated? If you used CI, you should have a "build passing" badge in this README.
