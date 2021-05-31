@@ -86,9 +86,9 @@ void Standard::recommend(std::vector<Book*> library) {
 	std::cout << "----------------------------------------------------------------------------------------------------------------" << std::endl;
 	
 	Favorites* alg1 = new Favorites();
-        alg1->recommendation_algorithm(history, library);
+        alg1->recommendation_algorithm(history, library, 0);
 	Popular* alg2 = new Popular();
-	alg2->recommendation_algorithm(history, library);
+	alg2->recommendation_algorithm(history, library, 0);
 
 
 	delete alg1;
