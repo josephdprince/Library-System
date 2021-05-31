@@ -155,7 +155,7 @@ void Library::createNewUser() {
 	if(fout.fail()) {
                 return;
         }
-	fout <<  newUsername << " " << newPassword << " 0";
+	fout <<  newUsername << " " << newPassword << " 0\n";
 	fout.close();	
 
 	cout << "New Standard user " << newUsername << " has been created.\n" << endl;
