@@ -408,10 +408,6 @@ void Library::AddBook() {
 
 	Book* tmp = new Book(title, author, genre, bookID, 0.0, 0);
 	currUser->addBook(tmp, library);
-	for(unsigned i = 0; i < library.size(); i++) {
-		Book* tmpBook = library.at(i);
-		cout << tmpBook->GetTitle() << " " << tmpBook->GetAuthor() << " " << tmpBook->GetGenre() << " " << tmpBook->GetID() << endl;
-	}
 }
 
 void Library::RemoveBook() {
