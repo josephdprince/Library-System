@@ -16,14 +16,15 @@ class Standard : public User {
         std::vector<Composition*> lists;
 	
     public:
-        void newList(Library*);
-        void viewLists();
+        virtual void newList(Library*);
+        virtual void viewLists();
         void recommend(std::vector<Book*>);
         inline Standard(const std::string& uname, const std::string& pass) {userID = uname; password = pass;} 
         virtual void run(Library*);
 	virtual void AddCheckedOut(Book*);
         virtual void AddHistory(std::pair<Book*, double>);
         virtual void AddLists(Composition*);
+	virtual void SetLists(std::vector<Composition*> lists) {this->lists = lists;}
         virtual std::vector<Book*> GetCheckedOut() {return checkedOut;}
         virtual std::map<Book*, double> GetHistory() {return history;}
         virtual std::vector<Composition*> GetLists() {return lists;}

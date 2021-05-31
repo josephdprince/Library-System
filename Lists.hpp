@@ -9,7 +9,7 @@
 
 class Lists {
     public:
-        virtual void print(int) = 0;
+        virtual void print(int, int) = 0;
 	virtual void file(std::ofstream&) = 0;
         virtual void find_rating() = 0;
 };
@@ -18,11 +18,11 @@ class Individual : public Lists {
     private:
         Book* book;
     public:
-        virtual void print(int space) {
+        virtual void print(int space, int key) {
             for (int i = 0; i < space; ++i) {
-                std::cout << " ";
+                std::cout << "    ";
             }
-            std::cout << book->GetTitle() << " by " << book->GetAuthor() << std::endl;
+            std::cout << "- " << book->GetTitle() << " by " << book->GetAuthor() << std::endl;
         }
 
 	virtual void file(std::ofstream& fout) {
@@ -45,15 +45,22 @@ class Composition : public Lists {
         std::string list_name;
         std::vector<Lists*> list;
     public:
-        virtual void print(int space) {
-            std::cout << list_name << ":" << std::endl;
-            for (auto i : list) {
-                i->print(space + 1);
+        virtual void print(int space, int key) {
+	   for (int i = 0; i < space; ++i) {
+            	std::cout << "    ";
+           }
+	   std::cout << list_name << ":" << std::endl;
+	   for (auto i : list) {
+                i->print(space + 1, key);
             }
+	   if (space == 0 && key != 1) {
+	   	std::cout << std::endl;
+	   }
         }
 
 	virtual void file(std::ofstream& fout) {
-            std::cout << list_name << std::endl;
+	    fout << "/" << std::endl;
+            fout << list_name << std::endl;
             for (auto i : list) {
                 i->file(fout);
             }
@@ -69,6 +76,10 @@ class Composition : public Lists {
         void Add(Lists* obj) {
             list.push_back(obj);
         }
+
+	std::vector<Lists*> GetList() {
+		return list;
+	}
 
         void SetName(std::string name) {
             list_name = name;

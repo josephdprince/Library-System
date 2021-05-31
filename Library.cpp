@@ -211,27 +211,31 @@ ifstream fin;
 	}
 
 	//Populate book lists
-	getline(fin, inputLine);
-	if (inputLine != "") {
-		while (!fin.eof()) {
-			currUser->AddLists(CreateList(fin));
-		}
+	while (!fin.eof()) {
+		currUser->AddLists(CreateList(fin, 0));
 	}
+	vector<Composition*> temp = currUser->GetLists();
+	temp.pop_back();
+	currUser->SetLists(temp);
 
 	fin.close();
 	return true;
 }
 
-Composition* Library::CreateList(ifstream& fin) {
+Composition* Library::CreateList(ifstream& fin, bool key) {
 	string list_name;
 	string input;
+	string trash;
 	int tempID;
-	istringstream in;
 
-	getline(fin, list_name);
-	if (list_name == "") {
-		return nullptr;
-	}	
+	if (key == 0) {
+		fin >> trash;
+		if (trash == "") {
+			return nullptr;
+		}
+		fin.ignore();
+	}
+	getline(fin, list_name);	
 
 	Composition* temp = new Composition();
 	temp->SetName(list_name);
@@ -239,9 +243,10 @@ Composition* Library::CreateList(ifstream& fin) {
 	getline(fin, input);
 	while (input != "}") {
 		if (input == "/") {
-			temp->Add(CreateList(fin));
+			temp->Add(CreateList(fin, 1));
 		}
 		else {
+			istringstream in;
 			in.str(input);
 			in >> tempID;
 
@@ -250,6 +255,7 @@ Composition* Library::CreateList(ifstream& fin) {
 
 			temp->Add(tempBook);
 		}
+		getline(fin, input);
 	}
 	return temp;
 }
@@ -261,9 +267,11 @@ void Library::printMenu() {
         cout << "- Check out Book ('c')" << endl;
         cout << "- Return Book ('r')" << endl;
 	cout << "- Recommend Books ('m')" << endl;
+	cout << "- Create List ('l')" << endl;
+	cout << "- View Lists ('v')" << endl;
 	if(currUser->getUserType() == "admin") {
                 cout << "- Add Book to Library ('a')" << endl;
-                cout << "- Remove Book from Library ('v')" << endl;
+                cout << "- Remove Book from Library ('e')" << endl;
         }
 	cout << "- Quit ('q')" << endl;
 	cout << "Choose an action: " << endl;
@@ -292,7 +300,11 @@ void Library::start() {
             		Return();
 		else if (input == 'm')
 			Recommend();
-		else if (input == 'a' && isAdmin)
+		else if (input == 'l')
+			CreateList();
+		else if (input == 'v')
+			ViewLists();
+		else if (input == 'e' && isAdmin)
 			AddBook();
 		else if (input == 'v' && isAdmin)
 			RemoveBook();
@@ -307,6 +319,16 @@ void Library::start() {
 	CreateFile();
     	currUser = nullptr;
     	cout << "Bye!" << endl;
+}
+
+void Library::CreateList() {
+	cout << endl;
+	currUser->newList(this);
+}
+
+void Library::ViewLists() {
+	cout << endl;
+	currUser->viewLists();
 }
 
 void Library::View() {
