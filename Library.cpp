@@ -116,23 +116,49 @@ bool Library::loadUsers() {
 void Library::login() {
 	string nameInput;
 	string passInput;
-	cout << "Please enter your username: ";
+	cout << "Please enter your username or 'n' to create a new login: ";
 	cin >> nameInput;
-	cout << "Please enter your password: ";
-	cin >> passInput;
+	
+	if(nameInput == "n")
+		createNewUser();
+	else {
+		cout << "Please enter your password: ";
+		cin >> passInput;
+		cout << endl;
 
-	currUser = getUser(nameInput, passInput);
-	if(currUser == nullptr) {
-		cout << "Invalid username or password." << endl;
-	} else {
-		if (PopulateUser() == false) {
-			cout << "Error loading information" << endl;
+		currUser = getUser(nameInput, passInput);
+		if(currUser == nullptr) {
+			cout << "Invalid username or password.\n" << endl;
+		} else {
+			if (PopulateUser() == false)
+				cout << "Error loading information\n" << endl;
+			else
+				cout << "Welcome " << nameInput << "!\n" << endl;
 		}
-		else {
-			cout << "Welcome " << nameInput << "!" << endl;
-		}
-		return;
-	} 
+	}
+}
+
+void Library::createNewUser() {
+	string newUsername;
+	string newPassword;
+	cout << "Please create a username: ";
+	cin >> newUsername;
+	cout << "Please create a password: ";
+	cin >> newPassword;
+
+	Standard* newUser = new Standard(newUsername, newPassword);
+	userList.push_back(newUser);
+	currUser = newUser;
+
+	ofstream fout;
+	fout.open("login.csv", fstream::app);
+	if(fout.fail()) {
+                return;
+        }
+	fout <<  newUsername << " " << newPassword << " 0";
+	fout.close();	
+
+	cout << "New Standard user " << newUsername << " has been created.\n" << endl;
 }
 
 bool Library::PopulateUser() {

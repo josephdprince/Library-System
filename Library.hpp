@@ -30,6 +30,7 @@ class Library {
 	void StoreLibrary();
 	bool loadBooks();
         bool loadUsers();
+	void createNewUser();
 	void start();
 	bool PopulateUser();
 	void CreateFile();
