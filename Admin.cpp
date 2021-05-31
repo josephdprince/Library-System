@@ -23,7 +23,7 @@ void Admin::remBook(Book* b, std::vector<Book*>& library) {
 		}
 	}
 	if (bookFound) {
-		library.erase(library.begin() + index - 1);
+		library.erase(library.begin() + index);
 		std::cout << "Book was successfully removed from Library." << std::endl;
 	}
 	else {
