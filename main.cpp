@@ -15,6 +15,7 @@ int main() {
 	
 	lib->login();
 	lib->start();
+	lib->StoreLibrary();
 
 	return 0;
 }
