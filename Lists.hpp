@@ -9,7 +9,7 @@
 
 class Lists {
     public:
-        virtual void print(int, int) = 0;
+        virtual std::string print(int, int) = 0;
 	virtual void file(std::ofstream&) = 0;
         virtual void find_rating() = 0;
 };
@@ -18,11 +18,15 @@ class Individual : public Lists {
     private:
         Book* book;
     public:
-        virtual void print(int space, int key) {
+        virtual std::string print(int space, int key) {
+	    std::string str = "";
             for (int i = 0; i < space; ++i) {
                 std::cout << "    ";
-            }
+            	str += "    ";
+	    }
             std::cout << "- " << book->GetTitle() << " by " << book->GetAuthor() << std::endl;
+	    str += "- " + book->GetTitle() + "\n";
+	    return str;
         }
 
 	virtual void file(std::ofstream& fout) {
@@ -45,17 +49,22 @@ class Composition : public Lists {
         std::string list_name;
         std::vector<Lists*> list;
     public:
-        virtual void print(int space, int key) {
+        virtual std::string print(int space, int key) {
+	   std::string str = "";
 	   for (int i = 0; i < space; ++i) {
             	std::cout << "    ";
+		str += "    ";
            }
 	   std::cout << list_name << ":" << std::endl;
+           str += list_name + ":\n";
 	   for (auto i : list) {
-                i->print(space + 1, key);
+                str += i->print(space + 1, key);
             }
 	   if (space == 0 && key != 1) {
 	   	std::cout << std::endl;
+		str += "\n";
 	   }
+	   return str;
         }
 
 	virtual void file(std::ofstream& fout) {

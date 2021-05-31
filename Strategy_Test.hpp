@@ -26,6 +26,9 @@ TEST(StrategyTest, PopularOnly) {
 	test = temp.recommendation_algorithm(mp, list, 1);
 
 	EXPECT_EQ(test, "1984\nA Game of Thrones\n");	
+
+	for (auto i : list)
+		delete i;
 }	
 
 
@@ -56,6 +59,9 @@ TEST(StrategyTest, LikedOnly) {
         test = temp.recommendation_algorithm(mp, list, 1);
 
         EXPECT_EQ(test, "The Giver\nThe Handmaid's Tale\n");
+
+	for (auto i : list)
+		delete i;
 }
 
 TEST(StrategyTest, PopularAndLiked) {
@@ -91,6 +97,9 @@ TEST(StrategyTest, PopularAndLiked) {
 	string test = alg1 + alg2;
 
         EXPECT_EQ(test, "A Game of Thrones\nThe Giver\nThe Handmaid's Tale\n");
+
+	for (auto i : list)
+		delete i;
 }
 
 
