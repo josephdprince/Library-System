@@ -24,23 +24,14 @@ Project Specifications:
 * input/output - A user may input their username and password to log into the library system. Afterwards, various inputs will allow them to perform different operations within the system. An output may be a list of favorite books or the title of books that were rented out. 
  
 Design Patterns:  
-* Strategy - This pattern will be useful because it lets us take take advantage of subclasses and virtual functions. We want to be able to call the same algorithm on two different subclasses and have it do two separate things. For example, we want to use this pattern to help facilitate book recommendations. This would be done in combination with a composite pattern to allow a user to select what they like and what they don't like. We would have subclasses that all have their own implementation of the algorithm that would let us get a list of books we would like while removing books we wouldn't like. We could use AND and NOT subclasses that facilitate this. 
-* Composite - This pattern will let us use a tree-like structure where a part can contain a whole while still treating each part similarly. Essentially, we would have a structure of AND and NOT nodes that give us a way to select which books we like and don't like. The AND, NOT, and each individual book would all derive from the same class so they can be treated similarly. The AND and NOT objects can either hold books or another AND/NOT objects.
+* Strategy - This pattern will be useful because it lets us take take advantage of subclasses and virtual functions. We want to be able to call the same algorithm on two different subclasses and have it do two separate things. For example, we want to use this pattern to help facilitate book recommendations. These two separate book recommendation algorithms will recommend based off of books the user like and off of popular books in the library. 
+* Composite - This pattern will let us use a tree-like structure where a part can contain a whole while still treating each part similarly. A user will be able create a book list containing multiple books. Additionally, a book list can contain another book list and it is treated exactly the same as if we were dealing with just an individual book. Therefore, a books list is a composite of books and book lists.
 
 
 ## Class Diagram
  ![alt text](https://github.com/cs100/final-project-jprin012-pkati001-ryang038/blob/master/Library%20Book%20System.png)
 
-The library system is in charge of holding all of the books and will only have the file of one user open at a time (whoever is logged in). There are 2 types of users, a     standard user and an admin. An admin should be able to do everything a standard user can do plus the ability to add and remove books from the library. The select class will be used to facilitate user book recommendations so it would be an aggregation.
- 
- > ## Phase III
- > You will need to schedule a check-in with the TA (during lab hours or office hours). Your entire team must be present. 
- > * Before the meeting you should perform a sprint plan like you did in Phase II
- > * In the meeting with your TA you will discuss: 
- >   - How effective your last sprint was (each member should talk about what they did)
- >   - Any tasks that did not get completed last sprint, and how you took them into consideration for this sprint
- >   - Any bugs you've identified and created issues for during the sprint. Do you plan on fixing them in the next sprint or are they lower priority?
- >   - What tasks you are planning for this next sprint.
+The library system is in charge of holding all of the books and will only have the file of one user open at a time (whoever is logged in). There are 2 types of users, a     standard user and an admin. An admin should be able to do everything a standard user can do plus the ability to add and remove books from the library. The Strategy class will be used to facilitate user book recommendations so it would be an aggregation.
 
  > ## Final deliverable
  > All group members will give a demo to the TA during lab time. The TA will check the demo and the project GitHub repository and ask a few questions to all the team members. 
@@ -49,9 +40,42 @@ The library system is in charge of holding all of the books and will only have t
  > * Plan one more sprint (that you will not necessarily complete before the end of the quarter). Your In-progress and In-testing columns should be empty (you are not doing more work currently) but your TODO column should have a full sprint plan in it as you have done before. This should include any known bugs (there should be some) or new features you would like to add. These should appear as issues/cards on your Kanban board. 
  
  ## Screenshots
- > Screenshots of the input/output after running your application
+ Logging in:
+ 
+ ![alt text](https://github.com/cs100/final-project-jprin012-pkati001-ryang038/blob/master/images/login.png)
+ 
+ Output library:
+ ![alt text](https://github.com/cs100/final-project-jprin012-pkati001-ryang038/blob/master/images/OutputLibrary.png)
+ 
+ Checked out books:
+ ![alt text](https://github.com/cs100/final-project-jprin012-pkati001-ryang038/blob/master/images/CheckedOut.png)
+ 
+ Return book:
+ 
+ ![alt text](https://github.com/cs100/final-project-jprin012-pkati001-ryang038/blob/master/images/Return.png)
+ 
+ Recommendations:
+ ![alt text](https://github.com/cs100/final-project-jprin012-pkati001-ryang038/blob/master/images/recommend.png)
+ 
+ Create list:
+ 
+ ![alt text](https://github.com/cs100/final-project-jprin012-pkati001-ryang038/blob/master/images/CreateList.png)
+ 
+ View lists:
+ 
+ ![alt text](https://github.com/cs100/final-project-jprin012-pkati001-ryang038/blob/master/images/ViewLists.png)
+ 
+ Add book (admin only):
+ 
+ ![alt text](https://github.com/cs100/final-project-jprin012-pkati001-ryang038/blob/master/images/AddBook.png)
+ 
+ Remove book (admin only):
+ ![alt text](https://github.com/cs100/final-project-jprin012-pkati001-ryang038/blob/master/images/RemoveBook.png)
  ## Installation/Usage
- > Instructions on installing and running your application
+ * Click on the Green "Code" Box at the top corner 
+ * Copy link under "HTTPS"
+ * In your own terminal, run "git clone --recursive <link>"
+ * Make sure that CMake is installed on your system
  ## Testing
  > How was your project tested/validated? If you used CI, you should have a "build passing" badge in this README.
  
