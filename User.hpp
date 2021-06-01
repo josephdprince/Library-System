@@ -14,6 +14,7 @@ class User {
 	std::string password;
 
     public:
+	virtual ~User() {}
         virtual void run(Library*) = 0;
 	virtual void viewLists() = 0;
 	virtual void checkoutBook(Book*, std::vector<Book*>&) = 0;

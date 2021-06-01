@@ -16,6 +16,7 @@ class Standard : public User {
         std::vector<Composition*> lists;
 	
     public:
+	virtual ~Standard();
         virtual void newList(Library*);
         virtual void viewLists();
         void recommend(std::vector<Book*>);

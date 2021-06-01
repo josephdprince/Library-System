@@ -18,6 +18,9 @@ class Individual : public Lists {
     private:
         Book* book;
     public:
+	~Individual() {
+		delete book;
+	}
         virtual std::string print(int space, int key) {
 	    std::string str = "";
             for (int i = 0; i < space; ++i) {
@@ -49,6 +52,22 @@ class Composition : public Lists {
         std::string list_name;
         std::vector<Lists*> list;
     public:
+	~Composition() {
+		for(unsigned i = 0; i < list.size(); i++) {
+			delete list.at(i);
+			list.at(i) = nullptr;
+		}
+		list.clear();
+	}
+	Composition() {
+		list_name = "";
+	}
+	Composition(const Composition& c) {
+		SetName(c.GetName());
+		for(unsigned i = 0; i < list.size(); i++) {
+			list.at(i) = c.GetList().at(i);
+		}
+	}
         virtual std::string print(int space, int key) {
 	   std::string str = "";
 	   for (int i = 0; i < space; ++i) {
@@ -86,7 +105,7 @@ class Composition : public Lists {
             list.push_back(obj);
         }
 
-	std::vector<Lists*> GetList() {
+	std::vector<Lists*> GetList() const {
 		return list;
 	}
 
@@ -94,7 +113,7 @@ class Composition : public Lists {
             list_name = name;
         }
 
-        std::string GetName() {
+        std::string GetName() const{
             return list_name;
         }
 };

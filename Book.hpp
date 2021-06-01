@@ -14,13 +14,13 @@ class Book {
 
     public:
 	Book(std::string, std::string, std::string, int, double, int);
-	
-	std::string GetTitle();
-	std::string GetAuthor();
-	std::string GetGenre();
-	int GetID();
-	double GetRating();
-	int GetNumReviews();
+	Book(const Book& b);
+	std::string GetTitle() const;
+	std::string GetAuthor() const;
+	std::string GetGenre() const;
+	int GetID() const;
+	double GetRating() const;
+	int GetNumReviews() const;
 	
 	void SetTitle(std::string);
 	void SetAuthor(std::string);

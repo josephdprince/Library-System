@@ -8,6 +8,22 @@
 #include "Library.hpp"
 #include "Standard.hpp"
 
+Standard::~Standard() {
+	for(unsigned i = 0; i < checkedOut.size(); i++) {
+		delete checkedOut.at(i);
+		checkedOut.at(i) = nullptr;
+	}
+	checkedOut.clear();
+	for(std::map<Book*, double>::iterator itr = history.begin(); itr != history.end(); itr++) {
+		delete itr->first;
+	}
+	for(unsigned i = 0; i < lists.size(); i++) {
+		delete lists.at(i);
+		lists.at(i) = nullptr;
+	}
+	lists.clear();
+}
+
 void Standard::run(Library* library_system) {}
 
 void Standard::newList(Library* library) {
@@ -97,14 +113,17 @@ void Standard::recommend(std::vector<Book*> library) {
 
 void Standard::AddCheckedOut(Book* book) {
 	checkedOut.push_back(book);
+	delete book;
 }
 
 void Standard::AddHistory(std::pair<Book*, double> data) {
 	history.insert(data);
+	delete data.first;
 }
 
 void Standard::AddLists(Composition* list) {
 	lists.push_back(list);
+	delete list;
 }
 
 void Standard::checkoutBook(Book* b, std::vector<Book*>& library) {
@@ -116,6 +135,7 @@ void Standard::checkoutBook(Book* b, std::vector<Book*>& library) {
 	}
 	checkedOut.push_back(b);
 	std::cout << "Book with ID: " << b->GetID() << " has been successfully checked out to User." << std::endl;
+	delete b;
 }
 
 void Standard::returnBook(Book* b, std::vector<Book*>& library, int index) {
