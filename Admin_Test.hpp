@@ -19,22 +19,12 @@ TEST(AdminTest, AssignedAdmin) {
 	EXPECT_EQ(test, "admin");
 }
 
-TEST(AdminTest, AddBook) {
-        Admin* testAdmin = new Admin("userName", "passWord");
-	Book* testBook = new Book("title", "author", "genre", 0, 0, 0);
-	Library* lib = new Library();
-	
-	if(!lib->loadUsers()) {
-		std::cerr << "ERROR: Cannot load users from login.csv" << std::endl;
-		exit(1);
-	}
+TEST(AdminTest, addBook) {
+	//Tested in Library_Test.hpp	
+}
 
-	//testAdmin->addBook(testBook, lib);
-	//lib->login();
-	
-	//Tests the Admin addBook function
-	
-			
+TEST(AdminTest, remBook) {
+	//Tested in Library_Test.hpp
 }
 
 #endif

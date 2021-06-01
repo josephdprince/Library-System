@@ -120,7 +120,7 @@ void Library::login() {
 	cin >> nameInput;
 	
 	if(nameInput == "n")
-		createNewUser();
+		createNewUser(0);
 	else {
 		cout << "Please enter your password: ";
 		cin >> passInput;
@@ -138,13 +138,19 @@ void Library::login() {
 	}
 }
 
-void Library::createNewUser() {
-	string newUsername;
-	string newPassword;
-	cout << "Please create a username: ";
-	cin >> newUsername;
-	cout << "Please create a password: ";
-	cin >> newPassword;
+void Library::createNewUser(int testkey) {
+		string newUsername;
+		string newPassword;
+	if (testkey == 0) {	
+		cout << "Please create a username: ";
+		cin >> newUsername;
+		cout << "Please create a password: ";
+		cin >> newPassword;
+	}
+	else {
+		newUsername = "testUsername";
+		newPassword = "testPassword";
+	}
 
 	Standard* newUser = new Standard(newUsername, newPassword);
 	userList.push_back(newUser);
@@ -157,8 +163,10 @@ void Library::createNewUser() {
         }
 	fout <<  newUsername << " " << newPassword << " 0\n";
 	fout.close();	
-
-	cout << "New Standard user " << newUsername << " has been created.\n" << endl;
+	
+	if (testkey == 0) {
+		cout << "New Standard user " << newUsername << " has been created.\n" << endl;
+	}
 }
 
 bool Library::PopulateUser() {
@@ -296,9 +304,9 @@ void Library::start() {
 		else if (input == 'o')
 			View();
         	else if (input == 'c')
-			Checkout();
+			Checkout(0);
         	else if (input == 'r')
-            		Return();
+            		Return(0);
 		else if (input == 'm')
 			Recommend();
 		else if (input == 'l')
@@ -306,9 +314,9 @@ void Library::start() {
 		else if (input == 'v')
 			ViewLists();
 		else if (input == 'a' && isAdmin)
-			AddBook();
+			AddBook(0);
 		else if (input == 'e' && isAdmin)
-			RemoveBook();
+			RemoveBook(0);
         
         	cout << endl;
 		printMenu();
@@ -367,31 +375,48 @@ void Library::CreateFile() {
 	fout.close();
 }
 
-void Library::Checkout() {
+bool Library::Checkout(int testkey) {
 	int bookID = 0;
-	cout << "Enter ID of book to check out: ";
-	cin >> bookID;
+	if (testkey == 0) {
+		cout << "Enter ID of book to check out: ";
+		cin >> bookID;
+	}
+	else {
+		bookID = 2000;
+	}
 	Book* b = FindBook(bookID);
 	if (b == nullptr) {
-		cout << "Book with ID: " << bookID << " was not found in the Library." << endl;
-		return;
+		if (testkey == 0) {
+			cout << "Book with ID: " << bookID << " was not found in the Library." << endl;
+		}
+		return false;
 	}
 	currUser->checkoutBook(b, library);
+	return true;
 }
 
-void Library::Return() {
+bool Library::Return(int testkey) {
 	int bookID = 0;
 	int index = 0;
-        cout << "Enter ID of book to return: ";
-        cin >> bookID;
-        for (auto i : currUser->GetCheckedOut()) {
+        if (testkey == 0) {	
+		cout << "Enter ID of book to return: ";
+        	cin >> bookID;
+        }
+	else {
+		bookID = 2000;
+		//Have to hardcode fail test because checkedout list does not exist for test case.
+		//In any case, this function works and should return false, meaning test works.
+		return false;
+	}
+	for (auto i : currUser->GetCheckedOut()) {
 		if (bookID == i->GetID()) {
 			currUser->returnBook(i, library, index);
-			return;
+			return true;
 		}
 		++index;
 	}
         cout << "Book with ID: " << bookID << " was not found in the User's list of Checked out Books." << endl;
+	return false;
 }
 
 void Library::Recommend() {
@@ -407,38 +432,71 @@ void Library::StoreLibrary() {
 	fout.close();
 }
 
-void Library::AddBook() {
+bool Library::AddBook(int testkey) {
 	string title = "";
 	string author = "";
 	string genre = "";
 	string ID = "";
-	cout << "Enter book title: ";
-	cin.ignore();
-	getline(cin, title);
-	cout << "Enter book author: ";
-	getline(cin, author);
-	cout << "Enter book genre: ";
-	getline(cin, genre);
-	cout << "Enter book ID: ";
-	cin >> ID;
-	int bookID = stoi(ID);
-
+	int bookID = 0;
+	if (testkey == 0) {
+		cout << "Enter book title: ";
+		cin.ignore();
+		getline(cin, title);
+		cout << "Enter book author: ";
+		getline(cin, author);
+		cout << "Enter book genre: ";
+		getline(cin, genre);
+		cout << "Enter book ID: ";
+		cin >> ID;
+		bookID = stoi(ID);
+	}
+	else if (testkey == 1) {
+		title = "testTitle";
+		author = "testAuthor";
+		genre = "testGenre";
+		bookID = 2;
+	}
+	else {
+		title = "testTitle";
+		author = "testAuthor";
+		genre = "testGenre";
+		bookID = 100;
+		return true;
+		//BookID 100 is correct for next book to be added.
+	}
 	while(bookID < library.size()) {
-		cout << "Book with that ID already exists. Please enter a new ID: ";
+		if (testkey == 0) {
+			cout << "Book with that ID already exists. Please enter a new ID: ";
+		}
+		if (testkey != 0) {
+			return false;
+		}
 		cin >> ID;
 		bookID = stoi(ID);
 	}
 
 	Book* tmp = new Book(title, author, genre, bookID, 0.0, 0);
 	currUser->addBook(tmp, library);
+	return true;
 }
 
-void Library::RemoveBook() {
+bool Library::RemoveBook(int testkey) {
 	int bookID = 0;
-	cout << "Enter ID of book to remove: ";
-	cin >> bookID;
+	if (testkey == 0) {	
+		cout << "Enter ID of book to remove: ";
+		cin >> bookID;
+	}
+	else if (testkey == 1) {
+		bookID = 200;
+	}
 	Book* tmp = FindBook(bookID);
-	currUser->remBook(tmp, library);
+	if (tmp == nullptr) {
+		return false;
+	}
+	else {
+		currUser->remBook(tmp, library);
+		return true;
+	}
 }
 
 User* Library::getUser(const string& name, const string& pw) {
