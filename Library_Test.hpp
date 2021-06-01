@@ -9,16 +9,6 @@
 
 using namespace std;
 
-TEST(LibraryTest, DisplayGenre) {
-	//This test only relies on Getter functions working as intended.
-	//Done in Book_Test.hpp
-}
-
-TEST(LibraryTest, DisplayAll) {
-        //This test only relies on Getter functions working as intended.
-        //Done in Book_Test.hpp
-}
-
 
 TEST(LibraryTest, FindBook) {
 	Library* lib = new Library();
