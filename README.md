@@ -45,6 +45,7 @@ The library system is in charge of holding all of the books and will only have t
  ![alt text](https://github.com/cs100/final-project-jprin012-pkati001-ryang038/blob/master/images/CheckedOut.png)
  
  Return book:
+ 
  ![alt text](https://github.com/cs100/final-project-jprin012-pkati001-ryang038/blob/master/images/Return.png)
  
  Recommendations:
