@@ -221,11 +221,11 @@ bool Library::PopulateUser() {
 
 	//Populate book lists
 	while (!fin.eof()) {
-		currUser->AddLists(CreateList(fin, 0));
+		Composition* list = CreateList(fin, 0);
+		if (list != nullptr) {
+			currUser->AddLists(list);
+		}
 	}
-	vector<Composition*> temp = currUser->GetLists();
-	temp.pop_back();
-	currUser->SetLists(temp);
 
 	fin.close();
 	return true;
@@ -245,14 +245,19 @@ Composition* Library::CreateList(ifstream& fin, bool key) {
 		fin.ignore();
 	}
 	getline(fin, list_name);	
+	if (list_name == "") {
+		return nullptr;
+	}
 
 	Composition* temp = new Composition();
 	temp->SetName(list_name);
 
 	getline(fin, input);
+	bool leave = false;
 	while (input != "}") {
 		if (input == "/") {
-			temp->Add(CreateList(fin, 1));
+			Composition* list = CreateList(fin, 1);
+			temp->Add(list);
 		}
 		else {
 			istringstream in;
@@ -263,6 +268,7 @@ Composition* Library::CreateList(ifstream& fin, bool key) {
 			tempBook->SetBook(FindBook(tempID));
 
 			temp->Add(tempBook);
+			currUser->AddExtraDel(tempBook);
 		}
 		getline(fin, input);
 	}

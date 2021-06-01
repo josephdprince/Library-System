@@ -12,6 +12,7 @@ class Lists {
         virtual std::string print(int, int) = 0;
 	virtual void file(std::ofstream&) = 0;
         virtual void find_rating() = 0;
+	virtual std::string return_type() = 0;
 };
 
 class Individual : public Lists {
@@ -42,6 +43,8 @@ class Individual : public Lists {
         }
 
         Book* GetBook() {return book;}
+
+	virtual std::string return_type() {return "Individual";}
 };
 
 class Composition : public Lists {
@@ -97,6 +100,8 @@ class Composition : public Lists {
         std::string GetName() {
             return list_name;
         }
+	
+	virtual std::string return_type() {return "Composition";}
 };
 
 #endif

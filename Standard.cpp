@@ -9,13 +9,14 @@
 #include "Standard.hpp"
 
 Standard::~Standard() {
-	for(unsigned i = 0; i < lists.size(); i++) {
-		delete lists.at(i);
-		lists.at(i) = nullptr;
+	for(auto i : lists) {
+		delete i;
+	}
+
+	for (auto i : extraDel) {
+		delete i;
 	}
 }
-
-void Standard::run(Library* library_system) {}
 
 void Standard::newList(Library* library) {
 	Composition* newList = new Composition();
@@ -46,6 +47,8 @@ void Standard::newList(Library* library) {
 					entry->SetBook(library->FindBook(IDnum));
 					newList->Add(entry);
 					std::cout << entry->GetBook()->GetTitle() << " was added to your list" << std::endl << std::endl;
+	
+					extraDel.push_back(entry);
 				}
 			}
 		}
@@ -112,6 +115,10 @@ void Standard::AddHistory(std::pair<Book*, double> data) {
 
 void Standard::AddLists(Composition* list) {
 	lists.push_back(list);
+}
+
+void Standard::AddExtraDel(Lists* lst) {
+	extraDel.push_back(lst);
 }
 
 void Standard::checkoutBook(Book* b, std::vector<Book*>& library) {

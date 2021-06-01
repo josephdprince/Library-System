@@ -15,7 +15,6 @@ class User {
 
     public:
 	virtual ~User() {}
-        virtual void run(Library*) = 0;
 	virtual void viewLists() = 0;
 	virtual void checkoutBook(Book*, std::vector<Book*>&) = 0;
 	virtual void returnBook(Book*, std::vector<Book*>&, int) = 0;
@@ -25,6 +24,7 @@ class User {
 	virtual void AddCheckedOut(Book*) = 0;
         virtual void AddHistory(std::pair<Book*, double>) = 0;
         virtual void AddLists(Composition*) = 0;
+	virtual void AddExtraDel(Lists*) = 0;
 	virtual void SetLists(std::vector<Composition*>) = 0;
 	virtual void newList(Library*) = 0;
         virtual std::vector<Book*> GetCheckedOut() = 0;
