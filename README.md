@@ -32,16 +32,9 @@ Design Patterns:
  ![alt text](https://github.com/cs100/final-project-jprin012-pkati001-ryang038/blob/master/Library%20Book%20System.png)
 
 The library system is in charge of holding all of the books and will only have the file of one user open at a time (whoever is logged in). There are 2 types of users, a     standard user and an admin. An admin should be able to do everything a standard user can do plus the ability to add and remove books from the library. The Strategy class will be used to facilitate user book recommendations so it would be an aggregation.
-
- > ## Final deliverable
- > All group members will give a demo to the TA during lab time. The TA will check the demo and the project GitHub repository and ask a few questions to all the team members. 
- > Before the demo, you should do the following:
- > * Complete the sections below (i.e. Screenshots, Installation/Usage, Testing)
- > * Plan one more sprint (that you will not necessarily complete before the end of the quarter). Your In-progress and In-testing columns should be empty (you are not doing more work currently) but your TODO column should have a full sprint plan in it as you have done before. This should include any known bugs (there should be some) or new features you would like to add. These should appear as issues/cards on your Kanban board. 
  
  ## Screenshots
  Logging in:
- 
  ![alt text](https://github.com/cs100/final-project-jprin012-pkati001-ryang038/blob/master/images/login.png)
  
  Output library:
@@ -51,22 +44,18 @@ The library system is in charge of holding all of the books and will only have t
  ![alt text](https://github.com/cs100/final-project-jprin012-pkati001-ryang038/blob/master/images/CheckedOut.png)
  
  Return book:
- 
  ![alt text](https://github.com/cs100/final-project-jprin012-pkati001-ryang038/blob/master/images/Return.png)
  
  Recommendations:
  ![alt text](https://github.com/cs100/final-project-jprin012-pkati001-ryang038/blob/master/images/recommend.png)
  
  Create list:
- 
  ![alt text](https://github.com/cs100/final-project-jprin012-pkati001-ryang038/blob/master/images/CreateList.png)
  
  View lists:
- 
  ![alt text](https://github.com/cs100/final-project-jprin012-pkati001-ryang038/blob/master/images/ViewLists.png)
  
  Add book (admin only):
- 
  ![alt text](https://github.com/cs100/final-project-jprin012-pkati001-ryang038/blob/master/images/AddBook.png)
  
  Remove book (admin only):
