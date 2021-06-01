@@ -38,6 +38,7 @@ class Library {
 	void CreateFile();
 	void login();
 	User* getUser(const std::string&, const std::string&);
+	std::string GetCurrentUsername();
     private:
 	Composition* CreateList(std::ifstream&, bool);
 };

@@ -4,8 +4,9 @@
 #include "gtest/gtest.h"
 #include "Standard.hpp"
 
-TEST(StandardTest, temp) {
-
+TEST(StandardTest, CheckoutBook) {
+	Library* lib = new Library();
+	
 }
 
 #endif
