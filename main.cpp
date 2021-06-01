@@ -16,6 +16,7 @@ int main() {
 	lib->login();
 	lib->start();
 	lib->StoreLibrary();
-
+	
+	delete lib;
 	return 0;
 }

@@ -8,6 +8,13 @@
 #include "Library.hpp"
 #include "Standard.hpp"
 
+Standard::~Standard() {
+	for(unsigned i = 0; i < lists.size(); i++) {
+		delete lists.at(i);
+		lists.at(i) = nullptr;
+	}
+}
+
 void Standard::run(Library* library_system) {}
 
 void Standard::newList(Library* library) {
