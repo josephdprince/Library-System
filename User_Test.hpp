@@ -4,8 +4,8 @@
 #include "gtest/gtest.h"
 #include "User.hpp"
 
-TEST(UserTest, temp) {
-
+TEST(UserTest, Check) {
+	
 }
 
 #endif

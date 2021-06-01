@@ -5,6 +5,7 @@
 #include "Standard.hpp"
 
 TEST(StandardTest, CheckoutBook) {
+	Library* lib = new Library();
 	
 }
 

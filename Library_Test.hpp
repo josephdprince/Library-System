@@ -66,6 +66,10 @@ TEST(LibraryTest, LoadUsers) {
         EXPECT_EQ(result, "success");
 }
 
+TEST(LibraryTest, CreateNewUser) {
+	
+}
+
 TEST(LibraryTest, Checkout) {
 	//This test relies on Standard::checkoutBook(...)
 	//Done in Standard_Test.hpp

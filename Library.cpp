@@ -392,3 +392,7 @@ User* Library::getUser(const string& name, const string& pw) {
 	}
 	return nullptr;
 }
+
+string Library::GetCurrentUsername() {
+	return currUser->getUserID();
+}
