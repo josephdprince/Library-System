@@ -35,6 +35,7 @@ The library system is in charge of holding all of the books and will only have t
  
  ## Screenshots
  Logging in:
+ 
  ![alt text](https://github.com/cs100/final-project-jprin012-pkati001-ryang038/blob/master/images/login.png)
  
  Output library:
@@ -50,12 +51,15 @@ The library system is in charge of holding all of the books and will only have t
  ![alt text](https://github.com/cs100/final-project-jprin012-pkati001-ryang038/blob/master/images/recommend.png)
  
  Create list:
+ 
  ![alt text](https://github.com/cs100/final-project-jprin012-pkati001-ryang038/blob/master/images/CreateList.png)
  
  View lists:
+ 
  ![alt text](https://github.com/cs100/final-project-jprin012-pkati001-ryang038/blob/master/images/ViewLists.png)
  
  Add book (admin only):
+ 
  ![alt text](https://github.com/cs100/final-project-jprin012-pkati001-ryang038/blob/master/images/AddBook.png)
  
  Remove book (admin only):
