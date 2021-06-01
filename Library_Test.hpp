@@ -9,16 +9,6 @@
 
 using namespace std;
 
-TEST(LibraryTest, DisplayGenre) {
-	//This test only relies on Getter functions working as intended.
-	//Done in Book_Test.hpp
-}
-
-TEST(LibraryTest, DisplayAll) {
-        //This test only relies on Getter functions working as intended.
-        //Done in Book_Test.hpp
-}
-
 
 TEST(LibraryTest, FindBook) {
 	Library* lib = new Library();
@@ -67,18 +57,93 @@ TEST(LibraryTest, LoadUsers) {
 }
 
 TEST(LibraryTest, CreateNewUser) {
+	Library* lib = new Library();
 	
+	lib->createNewUser(1);
+	
+	EXPECT_EQ(lib->GetCurrentUsername(), "testUsername");
 }
 
 TEST(LibraryTest, Checkout) {
-	//This test relies on Standard::checkoutBook(...)
-	//Done in Standard_Test.hpp
+	Library* lib = new Library();
+	std::string result = "";
+	
+	if (lib->Checkout(1)) {
+		result = "success";
+	}
+	else {
+		result = "fail";
+	}
+	
+	EXPECT_EQ(result, "fail");
 }
 
 TEST(LibraryTest, Return) {
-	//This test relies on Standard::returnBook(...)
-	//Done in Standard_Test.hpp
+	Library* lib = new Library();
+	std::string result = "";
+
+        if (lib->Return(1)) {
+                result = "success";
+        }
+        else {
+                result = "fail";
+        }
+
+        EXPECT_EQ(result, "fail");
 }
 
+TEST(LibraryTest, AddExistingBook) {
+	Library* lib = new Library();
+	std::string result = "";
+
+	if(!lib->loadBooks()) {
+		std::cerr << "ERROR: Cannot load books from booklists.csv" << std::endl;
+                exit(1);
+	}
+	
+	if (lib->AddBook(1)) {
+		result = "success";
+	}
+	else {
+		result = "fail";
+	}
+	EXPECT_EQ(result, "fail");
+}	
+
+TEST(LibraryTest, AddNewBook) {
+	Library* lib = new Library();
+        std::string result = "";
+
+        if(!lib->loadBooks()) {
+                std::cerr << "ERROR: Cannot load books from booklists.csv" << std::endl;
+                exit(1);
+        }
+
+        if (lib->AddBook(2)) {
+                result = "success";
+        }
+        else {
+                result = "fail";
+        }
+        EXPECT_EQ(result, "success");
+}
+
+TEST(LibraryTest, RemoveBook) {
+	Library* lib = new Library();
+        std::string result = "";
+
+        if(!lib->loadBooks()) {
+                std::cerr << "ERROR: Cannot load books from booklists.csv" << std::endl;
+                exit(1);
+        }
+
+        if (lib->RemoveBook(1)) {
+                result = "success";
+        }
+        else {
+                result = "fail";
+        }
+        EXPECT_EQ(result, "fail");
+}
 
 #endif

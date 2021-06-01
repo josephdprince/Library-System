@@ -19,22 +19,58 @@ TEST(AdminTest, AssignedAdmin) {
 	EXPECT_EQ(test, "admin");
 }
 
-TEST(AdminTest, AddBook) {
-        Admin* testAdmin = new Admin("userName", "passWord");
-	Book* testBook = new Book("title", "author", "genre", 0, 0, 0);
-	Library* lib = new Library();
-	
-	if(!lib->loadUsers()) {
-		std::cerr << "ERROR: Cannot load users from login.csv" << std::endl;
-		exit(1);
-	}
+TEST(AdminTest, AddExistingBook) {
+        Library* lib = new Library();
+        std::string result = "";
 
-	//testAdmin->addBook(testBook, lib);
-	//lib->login();
-	
-	//Tests the Admin addBook function
-	
-			
+        if(!lib->loadBooks()) {
+                std::cerr << "ERROR: Cannot load books from booklists.csv" << std::endl;
+                exit(1);
+        }
+
+        if (lib->AddBook(1)) {
+                result = "success";
+        }
+        else {
+                result = "fail";
+        }
+        EXPECT_EQ(result, "fail");
+}
+
+TEST(AdminTest, AddNewBook) {
+        Library* lib = new Library();
+        std::string result = "";
+
+        if(!lib->loadBooks()) {
+                std::cerr << "ERROR: Cannot load books from booklists.csv" << std::endl;
+                exit(1);
+        }
+
+        if (lib->AddBook(2)) {
+                result = "success";
+        }
+        else {
+                result = "fail";
+        }
+        EXPECT_EQ(result, "success");
+}
+
+TEST(AdminTest, RemoveBook) {
+        Library* lib = new Library();
+        std::string result = "";
+
+        if(!lib->loadBooks()) {
+                std::cerr << "ERROR: Cannot load books from booklists.csv" << std::endl;
+                exit(1);
+        }
+
+        if (lib->RemoveBook(1)) {
+                result = "success";
+        }
+        else {
+                result = "fail";
+        }
+        EXPECT_EQ(result, "fail");
 }
 
 #endif
