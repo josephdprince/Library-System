@@ -29,6 +29,7 @@ TEST(AdminTest, AddBook) {
 		exit(1);
 	}
 
+	//testAdmin->addBook(testBook, lib);
 	//lib->login();
 	
 	//Tests the Admin addBook function
