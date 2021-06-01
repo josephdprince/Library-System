@@ -126,7 +126,7 @@ void Library::login() {
 		cin >> passInput;
 		cout << endl;
 
-		currUser = getUser(nameInput, passInput);
+		currUser = getUser(nameInput, passInput, 0);
 		if(currUser == nullptr) {
 			cout << "Invalid username or password.\n" << endl;
 		} else {
@@ -499,12 +499,25 @@ bool Library::RemoveBook(int testkey) {
 	}
 }
 
-User* Library::getUser(const string& name, const string& pw) {
-	for(unsigned i = 0; i < userList.size(); i++) {
-		if(userList.at(i)->check(name, pw))
-			return userList.at(i);
+User* Library::getUser(const string& name, const string& pw, int testkey) {
+	if (testkey == 0) {
+		for(unsigned i = 0; i < userList.size(); i++) {
+			if(userList.at(i)->check(name, pw)) {
+				return userList.at(i);
+			}
+		}
+		return nullptr;
 	}
-	return nullptr;
+	else {
+		string testName = "testName";
+		string testPass = "testPass";
+		for (unsigned i = 0; i < userList.size(); i++) {
+			if (userList.at(i)->check(testName, testPass)) {
+				return userList.at(i);
+			}
+		return nullptr;
+		}
+	}
 }
 
 string Library::GetCurrentUsername() {

@@ -37,7 +37,7 @@ class Library {
 	bool PopulateUser();
 	void CreateFile();
 	void login();
-	User* getUser(const std::string&, const std::string&);
+	User* getUser(const std::string&, const std::string&, int);
 	std::string GetCurrentUsername();
     private:
 	Composition* CreateList(std::ifstream&, bool);
