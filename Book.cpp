@@ -1,26 +1,26 @@
-#include <string>
 #include "Book.hpp"
+#include <string>
 
-Book::Book(std::string title, std::string author, std::string genre, int ID, double rating, int numReviews) {
-	this->title = title;
-	this->author = author;
-	this->genre = genre;
-	this->ID = ID;
-	this->rating = rating;
-	this->numReviews = numReviews;
-} 
+Book::Book(std::string title, std::string author, std::string genre, int ID,
+           double rating, int numReviews) {
+  this->title = title;
+  this->author = author;
+  this->genre = genre;
+  this->ID = ID;
+  this->rating = rating;
+  this->numReviews = numReviews;
+}
 
-std::string Book::GetTitle() {return title;}
-std::string Book::GetAuthor() {return author;}
-std::string Book::GetGenre() {return genre;}
-int Book::GetID() {return ID;}
-double Book::GetRating() {return rating;}
-int Book::GetNumReviews() {return numReviews;}
+std::string Book::GetTitle() { return title; }
+std::string Book::GetAuthor() { return author; }
+std::string Book::GetGenre() { return genre; }
+int Book::GetID() { return ID; }
+double Book::GetRating() { return rating; }
+int Book::GetNumReviews() { return numReviews; }
 
-void Book::SetTitle(std::string title) {this->title = title;}
-void Book::SetAuthor(std::string author) {this->author = author;}
-void Book::SetGenre(std::string genre) {this->genre = genre;}
-void Book::SetID(int ID) {this->ID = ID;}
-void Book::SetRating(double rating) {this->rating = rating;}
-void Book::SetNumReviews(int numReviews) {this->numReviews = numReviews;}
-
+void Book::SetTitle(std::string title) { this->title = title; }
+void Book::SetAuthor(std::string author) { this->author = author; }
+void Book::SetGenre(std::string genre) { this->genre = genre; }
+void Book::SetID(int ID) { this->ID = ID; }
+void Book::SetRating(double rating) { this->rating = rating; }
+void Book::SetNumReviews(int numReviews) { this->numReviews = numReviews; }
