@@ -1,8 +1,6 @@
 #include "../include/Standard.h"
 #include "../include/Individual.h"
-#include "../include/Library.h"
 #include "../include/Strategy.h"
-#include "../include/User.h"
 
 #include <iomanip>
 #include <iostream>

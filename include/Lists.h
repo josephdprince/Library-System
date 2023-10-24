@@ -1,7 +1,5 @@
 #pragma once
 
-#include "Book.h"
-
 #include <fstream>
 #include <string>
 

@@ -1,6 +1,5 @@
 #pragma once
 
-#include "Book.h"
 #include "Library.h"
 #include "Lists.h"
 #include "User.h"

@@ -1,6 +1,4 @@
 #include "../include/Admin.h"
-#include "../include/Library.h"
-#include "../include/Standard.h"
 
 #include <iostream>
 #include <string>
