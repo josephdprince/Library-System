@@ -1,7 +1,6 @@
-#ifndef __STRATEGY_TEST_HPP__
-#define __STRATEGY_TEST_HPP__
+#pragma once
 
-#include "Strategy.hpp"
+#include "../include/Strategy.h"
 #include "gtest/gtest.h"
 #include <map>
 #include <string>
@@ -108,5 +107,3 @@ TEST(StrategyTest, PopularAndLiked) {
   for (auto i : list)
     delete i;
 }
-
-#endif

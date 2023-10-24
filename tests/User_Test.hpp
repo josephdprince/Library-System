@@ -1,8 +1,10 @@
-#ifndef __USER_TEST_HPP__
-#define __USER_TEST_HPP__
+#pragma once
 
-#include "User.hpp"
+#include "../include/Library.h"
+#include "../include/User.h"
 #include "gtest/gtest.h"
+
+#include <iostream>
 
 TEST(UserTest, Check) {
   Library *lib = new Library();
@@ -23,5 +25,3 @@ TEST(UserTest, Check) {
 
   EXPECT_EQ(result, "fail");
 }
-
-#endif

@@ -1,10 +1,9 @@
-#ifndef __LIBRARY_TEST_HPP__
-#define __LIBRARY_TEST_HPP__
+#pragma once
 
 #include <iostream>
 #include <string>
 
-#include "Library.hpp"
+#include "../include/Library.h"
 #include "gtest/gtest.h"
 
 using namespace std;
@@ -137,5 +136,3 @@ TEST(LibraryTest, RemoveBook) {
   }
   EXPECT_EQ(result, "fail");
 }
-
-#endif

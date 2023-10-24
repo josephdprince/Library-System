@@ -1,8 +1,8 @@
-#ifndef __LIBRARY_HPP__
-#define __LIBRARY_HPP__
+#pragma once
 
-#include "Book.hpp"
-#include "User.hpp"
+#include "Book.h"
+#include "User.h"
+
 #include <fstream>
 #include <string>
 #include <vector>
@@ -44,4 +44,3 @@ public:
 private:
   Composition *CreateList(std::ifstream &, bool);
 };
-#endif

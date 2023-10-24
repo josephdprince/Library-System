@@ -1,4 +1,5 @@
-#include "Library.hpp"
+#include "../include/Library.h"
+
 #include <string>
 
 bool User::check(const std::string &uname, const std::string &pass) const {

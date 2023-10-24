@@ -1,7 +1,6 @@
-#ifndef __BOOK_TEST_HPP__
-#define __BOOK_TEST_HPP__
+#pragma once
 
-#include "Book.hpp"
+#include "../include/Book.h"
 #include "gtest/gtest.h"
 
 TEST(BookTest, TitleGetter) {
@@ -129,5 +128,3 @@ TEST(BookTest, NumReviewsSetter) {
 
   delete testBook;
 }
-
-#endif

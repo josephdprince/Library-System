@@ -1,7 +1,7 @@
-#ifndef __LISTS_TEST_HPP__
-#define __LISTS_TEST_HPP__
+#pragma once
 
-#include "Lists.hpp"
+#include "../include/Composition.h"
+#include "../include/Individual.h"
 #include "gtest/gtest.h"
 using namespace std;
 
@@ -111,5 +111,3 @@ TEST(ListTest, ListofList) {
   delete temp4.GetBook();
   delete temp5.GetBook();
 }
-
-#endif

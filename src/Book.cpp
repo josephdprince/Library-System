@@ -1,4 +1,5 @@
-#include "Book.hpp"
+#include "../include/Book.h"
+
 #include <string>
 
 Book::Book(std::string title, std::string author, std::string genre, int ID,

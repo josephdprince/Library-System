@@ -1,5 +1,4 @@
-#ifndef __BOOK_HPP__
-#define __BOOK_HPP__
+#pragma once
 
 #include <string>
 
@@ -29,4 +28,3 @@ public:
   void SetRating(double);
   void SetNumReviews(int);
 };
-#endif

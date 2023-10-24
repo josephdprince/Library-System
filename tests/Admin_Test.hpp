@@ -1,11 +1,10 @@
-#ifndef __ADMIN_TEST_HPP__
-#define __ADMIN_TEST_HPP__
+#pragma once
 
 #include <iostream>
 #include <string>
 
-#include "Admin.hpp"
-#include "Library.hpp"
+#include "../include/Admin.h"
+#include "../include/Library.h"
 #include "gtest/gtest.h"
 
 using namespace std;
@@ -69,5 +68,3 @@ TEST(AdminTest, RemoveBook) {
   }
   EXPECT_EQ(result, "fail");
 }
-
-#endif

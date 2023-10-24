@@ -1,6 +1,7 @@
-#include "Admin.hpp"
-#include "Library.hpp"
-#include "Standard.hpp"
+#include "../include/Admin.h"
+#include "../include/Library.h"
+#include "../include/Standard.h"
+
 #include <iostream>
 #include <string>
 #include <vector>

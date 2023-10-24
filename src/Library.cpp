@@ -1,5 +1,7 @@
-#include "Library.hpp"
-#include "Admin.hpp"
+#include "../include/Library.h"
+#include "../include/Admin.h"
+#include "../include/Individual.h"
+
 #include <fstream>
 #include <iomanip>
 #include <iostream>

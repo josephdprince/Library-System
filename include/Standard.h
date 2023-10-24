@@ -1,10 +1,10 @@
-#ifndef __STANDARD_HPP__
-#define __STANDARD_HPP__
+#pragma once
 
-#include "Book.hpp"
-#include "Library.hpp"
-#include "Lists.hpp"
-#include "User.hpp"
+#include "Book.h"
+#include "Library.h"
+#include "Lists.h"
+#include "User.h"
+
 #include <map>
 #include <string>
 #include <vector>
@@ -42,5 +42,3 @@ public:
   virtual void remBook(Book *, std::vector<Book *> &){};
   inline void displayBooks();
 };
-
-#endif

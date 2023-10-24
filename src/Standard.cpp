@@ -1,7 +1,9 @@
-#include "Standard.hpp"
-#include "Library.hpp"
-#include "Strategy.hpp"
-#include "User.hpp"
+#include "../include/Standard.h"
+#include "../include/Individual.h"
+#include "../include/Library.h"
+#include "../include/Strategy.h"
+#include "../include/User.h"
+
 #include <iomanip>
 #include <iostream>
 #include <map>

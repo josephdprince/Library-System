@@ -1,8 +1,8 @@
-#ifndef __ADMIN_HPP__
-#define __ADMIN_HPP__
+#pragma once
 
-#include "Library.hpp"
-#include "Standard.hpp"
+#include "Library.h"
+#include "Standard.h"
+
 #include <string>
 #include <vector>
 
@@ -13,5 +13,3 @@ public:
   inline std::string getUserType() { return "admin"; }
   virtual void remBook(Book *, std::vector<Book *> &);
 };
-
-#endif

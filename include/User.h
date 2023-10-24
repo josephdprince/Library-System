@@ -1,8 +1,8 @@
-#ifndef __USER_HPP__
-#define __USER_HPP__
+#pragma once
 
-#include "Book.hpp"
-#include "Lists.hpp"
+#include "Book.h"
+#include "Composition.h"
+
 #include <map>
 #include <string>
 #include <vector>
@@ -34,5 +34,3 @@ public:
   virtual std::string getUserType() = 0;
   bool check(const std::string &uname, const std::string &pass) const;
 };
-
-#endif
