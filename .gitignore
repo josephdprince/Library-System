@@ -3,5 +3,8 @@ CMakeFiles/
 Makefile
 cmake_install.cmake
 lib/
-run
-test
+.vscode/
+.cache/
+build/
+compile_commands.json
+dist_manifest.txt

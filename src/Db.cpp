@@ -1,11 +1,7 @@
 #include "../include/Db.h"
-
-#include <bsoncxx/json.hpp>
 #include <iostream>
-#include <mongocxx/client.hpp>
-#include <mongocxx/instance.hpp>
 
-void Db::ConnectDB(const string &URI) {
+Db::Db(const std::string &URI) {
   try {
     // Create an instance.
     mongocxx::instance inst{};
