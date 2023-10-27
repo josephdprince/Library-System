@@ -1,21 +1,14 @@
 # Library System 
  Authors: 
+
+ [Joseph Prince](https://github.com/josephdprince)
   
  [Puloma Katiyar](https://github.com/puloma-k)
- 
- [Joseph Prince](https://github.com/josephdprince)
   
  [Raymond Yang](https://github.com/raymyun)
  
 ## Project Description
-This project is important to us because it allows us to incorporate design patterns learned in class
-to a useful program that can be applied in the real world. It will help us understand the methods of
-collaboration via GitHub and give us an insight into how software development is completed at the industry level. The project idea is
-interesting to us because of the variety of features in the design. Creating a login system and providing recommendations to users based on
-past activity are features that we have not implemented before, so it will provide an interesting challenge. In addition, this project can be 
-expanded to many levels of complexity and we can continue to build on it even after completing this course.
-
-This project will be composed entirely in C++ and use the following tools/technologies:
+This project is composed entirely in C++ and use the following tools/technologies:
 * Valgrind - used to facilitate memory managemnt
 * CMake - used to simplify the compilation process
 * Kanban Board - to help keep everything organized while giving each group member a task to complete
@@ -70,5 +63,14 @@ The library system is in charge of holding all of the books and will only have t
  * Copy link under "HTTPS"
  * In your own terminal, run "git clone --recursive [link]"
  * Make sure that CMake is installed on your system
+
+ ### Dependencies
+This project uses the mongo c++ driver library and the nlohmann json library. Both projects should be cloned in a directory called thirdparty that sits in the top level of the project
+
+* Mongo drivers
+  - Although not mentioned, the C++ driver depends on the C driver. So follow the instructions to download and install (in the thirdparty directory) both here https://www.mongodb.com/docs/drivers/
+  - I personally had issues installing the drivers into my system, so make sure everything gets installed into thirdparty beause cmake will expect to find the mongocxx and bsoncxx package in the thirdparty directory (see CMakeLists.txt).
+* Nlohmann Json
+  - Clone the repository and build the package. By default, everything will be installed into your system, and cmake will look there for the package.
  ## Testing
- Our project was tested through the use of googletest. We made test files for every class that contain the unit tests for each class's specific functions.  
+ Our project was tested using googletest. There are files for every class that contain the unit tests for each class's specific functions.  
