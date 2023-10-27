@@ -19,7 +19,7 @@ public:
   virtual ~Standard();
   virtual void newList(Library *);
   virtual void viewLists();
-  void recommend(std::vector<Book *>);
+  void recommend(Library *lib);
   inline Standard(const std::string &uname, const std::string &pass) {
     userID = uname;
     password = pass;
@@ -35,8 +35,8 @@ public:
   virtual std::map<Book *, double> GetHistory() { return history; }
   virtual std::vector<Composition *> GetLists() { return lists; }
   inline std::string getUserType() { return "standard"; }
-  virtual void checkoutBook(Book *, std::vector<Book *> &);
-  virtual void returnBook(Book *, std::vector<Book *> &, int);
+  virtual void checkoutBook(Book *);
+  virtual void returnBook(Book *, int);
   virtual void addBook(Book *, std::vector<Book *> &){};
   virtual void remBook(Book *, std::vector<Book *> &){};
   inline void displayBooks();

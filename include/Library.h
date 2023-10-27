@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Book.h"
+#include "Db.h"
 #include "User.h"
 
 #include <fstream>
@@ -9,16 +10,17 @@
 
 class Library {
 private:
-  std::vector<Book *> library;
+  Db *db;
   std::vector<User *> userList;
   User *currUser;
   void printMenu();
 
 public:
-  Library();
+  Library(Db *db);
   ~Library();
-  std::vector<Book *> GetLibrary();
-  void DisplayGenre(std::string);
+  void DisplayGenre();
+  void DisplayGenre(std::string &genre);
+  void DisplayPopular();
   void DisplayAll();
   bool Checkout(int);
   bool Return(int);
@@ -29,7 +31,6 @@ public:
   void View();
   Book *FindBook(int);
   void StoreLibrary();
-  bool loadBooks();
   bool loadUsers();
   void createNewUser(int);
   void start();

@@ -48,6 +48,8 @@ set(SOURCE_FILES
     src/User.cpp
 )
 
+configure_file(login.csv login.csv COPYONLY)
+
 ADD_EXECUTABLE(run ${SOURCE_FILES})
 
 # Link necessary libraries

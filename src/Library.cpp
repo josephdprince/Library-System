@@ -10,8 +10,7 @@
 #include <vector>
 using namespace std;
 
-std::vector<Book *> Library::GetLibrary() { return library; }
-Library::Library() { currUser = nullptr; }
+Library::Library(Db *db) : db(db) { currUser = nullptr; }
 
 Library::~Library() {
   delete currUser;
@@ -22,67 +21,20 @@ Library::~Library() {
   }
 }
 
-void Library::DisplayGenre(string genre) {
-  for (int i = 0; i < library.size(); i++) {
-    if (library.at(i)->GetGenre() == genre) {
-      cout << library.at(i)->GetTitle() << " by " << library.at(i)->GetAuthor();
-    }
-  }
+void Library::DisplayGenre() {
+  string genre;
+  cout << "Enter genre: ";
+  cin >> genre;
+  db->LibDisplayGenre(genre);
 }
 
-void Library::DisplayAll() {
-  cout << right << setw(20) << "Genre" << right << setw(50) << "Title" << right
-       << setw(35) << "Author" << right << setw(7) << "ID" << endl;
-  cout << "--------------------------------------------------------------------"
-          "---------------------------------------------------"
-       << endl;
-  for (int i = 0; i < library.size(); i++) {
-    cout << setw(20) << library.at(i)->GetGenre() << setw(50)
-         << library.at(i)->GetTitle() << setw(35) << library.at(i)->GetAuthor()
-         << setw(7) << library.at(i)->GetID() << endl;
-  }
-}
+void Library::DisplayGenre(std::string &genre) { db->LibDisplayGenre(genre); }
 
-Book *Library::FindBook(int id) {
-  for (auto i : library) {
-    if (i->GetID() == id) {
-      return i;
-    }
-  }
-  return nullptr;
-}
+void Library::DisplayPopular() { db->LibGetPopular(); }
 
-bool Library::loadBooks() {
-  ifstream fin;
-  fin.open("booklists.csv");
-  if (fin.fail())
-    return false;
+void Library::DisplayAll() { db->LibDisplayAll(); }
 
-  string title = "";
-  string author = "";
-  string genre = "";
-  string ID = "";
-  string rating = "";
-  string review = "";
-
-  while (getline(fin, title, ',')) {
-    getline(fin, author, ',');
-    getline(fin, genre, ',');
-    getline(fin, ID, ',');
-    getline(fin, rating, ',');
-    getline(fin, review);
-
-    int bookID = stoi(ID);
-    double bookRate = stoi(rating);
-    int bookRev = stoi(review);
-
-    Book *tmp = new Book(title, author, genre, bookID, bookRate, bookRev);
-    library.push_back(tmp);
-  }
-
-  fin.close();
-  return true;
-}
+Book *Library::FindBook(int id) { return db->FindBookById(id); }
 
 bool Library::loadUsers() {
   ifstream fin;
@@ -209,6 +161,10 @@ bool Library::PopulateUser() {
         histVal.first = FindBook(input1);
         histVal.second = input2;
 
+        if (histVal.first == nullptr) {
+          continue;
+        }
+
         currUser->AddHistory(histVal);
       }
       getline(fin, inputLine);
@@ -262,7 +218,11 @@ Composition *Library::CreateList(ifstream &fin, bool key) {
       in >> tempID;
 
       Individual *tempBook = new Individual();
-      tempBook->SetBook(FindBook(tempID));
+      Book *b = FindBook(tempID);
+      if (b == nullptr) {
+        continue;
+      }
+      tempBook->SetBook(b);
 
       temp->Add(tempBook);
       currUser->AddExtraDel(tempBook);
@@ -275,6 +235,7 @@ Composition *Library::CreateList(ifstream &fin, bool key) {
 void Library::printMenu() {
   cout << "Menu" << endl;
   cout << "- Display Library ('d')" << endl;
+  cout << "- Display by Genre ('g')" << endl;
   cout << "- View Checked Out Books ('o')" << endl;
   cout << "- Checkout Book ('c')" << endl;
   cout << "- Return Book ('r')" << endl;
@@ -304,7 +265,9 @@ void Library::start() {
   while (input != 'q') {
     if (input == 'd')
       DisplayAll();
-    else if (input == 'o')
+    else if (input == 'g') {
+      DisplayGenre();
+    } else if (input == 'o')
       View();
     else if (input == 'c')
       Checkout(0);
@@ -328,7 +291,6 @@ void Library::start() {
     if (input != 'q')
       cout << endl;
   }
-  StoreLibrary();
   CreateFile();
   currUser = nullptr;
   cout << "Bye!" << endl;
@@ -398,7 +360,7 @@ bool Library::Checkout(int testkey) {
     }
     return false;
   }
-  currUser->checkoutBook(b, library);
+  currUser->checkoutBook(b);
   return true;
 }
 
@@ -417,7 +379,7 @@ bool Library::Return(int testkey) {
   }
   for (auto i : currUser->GetCheckedOut()) {
     if (bookID == i->GetID()) {
-      currUser->returnBook(i, library, index);
+      currUser->returnBook(i, index);
       return true;
     }
     ++index;
@@ -427,18 +389,7 @@ bool Library::Return(int testkey) {
   return false;
 }
 
-void Library::Recommend() { currUser->recommend(library); }
-
-void Library::StoreLibrary() {
-  ofstream fout;
-  fout.open("booklists.csv");
-  for (auto i : library) {
-    fout << i->GetTitle() << "," << i->GetAuthor() << "," << i->GetGenre()
-         << "," << i->GetID() << "," << i->GetRating() << ","
-         << i->GetNumReviews() << "\n";
-  }
-  fout.close();
-}
+void Library::Recommend() { currUser->recommend(this); }
 
 bool Library::AddBook(int testkey) {
   string title = "";
@@ -470,7 +421,8 @@ bool Library::AddBook(int testkey) {
     return true;
     // BookID 100 is correct for next book to be added.
   }
-  while (bookID < library.size()) {
+
+  while (db->FindBookById(bookID) != nullptr) {
     if (testkey == 0) {
       cout << "Book with that ID already exists. Please enter a new ID: ";
     }
@@ -481,8 +433,8 @@ bool Library::AddBook(int testkey) {
     bookID = stoi(ID);
   }
 
-  Book *tmp = new Book(title, author, genre, bookID, 0.0, 0);
-  currUser->addBook(tmp, library);
+  db->LibInsertBook(title, author, genre, bookID);
+  cout << "Book was succesfully added to Library" << endl;
   return true;
 }
 
@@ -494,13 +446,10 @@ bool Library::RemoveBook(int testkey) {
   } else if (testkey == 1) {
     bookID = 200;
   }
-  Book *tmp = FindBook(bookID);
-  if (tmp == nullptr) {
-    return false;
-  } else {
-    currUser->remBook(tmp, library);
-    return true;
-  }
+
+  db->LibRemoveBook(bookID);
+  cout << "Book was removed" << endl;
+  return true;
 }
 
 User *Library::getUser(const string &name, const string &pw, int testkey) {

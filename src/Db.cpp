@@ -1,9 +1,6 @@
 #include <Db.h>
 #include <iomanip>
 #include <iostream>
-#include <nlohmann/json.hpp>
-
-using json = nlohmann::json;
 
 Db::Db(std::string &URI) {
   try {
@@ -53,10 +50,70 @@ void Db::LibDisplayAll() {
   for (auto doc : cursor) {
     json jsonObj = json::parse(
         bsoncxx::to_json(doc, bsoncxx::ExtendedJsonMode::k_relaxed));
-    std::cout << std::setw(25) << jsonObj["genre"].dump() << std::setw(55)
-              << jsonObj["name"].dump() << std::setw(35)
-              << jsonObj["author"].dump() << std::setw(7)
-              << jsonObj["bookNum"].dump() << std::endl;
+    output(jsonObj);
   }
   std::cout << std::endl;
+}
+
+void Db::LibDisplayGenre(std::string &genre) {
+  mongocxx::collection coll = db_inst["Books"];
+  mongocxx::cursor cursor = coll.find(make_document(kvp("genre", genre)));
+
+  for (auto doc : cursor) {
+    json jsonObj = json::parse(
+        bsoncxx::to_json(doc, bsoncxx::ExtendedJsonMode::k_relaxed));
+
+    output(jsonObj);
+  }
+}
+
+void Db::LibInsertBook(std::string &title, std::string &author,
+                       std::string &genre, int &bookID) {
+  mongocxx::collection coll = db_inst["Books"];
+  auto result = coll.insert_one(make_document(
+      kvp("name", title), kvp("author", author), kvp("genre", genre),
+      kvp("bookNum", bookID), kvp("rating", 0), kvp("numReviews", 0)));
+  assert(result);
+}
+
+void Db::LibRemoveBook(int &id) {
+  mongocxx::collection coll = db_inst["Books"];
+  coll.delete_one(make_document(kvp("bookNum", id)));
+}
+
+Book *Db::FindBookById(int &id) {
+  mongocxx::collection coll = db_inst["Books"];
+  auto cursor = coll.find_one(make_document(kvp("bookNum", id)));
+  auto doc = cursor->view();
+
+  if (doc.empty()) {
+    return nullptr;
+  }
+
+  json jsonObj =
+      json::parse(bsoncxx::to_json(doc, bsoncxx::ExtendedJsonMode::k_relaxed));
+  return new Book(jsonObj["name"].dump(), jsonObj["author"].dump(),
+                  jsonObj["genre"].dump(), stoi(jsonObj["bookNum"].dump()),
+                  stod(jsonObj["rating"].dump()),
+                  stoi(jsonObj["numReviews"].dump()));
+}
+
+void Db::LibGetPopular() {
+  mongocxx::collection coll = db_inst["Books"];
+  auto cursor =
+      coll.find(make_document(kvp("rating", make_document(kvp("$gte", 3.5)))));
+
+  for (auto doc : cursor) {
+    json jsonObj = json::parse(
+        bsoncxx::to_json(doc, bsoncxx::ExtendedJsonMode::k_relaxed));
+
+    output(jsonObj);
+  }
+}
+
+void Db::output(json jsonObj) {
+  std::cout << std::setw(25) << jsonObj["genre"].dump() << std::setw(55)
+            << jsonObj["name"].dump() << std::setw(35)
+            << jsonObj["author"].dump() << std::setw(7)
+            << jsonObj["bookNum"].dump() << std::endl;
 }

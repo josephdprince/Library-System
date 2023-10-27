@@ -9,13 +9,15 @@ int main() {
       "?retryWrites=true&w=majority";
 
   Db *db = new Db(connStr);
-  Library *lib = new Library();
+  Library *lib = new Library(db);
 
-  db->LibDisplayAll();
+  if (!lib->loadUsers()) {
+    std::cerr << "ERROR: Cannot load users from login.csv" << std::endl;
+    exit(1);
+  }
 
-  // lib->login();
-  // lib->start();
-  // lib->StoreLibrary();
+  lib->login();
+  lib->start();
 
   delete db;
   delete lib;
