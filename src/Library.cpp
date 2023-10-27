@@ -20,10 +20,6 @@ Library::~Library() {
     delete userList.at(i);
     userList.at(i) = nullptr;
   }
-  for (unsigned i = 0; i < library.size(); i++) {
-    delete library.at(i);
-    library.at(i) = nullptr;
-  }
 }
 
 void Library::DisplayGenre(string genre) {

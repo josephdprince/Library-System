@@ -11,13 +11,13 @@ int main() {
   Db *db = new Db(connStr);
   Library *lib = new Library();
 
-  std::string collName = "Books";
-  // db->printDocs(collName);
+  db->LibDisplayAll();
 
   // lib->login();
   // lib->start();
   // lib->StoreLibrary();
 
+  delete db;
   delete lib;
   return 0;
 }

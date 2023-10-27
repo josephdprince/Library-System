@@ -1,7 +1,6 @@
 #pragma once
 
 #include <cstdint>
-#include <iostream>
 #include <string>
 #include <vector>
 
@@ -18,11 +17,12 @@ using bsoncxx::builder::basic::make_document;
 
 class Db {
 private:
+  mongocxx::client *client;
   mongocxx::database db_inst;
 
 public:
   Db(std::string &URI);
   ~Db();
 
-  void printDocs(std::string &collName);
+  void LibDisplayAll();
 };

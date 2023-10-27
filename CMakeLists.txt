@@ -20,14 +20,17 @@ SET(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 SET(CMAKE_CXX_CLANG_TIDY clang-tidy)
 
 INCLUDE_DIRECTORIES(${CMAKE_CURRENT_SOURCE_DIR}/include
-        /home/ubuntu/Library-System/thirdparty/mongo-cxx-driver-r3.8.1/build/install/include/mongocxx/v_noabi
-        /home/ubuntu/Library-System/thirdparty/mongo-cxx-driver-r3.8.1/build/install/include/bsoncxx/v_noabi)
+        ${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/mongo-cxx-driver-r3.8.1/build/install/include/mongocxx/v_noabi
+        ${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/mongo-cxx-driver-r3.8.1/build/install/include/bsoncxx/v_noabi
+        ${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/json/include
+        )
 
-LIST(PREPEND CMAKE_PREFIX_PATH "/home/ubuntu/Library-System/thirdparty/mongo-cxx-driver-r3.8.1/build/src/mongocxx")
-LIST(PREPEND CMAKE_PREFIX_PATH "/home/ubuntu/Library-System/thirdparty/mongo-cxx-driver-r3.8.1/build/src/bsoncxx")
+LIST(PREPEND CMAKE_PREFIX_PATH "${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/mongo-cxx-driver-r3.8.1/build/src/mongocxx")
+LIST(PREPEND CMAKE_PREFIX_PATH "${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/mongo-cxx-driver-r3.8.1/build/src/bsoncxx")
 
 FIND_PACKAGE(mongocxx REQUIRED)
 FIND_PACKAGE(bsoncxx REQUIRED)
+FIND_PACKAGE(nlohmann_json 3.2.0 REQUIRED)
 
 ADD_SUBDIRECTORY(googletest)
 
@@ -51,6 +54,7 @@ ADD_EXECUTABLE(run ${SOURCE_FILES})
 TARGET_LINK_LIBRARIES(run PRIVATE 
     mongo::mongocxx_shared 
     mongo::bsoncxx_shared
+    nlohmann_json::nlohmann_json
 )
 
 # TODO: Link test with mongo
