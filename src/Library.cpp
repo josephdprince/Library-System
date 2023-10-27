@@ -220,12 +220,12 @@ Composition *Library::CreateList(ifstream &fin, bool key) {
       Individual *tempBook = new Individual();
       Book *b = FindBook(tempID);
       if (b == nullptr) {
+        delete tempBook;
         continue;
       }
       tempBook->SetBook(b);
 
       temp->Add(tempBook);
-      currUser->AddExtraDel(tempBook);
     }
     getline(fin, input);
   }

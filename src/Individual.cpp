@@ -2,6 +2,8 @@
 
 #include <iostream>
 
+Individual::~Individual() {}
+
 std::string Individual::print(int space, int key) {
   std::string str = "";
   for (int i = 0; i < space; ++i) {

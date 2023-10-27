@@ -24,7 +24,6 @@ public:
   virtual void AddCheckedOut(Book *) = 0;
   virtual void AddHistory(std::pair<Book *, double>) = 0;
   virtual void AddLists(Composition *) = 0;
-  virtual void AddExtraDel(Lists *) = 0;
   virtual void SetLists(std::vector<Composition *>) = 0;
   virtual void newList(Library *) = 0;
   virtual std::vector<Book *> GetCheckedOut() = 0;

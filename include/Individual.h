@@ -11,6 +11,7 @@ private:
   Book *book;
 
 public:
+  virtual ~Individual();
   virtual std::string print(int space, int key);
   virtual void file(std::ofstream &fout);
   virtual void find_rating();

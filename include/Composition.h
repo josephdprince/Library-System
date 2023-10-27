@@ -12,6 +12,7 @@ private:
   std::vector<Lists *> list;
 
 public:
+  virtual ~Composition();
   virtual std::string print(int space, int key);
   virtual void file(std::ofstream &fout);
   virtual void find_rating();

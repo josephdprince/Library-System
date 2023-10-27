@@ -12,10 +12,6 @@ Standard::~Standard() {
   for (auto i : lists) {
     delete i;
   }
-
-  for (auto i : extraDel) {
-    delete i;
-  }
 }
 
 void Standard::newList(Library *library) {
@@ -51,8 +47,6 @@ void Standard::newList(Library *library) {
       std::cout << entry->GetBook()->GetTitle() << " was added to your list"
                 << std::endl
                 << std::endl;
-
-      extraDel.push_back(entry);
     } else if (input == 2) {
       if (lists.size() != 0) {
         std::cout << "Enter name of list you would like to add: ";
@@ -118,8 +112,6 @@ void Standard::AddHistory(std::pair<Book *, double> data) {
 }
 
 void Standard::AddLists(Composition *list) { lists.push_back(list); }
-
-void Standard::AddExtraDel(Lists *lst) { extraDel.push_back(lst); }
 
 void Standard::checkoutBook(Book *b) {
   for (auto i : checkedOut) {

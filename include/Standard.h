@@ -13,7 +13,6 @@ private:
   std::vector<Book *> checkedOut;
   std::map<Book *, double> history;
   std::vector<Composition *> lists;
-  std::vector<Lists *> extraDel;
 
 public:
   virtual ~Standard();
@@ -27,7 +26,6 @@ public:
   virtual void AddCheckedOut(Book *);
   virtual void AddHistory(std::pair<Book *, double>);
   virtual void AddLists(Composition *);
-  virtual void AddExtraDel(Lists *);
   virtual void SetLists(std::vector<Composition *> lists) {
     this->lists = lists;
   }

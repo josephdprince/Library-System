@@ -5,6 +5,12 @@
 #include <string>
 #include <vector>
 
+Composition::~Composition() {
+  for (auto i : list) {
+    delete i;
+  }
+}
+
 std::string Composition::print(int space, int key) {
   std::string str = "";
   for (int i = 0; i < space; ++i) {
