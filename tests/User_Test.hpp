@@ -1,8 +1,8 @@
 #pragma once
 
-#include "../include/Library.h"
-#include "../include/User.h"
 #include "gtest/gtest.h"
+#include <Library.h>
+#include <User.h>
 
 #include <iostream>
 

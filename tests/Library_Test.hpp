@@ -3,8 +3,8 @@
 #include <iostream>
 #include <string>
 
-#include "../include/Library.h"
 #include "gtest/gtest.h"
+#include <Library.h>
 
 using namespace std;
 

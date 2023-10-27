@@ -1,8 +1,8 @@
 #pragma once
 
-#include "../include/Composition.h"
-#include "../include/Individual.h"
 #include "gtest/gtest.h"
+#include <Composition.h>
+#include <Individual.h>
 using namespace std;
 
 TEST(ListsTest, EmptyList) {

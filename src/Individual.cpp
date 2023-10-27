@@ -1,4 +1,4 @@
-#include "../include/Individual.h"
+#include <Individual.h>
 
 #include <iostream>
 

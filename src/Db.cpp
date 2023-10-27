@@ -1,7 +1,7 @@
-#include "../include/Db.h"
+#include <Db.h>
 #include <iostream>
 
-Db::Db(const std::string &URI) {
+Db::Db(std::string &URI) {
   try {
     // Create an instance.
     mongocxx::instance inst{};
@@ -16,7 +16,7 @@ Db::Db(const std::string &URI) {
 
     // Setup the connection and get a handle on the "admin" database.
     mongocxx::client conn{uri, client_options};
-    db_inst = conn["admin"];
+    db_inst = conn["libsystem"];
 
     // Ping the database.
     const auto ping_cmd = bsoncxx::builder::basic::make_document(
@@ -25,8 +25,29 @@ Db::Db(const std::string &URI) {
     std::cout
         << "Pinged your deployment. You successfully connected to MongoDB!"
         << std::endl;
+
+    auto coll = db_inst["Books"];
+    auto cursor = coll.find({});
+
+    for (auto doc : cursor) {
+      std::cout << "Printing" << std::endl;
+      std::cout << bsoncxx::to_json(doc, bsoncxx::ExtendedJsonMode::k_relaxed)
+                << std::endl;
+    }
+    std::cout << "I did it?" << std::endl;
   } catch (const std::exception &e) {
     // Handle errors
     std::cout << "Exception: " << e.what() << std::endl;
   }
+}
+
+void Db::printDocs(std::string &collName) {
+  auto coll = db_inst.collection(collName);
+  auto cursor = coll.find({});
+
+  for (auto doc : cursor) {
+    std::cout << bsoncxx::to_json(doc, bsoncxx::ExtendedJsonMode::k_relaxed)
+              << std::endl;
+  }
+  std::cout << std::endl;
 }

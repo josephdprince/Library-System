@@ -3,9 +3,9 @@
 #include <iostream>
 #include <string>
 
-#include "../include/Admin.h"
-#include "../include/Library.h"
 #include "gtest/gtest.h"
+#include <Admin.h>
+#include <Library.h>
 
 using namespace std;
 

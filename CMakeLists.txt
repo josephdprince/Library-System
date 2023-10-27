@@ -11,15 +11,24 @@ if(NOT DEFINED CMAKE_CXX_STANDARD)
     set(CMAKE_CXX_STANDARD 17)
 endif()
 
-set(CMAKE_CXX_EXTENSIONS OFF)
+SET(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 # if (NOT CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
 #     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra -Werror")
 # endif()
 
-INCLUDE_DIRECTORIES(${CMAKE_SOURCE_DIR}/include)
+SET(CMAKE_CXX_CLANG_TIDY clang-tidy)
 
-ADD_SUBDIRECTORY(thirdparty/mongo-cxx-driver-r3.8.1)
+INCLUDE_DIRECTORIES(${CMAKE_CURRENT_SOURCE_DIR}/include
+        /home/ubuntu/Library-System/thirdparty/mongo-cxx-driver-r3.8.1/build/install/include/mongocxx/v_noabi
+        /home/ubuntu/Library-System/thirdparty/mongo-cxx-driver-r3.8.1/build/install/include/bsoncxx/v_noabi)
+
+LIST(PREPEND CMAKE_PREFIX_PATH "/home/ubuntu/Library-System/thirdparty/mongo-cxx-driver-r3.8.1/build/src/mongocxx")
+LIST(PREPEND CMAKE_PREFIX_PATH "/home/ubuntu/Library-System/thirdparty/mongo-cxx-driver-r3.8.1/build/src/bsoncxx")
+
+FIND_PACKAGE(mongocxx REQUIRED)
+FIND_PACKAGE(bsoncxx REQUIRED)
+
 ADD_SUBDIRECTORY(googletest)
 
 # Define a common set of source files
@@ -38,16 +47,10 @@ set(SOURCE_FILES
 
 ADD_EXECUTABLE(run ${SOURCE_FILES})
 
-# Include necessary directories for the run target
-TARGET_INCLUDE_DIRECTORIES(run PRIVATE 
-    ${CMAKE_SOURCE_DIR}/thirdparty/mongo-cxx-driver-r3.8.1/src/mongocxx/
-    ${CMAKE_BINARY_DIR}/thirdparty/mongo-cxx-driver-r3.8.1/src/bsoncxx/
-)
-
 # Link necessary libraries
 TARGET_LINK_LIBRARIES(run PRIVATE 
-    mongocxx_shared 
-    bsoncxx_shared
+    mongo::mongocxx_shared 
+    mongo::bsoncxx_shared
 )
 
 # TODO: Link test with mongo

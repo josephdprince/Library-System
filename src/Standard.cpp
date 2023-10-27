@@ -1,6 +1,6 @@
-#include "../include/Standard.h"
-#include "../include/Individual.h"
-#include "../include/Strategy.h"
+#include <Individual.h>
+#include <Standard.h>
+#include <Strategy.h>
 
 #include <iomanip>
 #include <iostream>

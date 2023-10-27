@@ -1,7 +1,7 @@
 #pragma once
 
-#include "../include/Standard.h"
 #include "gtest/gtest.h"
+#include <Standard.h>
 
 TEST(StandardTest, checkoutBook) {
   Library *lib = new Library();

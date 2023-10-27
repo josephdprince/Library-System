@@ -1,4 +1,4 @@
-#include "../include/Composition.h"
+#include <Composition.h>
 
 #include <fstream>
 #include <iostream>

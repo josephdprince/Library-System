@@ -1,4 +1,4 @@
-#include "../include/Admin.h"
+#include <Admin.h>
 
 #include <iostream>
 #include <string>

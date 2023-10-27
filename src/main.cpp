@@ -1,5 +1,5 @@
-#include "../include/Db.h"
-#include "../include/Library.h"
+#include <Db.h>
+#include <Library.h>
 
 #include <iostream>
 
@@ -11,9 +11,12 @@ int main() {
   Db *db = new Db(connStr);
   Library *lib = new Library();
 
-  lib->login();
-  lib->start();
-  lib->StoreLibrary();
+  std::string collName = "Books";
+  // db->printDocs(collName);
+
+  // lib->login();
+  // lib->start();
+  // lib->StoreLibrary();
 
   delete lib;
   return 0;

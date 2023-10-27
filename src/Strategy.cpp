@@ -1,4 +1,4 @@
-#include "../include/Strategy.h"
+#include <Strategy.h>
 
 #include <iomanip>
 #include <iostream>

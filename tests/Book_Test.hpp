@@ -1,7 +1,7 @@
 #pragma once
 
-#include "../include/Book.h"
 #include "gtest/gtest.h"
+#include <Book.h>
 
 TEST(BookTest, TitleGetter) {
   Book *testBook = new Book("title", "author", "genre", 222, 0, 0);

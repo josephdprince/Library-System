@@ -1,6 +1,6 @@
-#include "../include/Library.h"
-#include "../include/Admin.h"
-#include "../include/Individual.h"
+#include <Admin.h>
+#include <Individual.h>
+#include <Library.h>
 
 #include <fstream>
 #include <iomanip>
@@ -15,7 +15,7 @@ Library::Library() { currUser = nullptr; }
 
 Library::~Library() {
   delete currUser;
-  currUser == nullptr;
+  currUser = nullptr;
   for (unsigned i = 0; i < userList.size(); i++) {
     delete userList.at(i);
     userList.at(i) = nullptr;

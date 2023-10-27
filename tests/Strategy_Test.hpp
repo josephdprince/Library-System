@@ -1,7 +1,7 @@
 #pragma once
 
-#include "../include/Strategy.h"
 #include "gtest/gtest.h"
+#include <Strategy.h>
 #include <map>
 #include <string>
 #include <vector>
