@@ -4,9 +4,8 @@
 #include <iostream>
 
 int main() {
-  std::string connStr =
-      "mongodb+srv://libuser:libuser@libsystem.igbknrs.mongodb.net/"
-      "?retryWrites=true&w=majority";
+  // Put your connection string here
+  std::string connStr = "";
 
   Db *db = new Db(connStr);
   Library *lib = new Library(db);
