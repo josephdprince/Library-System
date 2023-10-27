@@ -1,0 +1,809 @@
+[
+    {
+        "name": "1984",
+        "author": "George Orwell",
+        "genre": "dystopian",
+        "bookNum": 1,
+        "rating": 4,
+        "numReviews": 2
+    },
+    {
+        "name": "A Confederacy of Dunces",
+        "author": "John Kennedy Toole",
+        "genre": "comedy",
+        "bookNum": 2,
+        "rating": 0,
+        "numReviews": 0
+    },
+    {
+        "name": "A Game of Thrones",
+        "author": "George R. R. Martin",
+        "genre": [
+            "political",
+            "fantasy"
+        ],
+        "bookNum": 3,
+        "rating": 0,
+        "numReviews": 0
+    },
+    {
+        "name": "A Prayer for Owen Meany",
+        "author": "John Irving",
+        "genre": "bildungsroman",
+        "bookNum": 4,
+        "rating": 4,
+        "numReviews": 1
+    },
+    {
+        "name": "A Separate Peace",
+        "author": "John Knowles",
+        "genre": "realism",
+        "bookNum": 5,
+        "rating": 4,
+        "numReviews": 2
+    },
+    {
+        "name": "A Tree Grows in Brooklyn",
+        "author": "Betty Smith",
+        "genre": "bildungsroman",
+        "bookNum": 6,
+        "rating": 0,
+        "numReviews": 0
+    },
+    {
+        "name": "The Adventures of Tom Sawyer",
+        "author": "Mark Twain",
+        "genre": "fiction",
+        "bookNum": 7,
+        "rating": 0,
+        "numReviews": 0
+    },
+    {
+        "name": "The Alchemist",
+        "author": "Paulo Coelho",
+        "genre": [
+            "adventure",
+            "fantsay"
+        ],
+        "bookNum": 8,
+        "rating": 0,
+        "numReviews": 0
+    },
+    {
+        "name": "Alex Cross Mysteries (series)",
+        "author": "James Patterson",
+        "genre": "mystery",
+        "bookNum": 9,
+        "rating": 0,
+        "numReviews": 0
+    },
+    {
+        "name": "Alice's Adventures in Wonderland",
+        "author": "Lewis Carroll",
+        "genre": "fantasy",
+        "bookNum": 10,
+        "rating": 4,
+        "numReviews": 1
+    },
+    {
+        "name": "And then There Were None",
+        "author": "Agatha Christie",
+        "genre": "mystery",
+        "bookNum": 11,
+        "rating": 0,
+        "numReviews": 0
+    },
+    {
+        "name": "Anne of Green Gables",
+        "author": "Lucy Maud Montgomery",
+        "genre": "fiction",
+        "bookNum": 12,
+        "rating": 0,
+        "numReviews": 0
+    },
+    {
+        "name": "Another Country",
+        "author": "James Baldwin",
+        "genre": "fiction",
+        "bookNum": 13,
+        "rating": 0,
+        "numReviews": 0
+    },
+    {
+        "name": "Atlas Shrugged",
+        "author": "Ayn Rand",
+        "genre": "science fiction",
+        "bookNum": 14,
+        "rating": 0,
+        "numReviews": 0
+    },
+    {
+        "name": "Beloved",
+        "author": "Toni Morrison",
+        "genre": "fiction",
+        "bookNum": 15,
+        "rating": 0,
+        "numReviews": 0
+    },
+    {
+        "name": "Bless Me Ultima",
+        "author": "Rudolfo Anaya",
+        "genre": "fiction",
+        "bookNum": 16,
+        "rating": 0,
+        "numReviews": 0
+    },
+    {
+        "name": "The Book Thief",
+        "author": "Markus Zusak",
+        "genre": "fiction",
+        "bookNum": 17,
+        "rating": 0,
+        "numReviews": 0
+    },
+    {
+        "name": "The Brief Wondrous Life of Oscar Wao",
+        "author": "Junot Diaz",
+        "genre": "fiction",
+        "bookNum": 18,
+        "rating": 0,
+        "numReviews": 0
+    },
+    {
+        "name": "The Call of the Wild",
+        "author": "Jack London",
+        "genre": [
+            "adventure",
+            "fiction"
+        ],
+        "bookNum": 19,
+        "rating": 0,
+        "numReviews": 0
+    },
+    {
+        "name": "Catch-22",
+        "author": "Joseph Heller",
+        "genre": "satire",
+        "bookNum": 20,
+        "rating": 0,
+        "numReviews": 0
+    },
+    {
+        "name": "The Catcher in the Rye",
+        "author": "J.D.Salinger",
+        "genre": "bildungsroman",
+        "bookNum": 21,
+        "rating": 0,
+        "numReviews": 0
+    },
+    {
+        "name": "Charlotte's Web",
+        "author": "E.B. White",
+        "genre": "fiction",
+        "bookNum": 22,
+        "rating": 0,
+        "numReviews": 0
+    },
+    {
+        "name": "The Chronicles of Narnia (series)",
+        "author": "C.S. Lewis",
+        "genre": "fantasy",
+        "bookNum": 23,
+        "rating": 0,
+        "numReviews": 0
+    },
+    {
+        "name": "The Clan of the Cave Bear",
+        "author": "Jean M. Auel",
+        "genre": "fiction",
+        "bookNum": 24,
+        "rating": 0,
+        "numReviews": 0
+    },
+    {
+        "name": "The Coldest Winter Ever",
+        "author": "Sister Souljah",
+        "genre": "fiction",
+        "bookNum": 25,
+        "rating": 0,
+        "numReviews": 0
+    },
+    {
+        "name": "The Color Purple",
+        "author": "Alice Walker",
+        "genre": "fiction",
+        "bookNum": 26,
+        "rating": 0,
+        "numReviews": 0
+    },
+    {
+        "name": "The Count of Monte Cristo",
+        "author": "Alexandre Dumas",
+        "genre": " fiction",
+        "bookNum": 27,
+        "rating": 0,
+        "numReviews": 0
+    },
+    {
+        "name": "Crime and Punishment",
+        "author": "Fyodor Dostoyevsky",
+        "genre": "political",
+        "bookNum": 28,
+        "rating": 0,
+        "numReviews": 0
+    },
+    {
+        "name": "The Curious Incident of the Dog in the Night-Time",
+        "author": "Mark Haddon",
+        "genre": "fiction",
+        "bookNum": 29,
+        "rating": 0,
+        "numReviews": 0
+    },
+    {
+        "name": "The Da Vinci Code",
+        "author": "Dan Brown",
+        "genre": "mystery",
+        "bookNum": 30,
+        "rating": 0,
+        "numReviews": 0
+    },
+    {
+        "name": "Don Quixote",
+        "author": "Miguel de Cervantes",
+        "genre": "satire",
+        "bookNum": 31,
+        "rating": 0,
+        "numReviews": 0
+    },
+    {
+        "name": "Dona Barbara",
+        "author": "Romulo Gallegos",
+        "genre": "fiction",
+        "bookNum": 32,
+        "rating": 0,
+        "numReviews": 0
+    },
+    {
+        "name": "Dune",
+        "author": "Frank Herbert",
+        "genre": "science fiction",
+        "bookNum": 33,
+        "rating": 0,
+        "numReviews": 0
+    },
+    {
+        "name": "Fifty Shades of Grey",
+        "author": "E.L. James",
+        "genre": "romance",
+        "bookNum": 34,
+        "rating": 0,
+        "numReviews": 0
+    },
+    {
+        "name": "Flowers in the Attic",
+        "author": "V. C. Andrews",
+        "genre": "fiction",
+        "bookNum": 35,
+        "rating": 0,
+        "numReviews": 0
+    },
+    {
+        "name": "Foundation",
+        "author": "Isaac Asimov",
+        "genre": "science fiction",
+        "bookNum": 36,
+        "rating": 0,
+        "numReviews": 0
+    },
+    {
+        "name": "Frankenstein",
+        "author": "Mary Shelley",
+        "genre": "science fiction",
+        "bookNum": 37,
+        "rating": 0,
+        "numReviews": 0
+    },
+    {
+        "name": "Ghost",
+        "author": "Jason Reynolds",
+        "genre": "fiction",
+        "bookNum": 38,
+        "rating": 0,
+        "numReviews": 0
+    },
+    {
+        "name": "Gilead",
+        "author": "Marilynne Robinson",
+        "genre": "fiction",
+        "bookNum": 39,
+        "rating": 0,
+        "numReviews": 0
+    },
+    {
+        "name": "The Giver",
+        "author": "Lois Lowry",
+        "genre": "dystopian",
+        "bookNum": 40,
+        "rating": 0,
+        "numReviews": 0
+    },
+    {
+        "name": "The Godfather",
+        "author": "Mario Puzo",
+        "genre": "mystery",
+        "bookNum": 41,
+        "rating": 4,
+        "numReviews": 3
+    },
+    {
+        "name": "Gone Girl",
+        "author": "Gillian Flynn",
+        "genre": "thriller",
+        "bookNum": 42,
+        "rating": 0,
+        "numReviews": 0
+    },
+    {
+        "name": "Gone with the Wind",
+        "author": "Margaret Mitchell",
+        "genre": "fiction",
+        "bookNum": 43,
+        "rating": 0,
+        "numReviews": 0
+    },
+    {
+        "name": "The Grapes of Wrath",
+        "author": "John Steinbeck",
+        "genre": "fiction",
+        "bookNum": 44,
+        "rating": 0,
+        "numReviews": 0
+    },
+    {
+        "name": "Great Expectations",
+        "author": "Charles Dickens",
+        "genre": "bildungsroman",
+        "bookNum": 45,
+        "rating": 0,
+        "numReviews": 0
+    },
+    {
+        "name": "The Great Gatsby",
+        "author": "F. Scott Fitzgerald",
+        "genre": "tragedy",
+        "bookNum": 46,
+        "rating": 0,
+        "numReviews": 0
+    },
+    {
+        "name": "Gulliver's Travels",
+        "author": "Jonathan Swift",
+        "genre": "fiction",
+        "bookNum": 47,
+        "rating": 0,
+        "numReviews": 0
+    },
+    {
+        "name": "The Handmaid's Tale",
+        "author": "Margaret Atwood",
+        "genre": "dystopian",
+        "bookNum": 48,
+        "rating": 0,
+        "numReviews": 0
+    },
+    {
+        "name": "Harry Potter (series)",
+        "author": "J.K. Rowling",
+        "genre": "fantasy",
+        "bookNum": 49,
+        "rating": 0,
+        "numReviews": 0
+    },
+    {
+        "name": "Hatchet",
+        "author": "Gary Paulsen",
+        "genre": "thriller",
+        "bookNum": 50,
+        "rating": 0,
+        "numReviews": 0
+    },
+    {
+        "name": "Heart of Darkness",
+        "author": "Joseph Conrad",
+        "genre": "fiction",
+        "bookNum": 51,
+        "rating": 0,
+        "numReviews": 0
+    },
+    {
+        "name": "The Help",
+        "author": "Kathryn Stockett",
+        "genre": "fiction",
+        "bookNum": 52,
+        "rating": 0,
+        "numReviews": 0
+    },
+    {
+        "name": "The Hitchhiker's Guide to the Galaxy",
+        "author": "Douglas Adams",
+        "genre": "science fiction",
+        "bookNum": 53,
+        "rating": 0,
+        "numReviews": 0
+    },
+    {
+        "name": "The Hunger Games",
+        "author": "Suzanne Collins",
+        "genre": "thriller",
+        "bookNum": 54,
+        "rating": 0,
+        "numReviews": 0
+    },
+    {
+        "name": "The Hunt for Red October",
+        "author": "Tom Clancy",
+        "genre": "thriller",
+        "bookNum": 55,
+        "rating": 0,
+        "numReviews": 0
+    },
+    {
+        "name": "The Intuitionist",
+        "author": "Colson Whitehead",
+        "genre": "mystery",
+        "bookNum": 56,
+        "rating": 0,
+        "numReviews": 0
+    },
+    {
+        "name": "Invisible Man",
+        "author": "Ralph Ellison",
+        "genre": "thriller",
+        "bookNum": 57,
+        "rating": 0,
+        "numReviews": 0
+    },
+    {
+        "name": "Jane Eyre",
+        "author": "Charlotte Bronte",
+        "genre": "romance",
+        "bookNum": 58,
+        "rating": 0,
+        "numReviews": 0
+    },
+    {
+        "name": "The Joy Luck Club",
+        "author": "Amy Tan",
+        "genre": "fiction",
+        "bookNum": 59,
+        "rating": 0,
+        "numReviews": 0
+    },
+    {
+        "name": "Jurassic Park",
+        "author": "Michael Crichton",
+        "genre": "adventure",
+        "bookNum": 60,
+        "rating": 0,
+        "numReviews": 0
+    },
+    {
+        "name": "Left Behind",
+        "author": "Tim LaHaye and Jerry B. Jenkins",
+        "genre": "dystopian",
+        "bookNum": 61,
+        "rating": 0,
+        "numReviews": 0
+    },
+    {
+        "name": "The Little Prince",
+        "author": "Antoine de Saint-Exupery",
+        "genre": "fiction",
+        "bookNum": 62,
+        "rating": 0,
+        "numReviews": 0
+    },
+    {
+        "name": "Little Women",
+        "author": "Louise May Alcott",
+        "genre": "fiction",
+        "bookNum": 63,
+        "rating": 0,
+        "numReviews": 0
+    },
+    {
+        "name": "Lonesome Dove",
+        "author": "Larry McMurtry",
+        "genre": "romance",
+        "bookNum": 64,
+        "rating": 0,
+        "numReviews": 0
+    },
+    {
+        "name": "Looking for Alaska",
+        "author": "John Green",
+        "genre": "adventure",
+        "bookNum": 65,
+        "rating": 0,
+        "numReviews": 0
+    },
+    {
+        "name": "The Lord of the Rings (series)",
+        "author": "J.R.R. Tolkien",
+        "genre": [
+            "adventure",
+            "fantasy"
+        ],
+        "bookNum": 66,
+        "rating": 0,
+        "numReviews": 0
+    },
+    {
+        "name": "The Lovely Bones",
+        "author": "Alice Sebold",
+        "genre": "romance",
+        "bookNum": 67,
+        "rating": 0,
+        "numReviews": 0
+    },
+    {
+        "name": "The Martian",
+        "author": "Andy Weir",
+        "genre": "science fiction",
+        "bookNum": 68,
+        "rating": 0,
+        "numReviews": 0
+    },
+    {
+        "name": "Memoirs of a Geisha",
+        "author": "Arthur Golden",
+        "genre": "fiction",
+        "bookNum": 69,
+        "rating": 0,
+        "numReviews": 0
+    },
+    {
+        "name": "Mind Invaders",
+        "author": "Dave Hunt",
+        "genre": "thriller",
+        "bookNum": 70,
+        "rating": 0,
+        "numReviews": 0
+    },
+    {
+        "name": "Moby Dick",
+        "author": "Herman Melville",
+        "genre": "adventure",
+        "bookNum": 71,
+        "rating": 0,
+        "numReviews": 0
+    },
+    {
+        "name": "The Notebook",
+        "author": "Nicholas Sparks",
+        "genre": "romance",
+        "bookNum": 72,
+        "rating": 0,
+        "numReviews": 0
+    },
+    {
+        "name": "One Hundred Years of Solitude",
+        "author": "Gabriel Garcia Marquez",
+        "genre": "thriller",
+        "bookNum": 73,
+        "rating": 0,
+        "numReviews": 0
+    },
+    {
+        "name": "Outlander",
+        "author": "Diana Gabaldon",
+        "genre": "fantasy",
+        "bookNum": 74,
+        "rating": 0,
+        "numReviews": 0
+    },
+    {
+        "name": "The Outsiders",
+        "author": "S.E. Hinton",
+        "genre": "fiction",
+        "bookNum": 75,
+        "rating": 0,
+        "numReviews": 0
+    },
+    {
+        "name": "The Picture of Dorian Gray",
+        "author": "Oscar Wilde",
+        "genre": "fiction",
+        "bookNum": 76,
+        "rating": 0,
+        "numReviews": 0
+    },
+    {
+        "name": "The Pilgrim's Progress",
+        "author": "John Bunyan",
+        "genre": "adventure",
+        "bookNum": 77,
+        "rating": 4,
+        "numReviews": 1
+    },
+    {
+        "name": "The Pillars of the Earth",
+        "author": "Ken Follett",
+        "genre": "mystery",
+        "bookNum": 78,
+        "rating": 0,
+        "numReviews": 0
+    },
+    {
+        "name": "Pride and Prejudice",
+        "author": "Jane Austen",
+        "genre": "fiction",
+        "bookNum": 79,
+        "rating": 0,
+        "numReviews": 0
+    },
+    {
+        "name": "Ready Player One",
+        "author": "Ernest Cline",
+        "genre": [
+            "adventure",
+            "fantasy"
+        ],
+        "bookNum": 80,
+        "rating": 0,
+        "numReviews": 0
+    },
+    {
+        "name": "Rebecca",
+        "author": "Daphne du Maurier",
+        "genre": "fiction",
+        "bookNum": 81,
+        "rating": 0,
+        "numReviews": 0
+    },
+    {
+        "name": "The Shack",
+        "author": "William P. Young",
+        "genre": "thriller",
+        "bookNum": 82,
+        "rating": 0,
+        "numReviews": 0
+    },
+    {
+        "name": "Siddhartha",
+        "author": "Hermann Hesse",
+        "genre": "romance",
+        "bookNum": 83,
+        "rating": 0,
+        "numReviews": 0
+    },
+    {
+        "name": "The Sirens of Titan",
+        "author": "Kurt Vonnegut",
+        "genre": "thriller",
+        "bookNum": 84,
+        "rating": 0,
+        "numReviews": 0
+    },
+    {
+        "name": "The Stand",
+        "author": "Stephen King",
+        "genre": "thriller",
+        "bookNum": 85,
+        "rating": 0,
+        "numReviews": 0
+    },
+    {
+        "name": "The Sun Also Rises",
+        "author": "Ernest Hemingway",
+        "genre": "fiction",
+        "bookNum": 86,
+        "rating": 0,
+        "numReviews": 0
+    },
+    {
+        "name": "Swan Song",
+        "author": "Robert R. McCammon",
+        "genre": "romance",
+        "bookNum": 87,
+        "rating": 0,
+        "numReviews": 0
+    },
+    {
+        "name": "Tales of the City",
+        "author": "Armistead Maupin",
+        "genre": "fiction",
+        "bookNum": 88,
+        "rating": 0,
+        "numReviews": 0
+    },
+    {
+        "name": "Their Eyes Were Watching God",
+        "author": "Zora Neale Hurston",
+        "genre": "romance",
+        "bookNum": 89,
+        "rating": 0,
+        "numReviews": 0
+    },
+    {
+        "name": "Things Fall Apart",
+        "author": "Chinua Achebe",
+        "genre": "fiction",
+        "bookNum": 90,
+        "rating": 0,
+        "numReviews": 0
+    },
+    {
+        "name": "This Present Darkness",
+        "author": "Frank E. Peretti",
+        "genre": "mystery",
+        "bookNum": 91,
+        "rating": 0,
+        "numReviews": 0
+    },
+    {
+        "name": "To Kill a Mockingbird",
+        "author": "Harper Lee",
+        "genre": "fiction",
+        "bookNum": 92,
+        "rating": 0,
+        "numReviews": 0
+    },
+    {
+        "name": "Twilight",
+        "author": "Stephenie Meyer",
+        "genre": "romance",
+        "bookNum": 93,
+        "rating": 0,
+        "numReviews": 0
+    },
+    {
+        "name": "War and Peace",
+        "author": "Leo Tolstoy",
+        "genre": "political",
+        "bookNum": 94,
+        "rating": 0,
+        "numReviews": 0
+    },
+    {
+        "name": "Watchers",
+        "author": "Dean Koontz",
+        "genre": "fiction",
+        "bookNum": 95,
+        "rating": 0,
+        "numReviews": 0
+    },
+    {
+        "name": "The Wheel of Time (series)",
+        "author": "Robert Jordan",
+        "genre": "mystery",
+        "bookNum": 96,
+        "rating": 0,
+        "numReviews": 0
+    },
+    {
+        "name": "Where the Red Fern Grows",
+        "author": "Wilson Rawls",
+        "genre": "fiction",
+        "bookNum": 97,
+        "rating": 0,
+        "numReviews": 0
+    },
+    {
+        "name": "White Teeth",
+        "author": "Zadie Smith",
+        "genre": "thriller",
+        "bookNum": 98,
+        "rating": 0,
+        "numReviews": 0
+    },
+    {
+        "name": "Wuthering Heights",
+        "author": "Emily Bronte",
+        "genre": "tragedy",
+        "bookNum": 99,
+        "rating": 0,
+        "numReviews": 0
+    }
+]
