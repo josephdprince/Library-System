@@ -17,7 +17,9 @@ Db::Db(std::string &URI) {
 
     // Setup the connection and get a handle on the "admin" database.
     client = new mongocxx::client{uri, client_options};
-    db_inst = (*client)["LibrarySystem"];
+
+    // Put your db name here
+    db_inst = (*client)[""];
 
     // Ping the database.
     const auto ping_cmd = bsoncxx::builder::basic::make_document(

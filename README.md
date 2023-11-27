@@ -62,7 +62,9 @@ The library system is in charge of holding all of the books and will only have t
  * Click on the Green "Code" Box at the top corner 
  * Copy link under "HTTPS"
  * In your own terminal, run "git clone --recursive [link]"
- * Make sure that CMake is installed on your system
+ * Make sure that CMake and all below dependencies are installed
+ * Before running the project, update the connection string and the db name in main.cpp and Db.cpp respectively.
+   I do not want to host this data forever so you need to create a free [mongodb atlas cluster](https://www.mongodb.com/atlas/database) and fill in the information.
 
  ### Dependencies
 This project uses the mongo c++ driver library and the nlohmann json library. Both projects should be cloned in a directory called thirdparty that sits in the top level of the project
@@ -73,4 +75,4 @@ This project uses the mongo c++ driver library and the nlohmann json library. Bo
 * Nlohmann Json
   - Clone the repository and build the package. By default, everything will be installed into your system, and cmake will look there for the package.
  ## Testing
- Our project was tested using googletest. There are files for every class that contain the unit tests for each class's specific functions.  
+ This project was tested using googletest. There are files for every class that contain the unit tests for each class's specific functions.  
